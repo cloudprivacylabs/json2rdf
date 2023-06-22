@@ -1,0 +1,16 @@
+jsonSchemas:
+  - name: person.schema.json
+    id: http://schema.org
+    overlays:
+      - person.ovl.json
+variants:
+  http://schema.org/Person:
+    jsonSchema:
+      ref: http://schema.org#/definitions/Person
+      layerId: http://schema.org/Person
+
+  http://schema.org/PostalAddress:
+    jsonSchema:
+      ref: http://schema.org#/definitions/PostalAddress
+      layerId: http://schema.org/PostalAddress
+      

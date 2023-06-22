@@ -1,0 +1,96 @@
+{
+    "definitions": {
+        "PostalAddress": {
+            "type": "object",
+            "x-ls": {
+                "rdfNode": "http://schema.org/PostalAddress"
+            },
+            "properties": {
+                "addressLocality": {
+                    "x-ls": {
+                        "rdfPredicate" : "http://schema.org/addressLocality"
+                    }
+                },
+                "addressRegion": {
+                    "x-ls": {
+                        "rdfPredicate": "http://schema.org/addressRegion"
+                    }
+                },
+                "postalCode": {
+                    "x-ls": {
+                        "rdfPredicate": "http://schema.org/postalCode"
+                    }
+                },
+                "streetAddress": {
+                    "x-ls": {
+                        "rdfPredicate": "http://schema.org/streetAddress"
+                    }
+                }
+            }
+        },
+        "Person": {
+            "type": "object",
+            "x-ls": {
+                "rdfNode": "http://schema.org/Person"
+            },
+            "properties": {
+                "@id": {
+                    "x-ls": {
+                        "rdfId": "true"
+                    }
+                },
+                "address": {
+                    "x-ls": {
+                        "rdfPredicate": "http://schema.org/address"
+                    }
+                },
+                "colleague": {
+                    "x-ls": {
+                        "rdfPredicate": "http://schema.org/colleague"
+                    }
+                },
+                "email": {
+                    "x-ls": {
+                        "rdfPredicate": "http://schema.org/email"
+                    }
+                },
+                "name": {
+                    "x-ls": {
+                        "rdfPredicate": "http://schema.org/name"
+                    }
+                },
+                "alumniOf": {
+                    "x-ls": {
+                        "rdfPredicate": "http://schema.org/alumniOf"
+                    }
+                },
+                "birthPlace": {
+                    "x-ls": {
+                        "rdfPredicate": "http://schema.org/birthPlace"
+                    }
+                },
+                "birthDate": {
+                    "x-ls": {
+                        "rdfPredicate": "http://schema.org/birthDate",
+                        "rdfType": "http://schema.org/Date"
+                    }
+                },
+                "height": {
+                    "x-ls": {
+                        "rdfPredicate": "http://schema.org/height"
+                    }
+                },
+                "gender": {
+                    "x-ls": {
+                        "rdfPredicate": "http://schema.org/gender"
+                    }
+                },
+	              "sameAs" : {
+                    "x-ls": {
+                        "rdfPredicate": "http://schema.org/sameAs"
+                    }
+                }
+            }
+        }
+    }
+}

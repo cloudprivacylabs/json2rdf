@@ -1,0 +1,65 @@
+{
+    "definitions": {
+        "PostalAddress": {
+            "type": "object",
+            "properties": {
+                "addressLocality": {
+                    "type": "string"
+                },
+                "addressRegion": {
+                    "type": "string"
+                },
+                "postalCode": {
+                    "type": "string"
+                },
+                "streetAddress": {
+                    "type": "string"
+                }
+            }
+        },
+        "Person": {
+            "type": "object",
+            "properties": {
+                "address": {
+                    "$ref": "#/definitions/PostalAddress"
+                },
+                "colleague": {
+                    "type": "array",
+                    "items": {
+                        "type": "string"
+                    }
+                },
+                "email": {
+                    "type": "string",
+                    "format": "email"
+                },
+                "name": {
+                    "type": "string"
+                },
+                "alumniOf": {
+                    "type": "string"
+                },
+                "birthPlace": {
+                    "type": "string"
+                },
+                "birthDate": {
+                    "type": "string",
+                    "format": "date"
+                },
+                "height": {
+                    "type": "string"
+                },
+                "gender": {
+                    "type": "string"
+                },
+	              "sameAs" : {
+                    "type": "array",
+                    "items": {
+                        "type": "string",
+                        "format": "uri"
+                    }
+                }
+            }
+        }
+    }
+}
