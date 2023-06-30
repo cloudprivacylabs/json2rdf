@@ -3,25 +3,22 @@
     "@id": "http://linkedin.com/jane-doe",
     "address": {
         "@type": "PostalAddress",
-        "addressLocality": "Colorado Springs",
+        "addressLocality": "Denver",
         "addressRegion": "CO",
-        "postalCode": "80840",
+        "postalCode": "80123",
         "streetAddress": "100 Main Street"
     },
     "colleague": [
-        "http://www.example.com/JohnColleague.html",
-        "http://www.example.com/JameColleague.html"
+        "http://www.example.com/John.html",
+        "http://www.example.com/Jane.html"
     ],
     "email": "info@example.com",
     "name": "Jane Doe",
-    "alumniOf": "Dartmouth",
-    "birthPlace": "Philadelphia, PA",
-    "birthDate": "1979-10-12",
-    "height": "72 inches",
+    "birthPlace": "Boulder, CO",
+    "birthDate": "1972-11-12",
+    "height": "71",
     "gender": "female",
 	  "sameAs" : [ "https://www.facebook.com/",
                  "https://www.linkedin.com/",
-                 "http://twitter.com/",
-                 "http://instagram.com/",
-                 "https://plus.google.com/"]
+                 "http://twitter.com/"]
 }
