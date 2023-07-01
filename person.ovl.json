@@ -1,7 +1,6 @@
 {
     "definitions": {
         "PostalAddress": {
-            "type": "object",
             "x-ls": {
                 "rdfNode": "http://schema.org/PostalAddress"
             },
@@ -29,12 +28,12 @@
             }
         },
         "Person": {
-            "type": "object",
             "x-ls": {
                 "rdfNode": "http://schema.org/Person"
             },
             "properties": {
                 "@id": {
+                    "type": "string",
                     "x-ls": {
                         "rdfId": "true"
                     }

@@ -47,24 +47,148 @@ representation for this object is:
 
 ![Person](person-rdf.png)
 
+![Composition](overlays.png)
 
+Now, let's write a JSON schema for this object. The following JSON
+schema contains the definitions for two objects, a `Person` and a
+`PostalAddress`, and can be used to validate either object:
 
+``` javascript
+{
+    "oneOf": [
+      { "$ref": "#/definitions/Person" },
+      { "$ref": "#/definitions/PostalAddress" }
+    ],
+    "definitions": {
+        "PostalAddress": {
+            "type": "object",
+            "properties": {
+                "addressLocality": {
+                    "type": "string"
+                },
+                "addressRegion": {
+                    "type": "string"
+                }
+            }
+        },
+        "Person": {
+            "type": "object",
+            "properties": {
+                "id": {
+                    "type": "string",
+                    "format": "uri"
+                },
+                "address": {
+                    "$ref": "#/definitions/PostalAddress"
+                },
+                "colleague": {
+                    "type": "array",
+                    "items": {
+                        "type": "string"
+                    }
+                },
+                "email": {
+                    "type": "string",
+                    "format": "email"
+                },
+                "name": {
+                    "type": "string"
+                },
+                "sameAs" : {
+                     "type": "array",
+                    "items": {
+                        "type": "string",
+                        "format": "uri"
+                    }
+                }
+            }
+        }
+    }
+}
 ```
-<http://linkedin.com/jane-doe> <http://schema.org/address> _:b0 .
-<http://linkedin.com/jane-doe> <http://schema.org/birthDate> "1972-11-12"^^<http://schema.org/Date> .
-<http://linkedin.com/jane-doe> <http://schema.org/birthPlace> "Boulder, CO" .
-<http://linkedin.com/jane-doe> <http://schema.org/colleague> <http://www.example.com/Jane.html> .
-<http://linkedin.com/jane-doe> <http://schema.org/colleague> <http://www.example.com/John.html> .
-<http://linkedin.com/jane-doe> <http://schema.org/email> "info@example.com" .
-<http://linkedin.com/jane-doe> <http://schema.org/gender> "female" .
-<http://linkedin.com/jane-doe> <http://schema.org/height> "71" .
-<http://linkedin.com/jane-doe> <http://schema.org/name> "Jane Doe" .
-<http://linkedin.com/jane-doe> <http://schema.org/sameAs> <http://twitter.com/> .
-<http://linkedin.com/jane-doe> <http://schema.org/sameAs> <https://www.facebook.com/> .
-<http://linkedin.com/jane-doe> <http://schema.org/sameAs> <https://www.linkedin.com/> .
-<http://linkedin.com/jane-doe> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://schema.org/Person> .
-_:b0 <http://schema.org/addressLocality> "Denver" .
-_:b0 <http://schema.org/addressRegion> "CO" .
-_:b0 <http://schema.org/postalCode> "80123" .
-_:b0 <http://schema.org/streetAddress> "100 Main Street" .
-_:b0 <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://schema.org/PostalAddress> .
+
+Now we annotate this schema by defining mappings to the schema.org
+ontology using an overlay. Let's say we will use `rdfNode` to mean the
+data field should be translated as an RDF subject or object node. For instance:
+
+``` javascript
+...
+"definitions": {
+    "PostalAddress": {
+        "x-ls": {
+            "rdfNode": "http://schema.org/PostalAddress"
+        },
+    }
+...
+```
+
+The `definitions/PostalAddress` will match the `PostalAddress`
+definitions in the original schema.
+
+``` javascript
+{
+    "definitions": {
+        "PostalAddress": {
+            "type": "object",
+            "x-ls": {
+                "rdfNode": "http://schema.org/PostalAddress"
+            },
+            "properties": {
+                "addressLocality": {
+                    "x-ls": {
+                        "rdfPredicate" : "http://schema.org/addressLocality"
+                    }
+                },
+                "addressRegion": {
+                    "x-ls": {
+                        "rdfPredicate": "http://schema.org/addressRegion"
+                    }
+                }
+            }
+        },
+        "Person": {
+            "type": "object",
+            "x-ls": {
+                "rdfNode": "http://schema.org/Person"
+            },
+            "properties": {
+                "id": {
+                    "x-ls": {
+                        "rdfId": "true"
+                    }
+                },
+                "address": {
+                    "x-ls": {
+                        "rdfPredicate": "http://schema.org/address"
+                    }
+                },
+                "colleague": {
+                    "x-ls": {
+                        "rdfPredicate": "http://schema.org/colleague"
+                    }
+                },
+                "email": {
+                    "x-ls": {
+                        "rdfPredicate": "http://schema.org/email"
+                    }
+                },
+                "name": {
+                    "x-ls": {
+                        "rdfPredicate": "http://schema.org/name"
+                    }
+                },
+	            "sameAs" : {
+                    "x-ls": {
+                        "rdfPredicate": "http://schema.org/sameAs"
+                    }
+                }
+            }
+        }
+    }
+}
+```
+
+
+
+
+layers ingest json --bundle person.bundle.yaml --type http://schema.org/Person person-sample.json 

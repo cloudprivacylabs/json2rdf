@@ -1,4 +1,8 @@
 {
+    "oneOf": [
+      { "$ref": "#/definitions/Person" },
+      { "$ref": "#/definitions/PostalAddress" }
+    ],
     "definitions": {
         "PostalAddress": {
             "type": "object",
@@ -20,6 +24,9 @@
         "Person": {
             "type": "object",
             "properties": {
+                "name": {
+                    "type": "string"
+                },
                 "address": {
                     "$ref": "#/definitions/PostalAddress"
                 },
@@ -32,9 +39,6 @@
                 "email": {
                     "type": "string",
                     "format": "email"
-                },
-                "name": {
-                    "type": "string"
                 },
                 "alumniOf": {
                     "type": "string"
