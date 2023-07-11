@@ -67,23 +67,37 @@ representation for this object is:
 
 ![Person](person-rdf.png)
 
-It should be noted that the structure of the output graph depends on
-both the JSON-LD context mappings and the structure of the JSON input
-file. A JSON object in the input file is represented as a node in the
-output graph, and a JSON property is represented as an edge
-(predicate). If the JSON object does not have an `@id`, then it is
-translated into a blank node.
+As you can see, the structure of the output graph depends on both the
+JSON-LD context mappings and the structure of the JSON input file. A
+JSON object in the input file is represented as a node in the output
+graph, and a JSON property is represented as an edge (predicate). If
+the JSON object does not have an `@id`, then it is translated into a
+blank node.
 
 ## JSON/RDF Translation using a Layered JSON Schema
 
 Now let's see how the same thing can be done using a layered JSON
-schema. The Layered Schema Architecture provides the specifications
-and tooling for composing schema variants and ingesting data using
-these variants. When data is ingested, a labeled property graph (LPG)
-is constructed. This LPG is a self-describing data object that
-contains the values of the input document combined with the
-annotations and metadata specified in the schema variant. The
-following image illustrates the data ingestion process.
+schema. LSA tools create a labeled property graph (LPG) for an
+ingested JSON object. This LPG is a self-describing object in the
+sense that it contains the values of the input document combined with
+the annotations and metadata specified in the schema variant used to
+ingest it. We will use this LPG to produce the RDF output using the
+following annotations:
+
+  * `rdfPredicate`: Declares a JSON property as an RDF predicate
+    (edge), with a mapping to a term. This is similar to mapping a
+    JSON property using JSON-LD context. The difference here is that
+    using a layered schema, we can explicitly declare that a JSON
+    property should be translated as a predicate instead of a node.
+  * `rdfIRI`: Declares a JSON property as an RDF node, while also
+    providing its IRI mapping. The IRI can be a fixed value, or it can
+    be collected from another node in the input document (like, the
+    `@id` property in our example.)
+  * `rdfType`: Defines the type of the literal, or the type of the
+    node.
+  * `rdfLang`: Defined the language of a litaral.
+
+The following image illustrates the data ingestion process.
 
 ![Ingestion Pipeline](pipeline.png)
 
