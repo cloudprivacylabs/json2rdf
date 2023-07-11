@@ -154,7 +154,7 @@ The schema variant is a composition of the two:
 {
     "definitions": {
         "Person": {
-            "type": "object,
+            "type": "object",
             "x-ls": {
                 "rdfType": "http://schema.org/Person",
                 "rdfIRI": "ref:http://schema.org/Person/@id"
@@ -172,7 +172,9 @@ The schema variant is a composition of the two:
 This creates an RDF IRI node with value taken from the `@id` property
 under `Person`, and with type `http://schema.org/Person`. Note that
 the original schema does not contain the `@id` property. That is added
-by the overlay.
+by the overlay. The output looks like:
+
+![Person id and type](id-type.png)
 
 Similarly, the following overlay assigns `http://schema.org/name` to
 the `Person/name` property, and declares it as an RDF predicate. Since
@@ -191,6 +193,10 @@ as an edge connecting to a literal node:
                 },
             ...
 ```
+
+This looks like:
+
+![Person name](name.png)
 
 There are several things to note in the overlay:
 
@@ -280,11 +286,7 @@ http://schema.org/Person/@id`) under the "Person" object.
 "rdfIRI": "."
 ```
 
-This diagram illustrates the composition process:
-
-![Composition](overlays.png)
-
-
+## Running
 
 
 

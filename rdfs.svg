@@ -1,0 +1,170 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<!-- Created with Inkscape (http://www.inkscape.org/) -->
+
+<svg
+   width="210mm"
+   height="297mm"
+   viewBox="0 0 210 297"
+   version="1.1"
+   id="svg5"
+   inkscape:version="1.2.2 (b0a8486541, 2022-12-01)"
+   sodipodi:docname="rdfs.svg"
+   inkscape:export-filename="id-type.png"
+   inkscape:export-xdpi="120"
+   inkscape:export-ydpi="120"
+   xmlns:inkscape="http://www.inkscape.org/namespaces/inkscape"
+   xmlns:sodipodi="http://sodipodi.sourceforge.net/DTD/sodipodi-0.dtd"
+   xmlns="http://www.w3.org/2000/svg"
+   xmlns:svg="http://www.w3.org/2000/svg">
+  <sodipodi:namedview
+     id="namedview7"
+     pagecolor="#ffffff"
+     bordercolor="#666666"
+     borderopacity="1.0"
+     inkscape:showpageshadow="2"
+     inkscape:pageopacity="0.0"
+     inkscape:pagecheckerboard="0"
+     inkscape:deskcolor="#d1d1d1"
+     inkscape:document-units="mm"
+     showgrid="true"
+     inkscape:zoom="1.2311588"
+     inkscape:cx="294.43805"
+     inkscape:cy="67.010039"
+     inkscape:window-width="1117"
+     inkscape:window-height="784"
+     inkscape:window-x="472"
+     inkscape:window-y="26"
+     inkscape:window-maximized="0"
+     inkscape:current-layer="layer1">
+    <inkscape:grid
+       type="xygrid"
+       id="grid132" />
+  </sodipodi:namedview>
+  <defs
+     id="defs2">
+    <marker
+       style="overflow:visible"
+       id="Arrow1L"
+       refX="0"
+       refY="0"
+       orient="auto-start-reverse"
+       inkscape:stockid="Arrow1L"
+       markerWidth="8.75"
+       markerHeight="5"
+       viewBox="0 0 8.75 5"
+       inkscape:isstock="true"
+       inkscape:collect="always"
+       preserveAspectRatio="xMidYMid">
+      <path
+         style="fill:context-stroke;fill-rule:evenodd;stroke:none"
+         d="M 0,0 5,-5 -12.5,0 5,5 Z"
+         id="arrow1L"
+         transform="scale(-0.5)" />
+    </marker>
+    <marker
+       style="overflow:visible"
+       id="Arrow1L-1"
+       refX="0"
+       refY="0"
+       orient="auto-start-reverse"
+       inkscape:stockid="Arrow1L"
+       markerWidth="8.75"
+       markerHeight="5"
+       viewBox="0 0 8.75 5"
+       inkscape:isstock="true"
+       inkscape:collect="always"
+       preserveAspectRatio="xMidYMid">
+      <path
+         style="fill:context-stroke;fill-rule:evenodd;stroke:none"
+         d="M 0,0 5,-5 -12.5,0 5,5 Z"
+         id="arrow1L-2"
+         transform="scale(-0.5)" />
+    </marker>
+  </defs>
+  <g
+     inkscape:label="Layer 1"
+     inkscape:groupmode="layer"
+     id="layer1">
+    <text
+       xml:space="preserve"
+       style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:3.52778px;line-height:1.25;font-family:'Classic Console';-inkscape-font-specification:'Classic Console, Normal';font-variant-ligatures:normal;font-variant-caps:normal;font-variant-numeric:normal;font-variant-east-asian:normal;word-spacing:0px;stroke-width:0.264583"
+       x="25.087158"
+       y="14.951715"
+       id="text238"
+       inkscape:export-filename="id-type.png"
+       inkscape:export-xdpi="120"
+       inkscape:export-ydpi="120"><tspan
+         sodipodi:role="line"
+         id="tspan236"
+         style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:3.52778px;font-family:'Classic Console';-inkscape-font-specification:'Classic Console, Normal';font-variant-ligatures:normal;font-variant-caps:normal;font-variant-numeric:normal;font-variant-east-asian:normal;stroke-width:0.264583"
+         x="25.087158"
+         y="14.951715">http://linkedin.com/jane-doe</tspan></text>
+    <text
+       xml:space="preserve"
+       style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:3.52778px;line-height:1.25;font-family:'Classic Console';-inkscape-font-specification:'Classic Console, Normal';font-variant-ligatures:normal;font-variant-caps:normal;font-variant-numeric:normal;font-variant-east-asian:normal;word-spacing:0px;stroke-width:0.264583"
+       x="92.604164"
+       y="14.951715"
+       id="text350"><tspan
+         sodipodi:role="line"
+         id="tspan348"
+         style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:3.52778px;font-family:'Classic Console';-inkscape-font-specification:'Classic Console, Normal';font-variant-ligatures:normal;font-variant-caps:normal;font-variant-numeric:normal;font-variant-east-asian:normal;stroke-width:0.264583"
+         x="92.604164"
+         y="14.951715">http://schema.org/Person</tspan></text>
+    <text
+       xml:space="preserve"
+       style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:3.52778px;line-height:1.25;font-family:'Classic Console';-inkscape-font-specification:'Classic Console, Normal';font-variant-ligatures:normal;font-variant-caps:normal;font-variant-numeric:normal;font-variant-east-asian:normal;word-spacing:0px;stroke-width:0.264583"
+       x="73.814606"
+       y="12.305882"
+       id="text350-0"><tspan
+         sodipodi:role="line"
+         id="tspan429"
+         x="73.814606"
+         y="12.305882">rdf:type</tspan></text>
+    <path
+       style="fill:none;stroke:#000000;stroke-width:0.264583px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1;marker-end:url(#Arrow1L)"
+       d="M 64.822917,14.552083 C 76.729167,11.90625 89.848401,13.727816 89.848401,13.727816"
+       id="path487"
+       sodipodi:nodetypes="cc" />
+    <path
+       style="fill:none;stroke:#000000;stroke-width:0.264583px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1;marker-end:url(#Arrow1L-1)"
+       d="m 63.310563,32.887796 c 11.90625,-2.645833 35.365432,-1.254079 35.365432,-1.254079"
+       id="path487-9"
+       sodipodi:nodetypes="cc"
+       inkscape:export-filename="./name.png"
+       inkscape:export-xdpi="120"
+       inkscape:export-ydpi="120" />
+    <text
+       xml:space="preserve"
+       style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:3.52778px;line-height:1.25;font-family:'Classic Console';-inkscape-font-specification:'Classic Console, Normal';font-variant-ligatures:normal;font-variant-caps:normal;font-variant-numeric:normal;font-variant-east-asian:normal;word-spacing:0px;stroke-width:0.264583"
+       x="23.792938"
+       y="33.720043"
+       id="text238-7"><tspan
+         sodipodi:role="line"
+         id="tspan236-9"
+         style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:3.52778px;font-family:'Classic Console';-inkscape-font-specification:'Classic Console, Normal';font-variant-ligatures:normal;font-variant-caps:normal;font-variant-numeric:normal;font-variant-east-asian:normal;stroke-width:0.264583"
+         x="23.792938"
+         y="33.720043">http://linkedin.com/jane-doe</tspan></text>
+    <text
+       xml:space="preserve"
+       style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:3.52778px;line-height:1.25;font-family:'Classic Console';-inkscape-font-specification:'Classic Console, Normal';font-variant-ligatures:normal;font-variant-caps:normal;font-variant-numeric:normal;font-variant-east-asian:normal;word-spacing:0px;stroke-width:0.264583"
+       x="100.27346"
+       y="32.719894"
+       id="text1936"><tspan
+         sodipodi:role="line"
+         id="tspan1934"
+         style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:3.52778px;font-family:'Classic Console';-inkscape-font-specification:'Classic Console, Normal';font-variant-ligatures:normal;font-variant-caps:normal;font-variant-numeric:normal;font-variant-east-asian:normal;stroke-width:0.264583"
+         x="100.27346"
+         y="32.719894">Jane Doe</tspan></text>
+    <text
+       xml:space="preserve"
+       style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:3.52778px;line-height:1.25;font-family:'Classic Console';-inkscape-font-specification:'Classic Console, Normal';font-variant-ligatures:normal;font-variant-caps:normal;font-variant-numeric:normal;font-variant-east-asian:normal;word-spacing:0px;stroke-width:0.264583"
+       x="66.927498"
+       y="29.960621"
+       id="text1994"><tspan
+         sodipodi:role="line"
+         id="tspan1992"
+         style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:3.52778px;font-family:'Classic Console';-inkscape-font-specification:'Classic Console, Normal';font-variant-ligatures:normal;font-variant-caps:normal;font-variant-numeric:normal;font-variant-east-asian:normal;stroke-width:0.264583"
+         x="66.927498"
+         y="29.960621">http://schema.org/name</tspan></text>
+  </g>
+</svg>
