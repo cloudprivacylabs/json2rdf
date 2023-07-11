@@ -28,13 +28,13 @@
      inkscape:document-units="mm"
      showgrid="true"
      inkscape:zoom="1.2311588"
-     inkscape:cx="294.43805"
-     inkscape:cy="67.010039"
-     inkscape:window-width="1117"
-     inkscape:window-height="784"
-     inkscape:window-x="472"
-     inkscape:window-y="26"
-     inkscape:window-maximized="0"
+     inkscape:cx="272.10137"
+     inkscape:cy="66.603918"
+     inkscape:window-width="1600"
+     inkscape:window-height="879"
+     inkscape:window-x="0"
+     inkscape:window-y="0"
+     inkscape:window-maximized="1"
      inkscape:current-layer="layer1">
     <inkscape:grid
        type="xygrid"
@@ -85,6 +85,26 @@
      inkscape:label="Layer 1"
      inkscape:groupmode="layer"
      id="layer1">
+    <rect
+       style="opacity:1;fill:#ffffff;stroke-width:0.305994;stroke-linecap:round;fill-opacity:1"
+       id="rect889"
+       width="105.83333"
+       height="10.583333"
+       x="23.8125"
+       y="7.9375"
+       inkscape:export-filename="id-type.png"
+       inkscape:export-xdpi="120"
+       inkscape:export-ydpi="120" />
+    <rect
+       style="fill:#ffffff;fill-opacity:1;stroke-width:0.305994;stroke-linecap:round"
+       id="rect889-3"
+       width="105.83333"
+       height="10.583333"
+       x="21.166668"
+       y="26.458334"
+       inkscape:export-filename="./name.png"
+       inkscape:export-xdpi="120"
+       inkscape:export-ydpi="120" />
     <text
        xml:space="preserve"
        style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:3.52778px;line-height:1.25;font-family:'Classic Console';-inkscape-font-specification:'Classic Console, Normal';font-variant-ligatures:normal;font-variant-caps:normal;font-variant-numeric:normal;font-variant-east-asian:normal;word-spacing:0px;stroke-width:0.264583"
