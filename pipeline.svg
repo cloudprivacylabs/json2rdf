@@ -1,0 +1,758 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<!-- Created with Inkscape (http://www.inkscape.org/) -->
+
+<svg
+   width="210mm"
+   height="297mm"
+   viewBox="0 0 210 297"
+   version="1.1"
+   id="svg79831"
+   sodipodi:docname="pipeline.svg"
+   inkscape:version="1.2.2 (b0a8486541, 2022-12-01)"
+   inkscape:export-filename="pipeline.png"
+   inkscape:export-xdpi="90"
+   inkscape:export-ydpi="90"
+   xmlns:inkscape="http://www.inkscape.org/namespaces/inkscape"
+   xmlns:sodipodi="http://sodipodi.sourceforge.net/DTD/sodipodi-0.dtd"
+   xmlns="http://www.w3.org/2000/svg"
+   xmlns:svg="http://www.w3.org/2000/svg">
+  <sodipodi:namedview
+     id="namedview79833"
+     pagecolor="#ffffff"
+     bordercolor="#666666"
+     borderopacity="1.0"
+     inkscape:showpageshadow="2"
+     inkscape:pageopacity="0.0"
+     inkscape:pagecheckerboard="0"
+     inkscape:deskcolor="#d1d1d1"
+     inkscape:document-units="mm"
+     showgrid="true"
+     inkscape:zoom="0.61557941"
+     inkscape:cx="321.64819"
+     inkscape:cy="375.25622"
+     inkscape:window-width="1444"
+     inkscape:window-height="875"
+     inkscape:window-x="0"
+     inkscape:window-y="0"
+     inkscape:window-maximized="0"
+     inkscape:current-layer="layer1">
+    <inkscape:grid
+       type="xygrid"
+       id="grid79952" />
+  </sodipodi:namedview>
+  <defs
+     id="defs79828">
+    <marker
+       style="overflow:visible"
+       id="Arrow1L"
+       refX="0"
+       refY="0"
+       orient="auto-start-reverse"
+       inkscape:stockid="Arrow1L"
+       markerWidth="8.75"
+       markerHeight="5"
+       viewBox="0 0 8.75 5"
+       inkscape:isstock="true"
+       inkscape:collect="always"
+       preserveAspectRatio="xMidYMid">
+      <path
+         style="fill:context-stroke;fill-rule:evenodd;stroke:none"
+         d="M 0,0 5,-5 -12.5,0 5,5 Z"
+         id="arrow1L"
+         transform="scale(-0.5)" />
+    </marker>
+    <marker
+       style="overflow:visible"
+       id="Arrow1L-0"
+       refX="0"
+       refY="0"
+       orient="auto-start-reverse"
+       inkscape:stockid="Arrow1L"
+       markerWidth="8.75"
+       markerHeight="5"
+       viewBox="0 0 8.75 5"
+       inkscape:isstock="true"
+       inkscape:collect="always"
+       preserveAspectRatio="xMidYMid">
+      <path
+         style="fill:context-stroke;fill-rule:evenodd;stroke:none"
+         d="M 0,0 5,-5 -12.5,0 5,5 Z"
+         id="arrow1L-3"
+         transform="scale(-0.5)" />
+    </marker>
+  </defs>
+  <g
+     inkscape:label="Layer 1"
+     inkscape:groupmode="layer"
+     id="layer1">
+    <g
+       id="g87045">
+      <rect
+         style="opacity:0.993;fill:#ffffff;stroke:none;stroke-width:0.162;stroke-linecap:round;stroke-dasharray:none;stroke-opacity:1;fill-opacity:1"
+         id="rect86657"
+         width="201.08333"
+         height="201.08333"
+         x="5.2916665"
+         y="10.583333" />
+      <g
+         id="g81085"
+         transform="translate(-21.552203,3.96133)">
+        <text
+           xml:space="preserve"
+           style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:3.52778px;line-height:1.25;font-family:'Classic Console';-inkscape-font-specification:'Classic Console, Normal';font-variant-ligatures:normal;font-variant-caps:normal;font-variant-numeric:normal;font-variant-east-asian:normal;word-spacing:0px;stroke-width:0.264583"
+           x="32.252968"
+           y="11.389487"
+           id="text79956"><tspan
+             sodipodi:role="line"
+             id="tspan79954"
+             style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:3.52778px;font-family:'Classic Console';-inkscape-font-specification:'Classic Console, Normal';font-variant-ligatures:normal;font-variant-caps:normal;font-variant-numeric:normal;font-variant-east-asian:normal;stroke-width:0.264583"
+             x="32.252968"
+             y="11.389487">person.schema.json</tspan></text>
+        <path
+           style="fill:none;stroke:#000000;stroke-width:0.264583px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1"
+           d="m 31.75,13.229169 h 26.458334 l 3.96875,5.291666 V 29.104169 H 31.75 Z"
+           id="path79962"
+           sodipodi:nodetypes="cccccc" />
+        <text
+           xml:space="preserve"
+           style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:3.52778px;line-height:1.25;font-family:'Classic Console';-inkscape-font-specification:'Classic Console, Normal';font-variant-ligatures:normal;font-variant-caps:normal;font-variant-numeric:normal;font-variant-east-asian:normal;word-spacing:0px;stroke-width:0.264583"
+           x="34.271828"
+           y="18.52084"
+           id="text79966"><tspan
+             sodipodi:role="line"
+             id="tspan79964"
+             style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:3.52778px;font-family:'Classic Console';-inkscape-font-specification:'Classic Console, Normal';font-variant-ligatures:normal;font-variant-caps:normal;font-variant-numeric:normal;font-variant-east-asian:normal;stroke-width:0.264583"
+             x="34.271828"
+             y="18.52084">Person</tspan><tspan
+             sodipodi:role="line"
+             style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:3.52778px;font-family:'Classic Console';-inkscape-font-specification:'Classic Console, Normal';font-variant-ligatures:normal;font-variant-caps:normal;font-variant-numeric:normal;font-variant-east-asian:normal;stroke-width:0.264583"
+             x="34.271828"
+             y="22.930565"
+             id="tspan79968">PostalAddress</tspan></text>
+      </g>
+      <g
+         id="g80347"
+         transform="translate(-0.38553433,-7.944922)">
+        <text
+           xml:space="preserve"
+           style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:3.52778px;line-height:1.25;font-family:'Classic Console';-inkscape-font-specification:'Classic Console, Normal';font-variant-ligatures:normal;font-variant-caps:normal;font-variant-numeric:normal;font-variant-east-asian:normal;word-spacing:0px;stroke-width:0.264583"
+           x="49.450886"
+           y="33.87907"
+           id="text79956-5"><tspan
+             sodipodi:role="line"
+             id="tspan80296"
+             x="49.450886"
+             y="33.87907">person.bundle.json</tspan></text>
+        <path
+           style="fill:none;stroke:#000000;stroke-width:0.264583px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1"
+           d="m 48.947914,35.718752 h 42.994792 l 3.96875,3.96875 v 11.90625 H 48.947914 Z"
+           id="path79962-62"
+           sodipodi:nodetypes="cccccc" />
+        <text
+           xml:space="preserve"
+           style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:3.52778px;line-height:1.25;font-family:'Classic Console';-inkscape-font-specification:'Classic Console, Normal';font-variant-ligatures:normal;font-variant-caps:normal;font-variant-numeric:normal;font-variant-east-asian:normal;word-spacing:0px;stroke-width:0.264583"
+           x="51.469746"
+           y="41.010426"
+           id="text79966-1"><tspan
+             sodipodi:role="line"
+             id="tspan80298"
+             x="51.469746"
+             y="41.010426">http://schema.org/Person</tspan><tspan
+             sodipodi:role="line"
+             id="tspan80300"
+             x="51.469746"
+             y="45.420151">http://schema.org/PostalAddress</tspan></text>
+      </g>
+      <g
+         id="g80339"
+         transform="translate(-55.162573,25.12799)">
+        <text
+           xml:space="preserve"
+           style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:3.52778px;line-height:1.25;font-family:'Classic Console';-inkscape-font-specification:'Classic Console, Normal';font-variant-ligatures:normal;font-variant-caps:normal;font-variant-numeric:normal;font-variant-east-asian:normal;word-spacing:0px;stroke-width:0.264583"
+           x="65.987343"
+           y="11.389486"
+           id="text79956-4"><tspan
+             sodipodi:role="line"
+             id="tspan80247"
+             x="65.987343"
+             y="11.389486">person.ovl.json</tspan></text>
+        <path
+           style="fill:none;stroke:#000000;stroke-width:0.264583px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1"
+           d="m 65.484372,13.229169 h 26.458334 l 3.96875,5.291666 V 29.104169 H 65.484372 Z"
+           id="path79962-6"
+           sodipodi:nodetypes="cccccc" />
+        <text
+           xml:space="preserve"
+           style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:3.52778px;line-height:1.25;font-family:'Classic Console';-inkscape-font-specification:'Classic Console, Normal';font-variant-ligatures:normal;font-variant-caps:normal;font-variant-numeric:normal;font-variant-east-asian:normal;word-spacing:0px;stroke-width:0.264583"
+           x="68.006203"
+           y="18.52084"
+           id="text79966-3"><tspan
+             sodipodi:role="line"
+             id="tspan79964-1"
+             style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:3.52778px;font-family:'Classic Console';-inkscape-font-specification:'Classic Console, Normal';font-variant-ligatures:normal;font-variant-caps:normal;font-variant-numeric:normal;font-variant-east-asian:normal;stroke-width:0.264583"
+             x="68.006203"
+             y="18.52084">Person</tspan><tspan
+             sodipodi:role="line"
+             style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:3.52778px;font-family:'Classic Console';-inkscape-font-specification:'Classic Console, Normal';font-variant-ligatures:normal;font-variant-caps:normal;font-variant-numeric:normal;font-variant-east-asian:normal;stroke-width:0.264583"
+             x="68.006203"
+             y="22.930565"
+             id="tspan79968-7">PostalAddress</tspan></text>
+      </g>
+      <path
+         style="fill:none;fill-rule:evenodd;stroke:#000000;stroke-width:0.264583px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1;marker-end:url(#Arrow1L)"
+         d="m 40.624881,26.865747 7.937499,1.801418"
+         id="path80402"
+         inkscape:connector-type="polyline"
+         inkscape:connector-curvature="0"
+         inkscape:connection-end="#g80347" />
+      <path
+         style="fill:none;fill-rule:evenodd;stroke:#000000;stroke-width:0.264583px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1;marker-end:url(#Arrow1L)"
+         d="M 39.127333,41.486758 48.56238,39.339763"
+         id="path80404"
+         inkscape:connector-type="polyline"
+         inkscape:connector-curvature="0"
+         inkscape:connection-start="#g80339"
+         inkscape:connection-end="#g80347" />
+      <g
+         id="g81071"
+         transform="translate(49.27258,5.5472239)">
+        <ellipse
+           style="opacity:0.993;fill:none;stroke:#000000;stroke-width:0.264999;stroke-linecap:round;stroke-opacity:1"
+           id="path80905"
+           cx="100.63338"
+           cy="68.204292"
+           rx="13.229156"
+           ry="7.2760444" />
+        <text
+           xml:space="preserve"
+           style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:3.52778px;line-height:1.25;font-family:FreeSans;-inkscape-font-specification:'FreeSans, Normal';font-variant-ligatures:normal;font-variant-caps:normal;font-variant-numeric:normal;font-variant-east-asian:normal;word-spacing:0px;stroke-width:0.264583"
+           x="96.248253"
+           y="68.53611"
+           id="text80967"><tspan
+             sodipodi:role="line"
+             id="tspan80965"
+             style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:3.52778px;font-family:FreeSans;-inkscape-font-specification:'FreeSans, Normal';font-variant-ligatures:normal;font-variant-caps:normal;font-variant-numeric:normal;font-variant-east-asian:normal;stroke-width:0.264583"
+             x="96.248253"
+             y="68.53611">Ingest</tspan></text>
+      </g>
+      <g
+         id="g85162"
+         transform="translate(6.9778436,7.0748067)">
+        <ellipse
+           style="opacity:0.993;fill:none;stroke:#000000;stroke-width:0.264999;stroke-linecap:round;stroke-opacity:1"
+           id="path80905-7"
+           cx="110.99252"
+           cy="148.69562"
+           rx="13.229156"
+           ry="7.2760444" />
+        <text
+           xml:space="preserve"
+           style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:3.52778px;line-height:1.25;font-family:FreeSans;-inkscape-font-specification:'FreeSans, Normal';font-variant-ligatures:normal;font-variant-caps:normal;font-variant-numeric:normal;font-variant-east-asian:normal;word-spacing:0px;stroke-width:0.264583"
+           x="103.72696"
+           y="149.32549"
+           id="text80967-7"><tspan
+             sodipodi:role="line"
+             id="tspan85157"
+             x="103.72696"
+             y="149.32549">graph2rdf</tspan></text>
+      </g>
+      <path
+         style="fill:none;fill-rule:evenodd;stroke:#000000;stroke-width:0.264583px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1;marker-end:url(#Arrow1L)"
+         d="M 94.588541,74.011761 136.6775,73.81375"
+         id="path84562"
+         inkscape:connector-type="polyline"
+         inkscape:connector-curvature="0"
+         inkscape:connection-end="#g81071" />
+      <g
+         id="g84601"
+         transform="translate(-25.460079,5.0361099)">
+        <text
+           xml:space="preserve"
+           style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:3.52778px;line-height:1.25;font-family:'Classic Console';-inkscape-font-specification:'Classic Console, Normal';font-variant-ligatures:normal;font-variant-caps:normal;font-variant-numeric:normal;font-variant-east-asian:normal;word-spacing:0px;stroke-width:0.264583"
+           x="90.124504"
+           y="59.270042"
+           id="text79956-4-7"><tspan
+             sodipodi:role="line"
+             id="tspan80849"
+             x="90.124504"
+             y="59.270042">person-sample.json</tspan></text>
+        <path
+           style="fill:none;stroke:#000000;stroke-width:0.264583px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1"
+           d="m 89.621538,61.109724 h 26.458332 l 3.96875,5.291666 V 76.984724 H 89.621538 Z"
+           id="path79962-6-1"
+           sodipodi:nodetypes="cccccc" />
+        <text
+           xml:space="preserve"
+           style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:3.52778px;line-height:1.25;font-family:'Classic Console';-inkscape-font-specification:'Classic Console, Normal';font-variant-ligatures:normal;font-variant-caps:normal;font-variant-numeric:normal;font-variant-east-asian:normal;word-spacing:0px;stroke-width:0.264583"
+           x="90.640442"
+           y="65.222549"
+           id="text84576"><tspan
+             sodipodi:role="line"
+             id="tspan84588"
+             x="90.640442"
+             y="65.222549">{</tspan><tspan
+             sodipodi:role="line"
+             id="tspan84590"
+             x="90.640442"
+             y="69.632271">  &quot;name&quot;: &quot;Jane Doe&quot;,</tspan><tspan
+             sodipodi:role="line"
+             id="tspan84592"
+             x="90.640442"
+             y="74.042">  ...</tspan></text>
+      </g>
+      <g
+         id="g85852"
+         transform="translate(2.645833,5.2916672)">
+        <g
+           id="g84911"
+           transform="matrix(0.59680676,0,0,0.62570082,-0.57310135,42.029429)">
+          <rect
+             style="opacity:0.993;fill:none;stroke:#000000;stroke-width:0.35246;stroke-linecap:round;stroke-dasharray:none;stroke-opacity:1"
+             id="rect84603"
+             width="59.245045"
+             height="15.624785"
+             x="88.745392"
+             y="97.969818" />
+          <text
+             xml:space="preserve"
+             style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:3.52778px;line-height:1.25;font-family:'Classic Console';-inkscape-font-specification:'Classic Console, Normal';font-variant-ligatures:normal;font-variant-caps:normal;font-variant-numeric:normal;font-variant-east-asian:normal;word-spacing:0px;stroke-width:0.264583"
+             x="90.024574"
+             y="100.57192"
+             id="text84607"><tspan
+               sodipodi:role="line"
+               id="tspan84846"
+               x="90.024574"
+               y="100.57192">:https://schema.org/Person</tspan><tspan
+               sodipodi:role="line"
+               id="tspan84848"
+               x="90.024574"
+               y="104.98164">rdfIRI: &quot;ref:http://schema.org/Person/@id&quot;</tspan><tspan
+               sodipodi:role="line"
+               id="tspan84850"
+               x="90.024574"
+               y="109.39137">rdfType: &quot;http://schema.org/Person&quot;</tspan><tspan
+               sodipodi:role="line"
+               id="tspan84852"
+               x="90.024574"
+               y="113.80109"></tspan></text>
+        </g>
+        <g
+           id="g84835"
+           transform="matrix(0.59680676,0,0,0.62570082,11.644771,41.919162)">
+          <rect
+             style="opacity:0.993;fill:none;stroke:#000000;stroke-width:0.299009;stroke-linecap:round;stroke-dasharray:none;stroke-opacity:1"
+             id="rect84603-8"
+             width="64.590149"
+             height="10.31458"
+             x="138.98952"
+             y="83.493256" />
+          <text
+             xml:space="preserve"
+             style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:3.52778px;line-height:1.25;font-family:'Classic Console';-inkscape-font-specification:'Classic Console, Normal';font-variant-ligatures:normal;font-variant-caps:normal;font-variant-numeric:normal;font-variant-east-asian:normal;word-spacing:0px;stroke-width:0.264583"
+             x="140.22917"
+             y="87.3125"
+             id="text84665"><tspan
+               sodipodi:role="line"
+               id="tspan84663"
+               style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:3.52778px;font-family:'Classic Console';-inkscape-font-specification:'Classic Console, Normal';font-variant-ligatures:normal;font-variant-caps:normal;font-variant-numeric:normal;font-variant-east-asian:normal;stroke-width:0.264583"
+               x="140.22917"
+               y="87.3125">value: &quot;Jane Doe&quot;</tspan><tspan
+               sodipodi:role="line"
+               style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:3.52778px;font-family:'Classic Console';-inkscape-font-specification:'Classic Console, Normal';font-variant-ligatures:normal;font-variant-caps:normal;font-variant-numeric:normal;font-variant-east-asian:normal;stroke-width:0.264583"
+               x="140.22917"
+               y="91.722221"
+               id="tspan84667">schemaNodeId: &quot;http://schema.org/Person/name&quot;</tspan></text>
+        </g>
+        <g
+           id="g84829"
+           transform="matrix(0.59680676,0,0,0.62570082,17.871752,45.983297)">
+          <rect
+             style="opacity:0.993;fill:none;stroke:#000000;stroke-width:0.310485;stroke-linecap:round;stroke-dasharray:none;stroke-opacity:1"
+             id="rect84603-8-4"
+             width="69.720833"
+             height="10.303104"
+             x="197.35309"
+             y="98.170319" />
+          <text
+             xml:space="preserve"
+             style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:3.52778px;line-height:1.25;font-family:'Classic Console';-inkscape-font-specification:'Classic Console, Normal';font-variant-ligatures:normal;font-variant-caps:normal;font-variant-numeric:normal;font-variant-east-asian:normal;word-spacing:0px;stroke-width:0.264583"
+             x="198.58701"
+             y="101.98383"
+             id="text84665-8"><tspan
+               sodipodi:role="line"
+               id="tspan84821"
+               x="198.58701"
+               y="101.98383">value: &quot;Denver&quot;</tspan><tspan
+               sodipodi:role="line"
+               id="tspan84823"
+               x="198.58701"
+               y="106.39355">rdfPredicate: &quot;http://schema.org/AddressLocality&quot;</tspan></text>
+        </g>
+        <g
+           id="g84903"
+           transform="matrix(0.59680676,0,0,0.62570082,10.261589,43.683352)">
+          <rect
+             style="opacity:0.993;fill:none;stroke:#000000;stroke-width:0.347422;stroke-linecap:round;stroke-dasharray:none;stroke-opacity:1"
+             id="rect84603-8-3"
+             width="58.517307"
+             height="15.370152"
+             x="139.74649"
+             y="100.8728" />
+          <text
+             xml:space="preserve"
+             style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:3.52778px;line-height:1.25;font-family:'Classic Console';-inkscape-font-specification:'Classic Console, Normal';font-variant-ligatures:normal;font-variant-caps:normal;font-variant-numeric:normal;font-variant-east-asian:normal;word-spacing:0px;stroke-width:0.264583"
+             x="140.92375"
+             y="104.62966"
+             id="text84665-3"><tspan
+               sodipodi:role="line"
+               id="tspan84861"
+               x="140.92375"
+               y="104.62966">:http://schema.org/PostalAddress</tspan><tspan
+               sodipodi:role="line"
+               id="tspan84863"
+               x="140.92375"
+               y="109.03938">rdfPredicate: &quot;http://schema.org/address&quot;</tspan><tspan
+               sodipodi:role="line"
+               id="tspan84865"
+               x="140.92375"
+               y="113.44911">rdfType: &quot;http://schema.org/PostalAddress&quot;</tspan><tspan
+               sodipodi:role="line"
+               id="tspan84867"
+               x="140.92375"
+               y="117.85883"></tspan></text>
+        </g>
+        <path
+           style="fill:none;fill-rule:evenodd;stroke:#000000;stroke-width:0.161682px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1;marker-end:url(#Arrow1L)"
+           d="M 87.748592,103.84622 100.81767,100.6148"
+           id="path84913"
+           inkscape:connector-type="polyline"
+           inkscape:connector-curvature="0"
+           inkscape:connection-start="#g84911"
+           inkscape:connection-end="#g84835" />
+        <path
+           style="fill:none;fill-rule:evenodd;stroke:#000000;stroke-width:0.161682px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1;marker-end:url(#Arrow1L)"
+           d="m 87.748592,109.67547 5.914647,0.4878"
+           id="path84919"
+           inkscape:connector-type="polyline"
+           inkscape:connector-curvature="0"
+           inkscape:connection-start="#g84911"
+           inkscape:connection-end="#g84903" />
+        <path
+           style="fill:none;fill-rule:evenodd;stroke:#000000;stroke-width:0.161682px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1;marker-end:url(#Arrow1L)"
+           d="m 128.58676,111.23283 7.06665,-0.15236"
+           id="path84927"
+           inkscape:connector-type="polyline"
+           inkscape:connector-curvature="0"
+           inkscape:connection-start="#g84903"
+           inkscape:connection-end="#g84829" />
+        <path
+           style="fill:none;fill-rule:evenodd;stroke:#000000;stroke-width:0.161682px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1;marker-end:url(#Arrow1L)"
+           d="m 78.277543,113.10567 13.898845,8.27749"
+           id="path84937"
+           inkscape:connector-type="polyline"
+           inkscape:connector-curvature="0"
+           inkscape:connection-start="#g84911" />
+        <path
+           style="fill:none;fill-rule:evenodd;stroke:#000000;stroke-width:0.161682px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1;marker-end:url(#Arrow1L)"
+           d="m 128.58676,115.80811 9.38211,2.26406"
+           id="path84939"
+           inkscape:connector-type="polyline"
+           inkscape:connector-curvature="0"
+           inkscape:connection-start="#g84903" />
+        <path
+           style="fill:none;fill-rule:evenodd;stroke:#000000;stroke-width:0.161682px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1;marker-end:url(#Arrow1L)"
+           d="m 122.45069,116.41666 15.51818,6.62201"
+           id="path84955"
+           inkscape:connector-type="polyline"
+           inkscape:connector-curvature="0"
+           inkscape:connection-start="#g84903" />
+        <path
+           style="fill:none;fill-rule:evenodd;stroke:#000000;stroke-width:0.161682px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1;marker-end:url(#Arrow1L)"
+           d="m 76.628169,113.10567 15.548219,11.58849"
+           id="path84961"
+           inkscape:connector-type="polyline"
+           inkscape:connector-curvature="0"
+           inkscape:connection-start="#g84911" />
+        <rect
+           style="opacity:0.993;fill:none;stroke:#000000;stroke-width:0.264999;stroke-linecap:round;stroke-dasharray:none;stroke-opacity:1"
+           id="rect84977"
+           width="140.22917"
+           height="39.6875"
+           x="44.979168"
+           y="89.958336" />
+      </g>
+      <path
+         style="fill:none;fill-rule:evenodd;stroke:#000000;stroke-width:0.264583px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1;marker-end:url(#Arrow1L)"
+         d="M 144.70136,80.440788 133.17904,95.250003"
+         id="path85023"
+         inkscape:connector-type="polyline"
+         inkscape:connector-curvature="0"
+         inkscape:connection-start="#g81071" />
+      <text
+         xml:space="preserve"
+         style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:3.52778px;line-height:1.25;font-family:'Classic Console';-inkscape-font-specification:'Classic Console, Normal';font-variant-ligatures:normal;font-variant-caps:normal;font-variant-numeric:normal;font-variant-east-asian:normal;word-spacing:0px;stroke-width:0.264583"
+         x="50.270832"
+         y="179.91666"
+         id="text85263"><tspan
+           sodipodi:role="line"
+           id="tspan85277"
+           x="50.270832"
+           y="179.91666">&lt;http://linkedin.com/jane-doe&gt; &lt;http://www.w3.org/1999/02/22-rdf-syntax-ns#type&gt; &lt;http://schema.org/Person&gt; .</tspan><tspan
+           sodipodi:role="line"
+           id="tspan85279"
+           x="50.270832"
+           y="184.32639">_:b0 &lt;http://www.w3.org/1999/02/22-rdf-syntax-ns#type&gt; &lt;https://schema.org/PostalAddress&gt; .</tspan><tspan
+           sodipodi:role="line"
+           id="tspan85281"
+           x="50.270832"
+           y="188.7361">&lt;http://linkedin.com/jane-doe&gt; &lt;http://schema.org/email&gt; &quot;info@example.com&quot; .</tspan><tspan
+           sodipodi:role="line"
+           id="tspan85283"
+           x="50.270832"
+           y="193.14583">&lt;http://linkedin.com/jane-doe&gt; &lt;http://schema.org/name&gt; &quot;Jane Doe&quot; .</tspan><tspan
+           sodipodi:role="line"
+           id="tspan85285"
+           x="50.270832"
+           y="197.55556">&lt;http://linkedin.com/jane-doe&gt; &lt;http://schema.org/birthPlace&gt; &quot;Boulder, CO&quot; .</tspan><tspan
+           sodipodi:role="line"
+           id="tspan85287"
+           x="50.270832"
+           y="201.96529">&lt;http://linkedin.com/jane-doe&gt; &lt;http://schema.org/birthDate&gt; &quot;1972-11-12&quot;^^&lt;http://schema.org/Date&gt; .</tspan><tspan
+           sodipodi:role="line"
+           id="tspan85289"
+           x="50.270832"
+           y="206.375">...</tspan><tspan
+           sodipodi:role="line"
+           id="tspan85291"
+           x="50.270832"
+           y="210.78473"></tspan></text>
+      <path
+         style="display:inline;fill:none;fill-rule:evenodd;stroke:#000000;stroke-width:0.264583px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1;marker-end:url(#Arrow1L)"
+         d="m 117.70707,163.0449 -0.41966,11.59452"
+         id="path85295"
+         inkscape:connector-type="polyline"
+         inkscape:connector-curvature="0"
+         inkscape:connection-start="#g85162"
+         sodipodi:nodetypes="cc" />
+      <text
+         xml:space="preserve"
+         style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:3.52778px;line-height:1.25;font-family:'Classic Console';-inkscape-font-specification:'Classic Console, Normal';font-variant-ligatures:normal;font-variant-caps:normal;font-variant-numeric:normal;font-variant-east-asian:normal;word-spacing:0px;stroke-width:0.264583"
+         x="49.265293"
+         y="93.635506"
+         id="text85505"><tspan
+           sodipodi:role="line"
+           id="tspan85503"
+           style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:3.52778px;font-family:'Classic Console';-inkscape-font-specification:'Classic Console, Normal';font-variant-ligatures:normal;font-variant-caps:normal;font-variant-numeric:normal;font-variant-east-asian:normal;stroke-width:0.264583"
+           x="49.265293"
+           y="93.635506">Labeled Property Graph for Ingested Data</tspan></text>
+      <text
+         xml:space="preserve"
+         style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:3.52778px;line-height:1.25;font-family:'Classic Console';-inkscape-font-specification:'Classic Console, Normal';font-variant-ligatures:normal;font-variant-caps:normal;font-variant-numeric:normal;font-variant-east-asian:normal;word-spacing:0px;stroke-width:0.264583"
+         x="100.54166"
+         y="21.566299"
+         id="text85505-0"><tspan
+           sodipodi:role="line"
+           id="tspan86229"
+           x="100.54166"
+           y="21.566299">Labeled Property Graph for Schema Variant</tspan></text>
+      <g
+         id="g86136"
+         transform="matrix(0.6904186,0,0,0.70815691,5.1519091,27.645735)">
+        <rect
+           style="opacity:0.993;fill:none;stroke:#000000;stroke-width:0.228608;stroke-linecap:round;stroke-dasharray:none;stroke-opacity:1"
+           id="rect84603-9"
+           width="35.217533"
+           height="11.057886"
+           x="140.61607"
+           y="6.0257268" />
+        <text
+           xml:space="preserve"
+           style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:2.15577px;line-height:1.25;font-family:'Classic Console';-inkscape-font-specification:'Classic Console, Normal';font-variant-ligatures:normal;font-variant-caps:normal;font-variant-numeric:normal;font-variant-east-asian:normal;word-spacing:0px;stroke-width:0.161682"
+           x="144.7547"
+           y="7.468595"
+           id="text84607-2"
+           transform="scale(0.97663774,1.0239211)"><tspan
+             sodipodi:role="line"
+             id="tspan85890"
+             x="144.7547"
+             y="7.468595">:https://schema.org/Person</tspan><tspan
+             sodipodi:role="line"
+             id="tspan85892"
+             x="144.7547"
+             y="10.163307">schemaNodeId: &quot;http://schema.org/Person&quot;</tspan><tspan
+             sodipodi:role="line"
+             id="tspan85894"
+             x="144.7547"
+             y="12.85802">rdfIRI: &quot;ref:http://schema.org/Person/@id&quot;</tspan><tspan
+             sodipodi:role="line"
+             id="tspan85896"
+             x="144.7547"
+             y="15.552732">rdfType: &quot;http://schema.org/Person&quot;</tspan><tspan
+             sodipodi:role="line"
+             id="tspan85898"
+             x="144.7547"
+             y="18.247446"></tspan></text>
+        <rect
+           style="opacity:0.993;fill:none;stroke:#000000;stroke-width:0.182719;stroke-linecap:round;stroke-dasharray:none;stroke-opacity:1"
+           id="rect84603-8-46"
+           width="38.547836"
+           height="6.4538412"
+           x="182.81339"
+           y="-3.1491506" />
+        <text
+           xml:space="preserve"
+           style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:2.15577px;line-height:1.25;font-family:'Classic Console';-inkscape-font-specification:'Classic Console, Normal';font-variant-ligatures:normal;font-variant-caps:normal;font-variant-numeric:normal;font-variant-east-asian:normal;word-spacing:0px;stroke-width:0.161682"
+           x="187.94402"
+           y="-0.74170381"
+           id="text84665-9"
+           transform="scale(0.97663774,1.0239211)"><tspan
+             sodipodi:role="line"
+             id="tspan85862"
+             x="187.94402"
+             y="-0.74170381">schemaNodeId: &quot;http://schema.org/Person/name&quot;</tspan><tspan
+             sodipodi:role="line"
+             id="tspan85864"
+             x="187.94402"
+             y="1.9530088">rdfPredicate: &quot;http://schema.org/name&quot;</tspan><tspan
+             sodipodi:role="line"
+             id="tspan85866"
+             x="187.94402"
+             y="4.6477213"></tspan></text>
+        <rect
+           style="opacity:0.993;fill:none;stroke:#000000;stroke-width:0.215352;stroke-linecap:round;stroke-dasharray:none;stroke-opacity:1"
+           id="rect84603-8-4-7"
+           width="53.819881"
+           height="6.421041"
+           x="226.21875"
+           y="10.583333" />
+        <text
+           xml:space="preserve"
+           style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:2.15577px;line-height:1.25;font-family:'Classic Console';-inkscape-font-specification:'Classic Console, Normal';font-variant-ligatures:normal;font-variant-caps:normal;font-variant-numeric:normal;font-variant-east-asian:normal;word-spacing:0px;stroke-width:0.161682"
+           x="232.86575"
+           y="12.493625"
+           id="text84665-8-7"
+           transform="scale(0.97663775,1.0239211)"><tspan
+             sodipodi:role="line"
+             id="tspan85904"
+             x="232.86575"
+             y="12.493625">schemaNodeId: &quot;http://schema.org/PostalAddress/addressLocality&quot;</tspan><tspan
+             sodipodi:role="line"
+             id="tspan85906"
+             x="232.86575"
+             y="15.188337">rdfPredicate: &quot;http://schema.org/addressLocality&quot;</tspan></text>
+        <rect
+           style="opacity:0.993;fill:none;stroke:#000000;stroke-width:0.249523;stroke-linecap:round;stroke-dasharray:none;stroke-opacity:1"
+           id="rect84603-8-3-1"
+           width="40.22467"
+           height="11.533859"
+           x="181.90057"
+           y="9.5080452" />
+        <text
+           xml:space="preserve"
+           style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:2.15577px;line-height:1.25;font-family:'Classic Console';-inkscape-font-specification:'Classic Console, Normal';font-variant-ligatures:normal;font-variant-caps:normal;font-variant-numeric:normal;font-variant-east-asian:normal;word-spacing:0px;stroke-width:0.161682"
+           x="186.95218"
+           y="11.563495"
+           id="text84665-3-2"
+           transform="scale(0.97663774,1.0239211)"><tspan
+             sodipodi:role="line"
+             id="tspan85874"
+             x="186.95218"
+             y="11.563495">:http://schema.org/PostalAddress</tspan><tspan
+             sodipodi:role="line"
+             id="tspan85876"
+             x="186.95218"
+             y="14.258207">schemaNodeId: &quot;http://schema.org/PostalAddress&quot;</tspan><tspan
+             sodipodi:role="line"
+             id="tspan85878"
+             x="186.95218"
+             y="16.952919">rdfPredicate: &quot;http://schema.org/address&quot;</tspan><tspan
+             sodipodi:role="line"
+             id="tspan85880"
+             x="186.95218"
+             y="19.647633">rdfType: &quot;http://schema.org/PostalAddress&quot;</tspan><tspan
+             sodipodi:role="line"
+             id="tspan85882"
+             x="186.95218"
+             y="22.342344"></tspan></text>
+        <path
+           style="fill:none;fill-rule:evenodd;stroke:#000000;stroke-width:0.161682px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1;marker-end:url(#Arrow1L-0)"
+           d="M 175.96732,6.5361056 189.0364,3.3046906"
+           id="path84913-8"
+           inkscape:connector-type="polyline"
+           inkscape:connector-curvature="0" />
+        <path
+           style="fill:none;fill-rule:evenodd;stroke:#000000;stroke-width:0.161682px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1;marker-end:url(#Arrow1L-0)"
+           d="m 175.96732,12.365363 5.91464,0.487797"
+           id="path84919-0"
+           inkscape:connector-type="polyline"
+           inkscape:connector-curvature="0" />
+        <rect
+           style="opacity:0.993;fill:none;stroke:#000000;stroke-width:0.267953;stroke-linecap:round;stroke-dasharray:none;stroke-opacity:1"
+           id="rect84977-1"
+           width="145.52084"
+           height="39.101772"
+           x="137.58333"
+           y="-7.3517718" />
+        <path
+           style="fill:none;fill-rule:evenodd;stroke:#000000;stroke-width:0.162;stroke-linecap:butt;stroke-linejoin:miter;stroke-dasharray:none;stroke-opacity:1;marker-end:url(#Arrow1L-0)"
+           d="m 168.1331,17.083613 14.4294,8.051803"
+           id="path85918"
+           inkscape:connector-type="polyline"
+           inkscape:connector-curvature="0"
+           inkscape:connection-start="#rect84603-9" />
+        <path
+           style="fill:none;fill-rule:evenodd;stroke:#000000;stroke-width:0.162;stroke-linecap:butt;stroke-linejoin:miter;stroke-dasharray:none;stroke-opacity:1;marker-end:url(#Arrow1L-0)"
+           d="m 166.5175,17.083613 16.045,10.697637"
+           id="path85920"
+           inkscape:connector-type="polyline"
+           inkscape:connector-curvature="0"
+           inkscape:connection-start="#rect84603-9" />
+        <path
+           style="fill:none;fill-rule:evenodd;stroke:#000000;stroke-width:0.162;stroke-linecap:butt;stroke-linejoin:miter;stroke-dasharray:none;stroke-opacity:1;marker-end:url(#Arrow1L-0)"
+           d="M 213.84868,21.041904 222.25,25.135416"
+           id="path85926"
+           inkscape:connector-type="polyline"
+           inkscape:connector-curvature="0"
+           inkscape:connection-start="#rect84603-8-3-1" />
+        <path
+           style="fill:none;fill-rule:evenodd;stroke:#000000;stroke-width:0.162;stroke-linecap:butt;stroke-linejoin:miter;stroke-dasharray:none;stroke-opacity:1;marker-end:url(#Arrow1L-0)"
+           d="M 211.34469,21.041904 222.25,27.78125"
+           id="path85928"
+           inkscape:connector-type="polyline"
+           inkscape:connector-curvature="0"
+           inkscape:connection-start="#rect84603-8-3-1" />
+        <path
+           style="fill:none;fill-rule:evenodd;stroke:#000000;stroke-width:0.162;stroke-linecap:butt;stroke-linejoin:miter;stroke-dasharray:none;stroke-opacity:1;marker-end:url(#Arrow1L-0)"
+           d="m 222.12524,14.692204 4.09351,-0.118613"
+           id="path86095"
+           inkscape:connector-type="polyline"
+           inkscape:connector-curvature="0"
+           inkscape:connection-start="#rect84603-8-3-1"
+           inkscape:connection-end="#rect84603-8-4-7" />
+      </g>
+      <path
+         style="fill:none;fill-rule:evenodd;stroke:#000000;stroke-width:0.264583px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1;marker-end:url(#Arrow1L)"
+         d="M 95.525922,34.682309 100.142,34.817154"
+         id="path86188"
+         inkscape:connector-type="polyline"
+         inkscape:connector-curvature="0"
+         inkscape:connection-start="#g80347"
+         inkscape:connection-end="#g86136" />
+      <path
+         style="fill:none;fill-rule:evenodd;stroke:#000000;stroke-width:0.264583px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1;marker-end:url(#Arrow1L)"
+         d="m 150.20303,50.129717 -0.20557,16.346064"
+         id="path86190"
+         inkscape:connector-type="polyline"
+         inkscape:connector-curvature="0"
+         inkscape:connection-end="#g81071" />
+      <path
+         style="fill:none;fill-rule:evenodd;stroke:#000000;stroke-width:0.264583px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1;marker-end:url(#Arrow1L)"
+         d="m 117.85217,134.9375 0.0769,13.55702"
+         id="path86495"
+         inkscape:connector-type="polyline"
+         inkscape:connector-curvature="0"
+         inkscape:connection-start="#g85852"
+         inkscape:connection-end="#g85162" />
+    </g>
+  </g>
+</svg>

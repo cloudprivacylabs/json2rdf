@@ -9,6 +9,9 @@
    id="svg71783"
    inkscape:version="1.2.2 (b0a8486541, 2022-12-01)"
    sodipodi:docname="overlays.svg"
+   inkscape:export-filename="overlays.png"
+   inkscape:export-xdpi="90"
+   inkscape:export-ydpi="90"
    xmlns:inkscape="http://www.inkscape.org/namespaces/inkscape"
    xmlns:sodipodi="http://sodipodi.sourceforge.net/DTD/sodipodi-0.dtd"
    xmlns="http://www.w3.org/2000/svg"
@@ -24,9 +27,9 @@
      inkscape:deskcolor="#d1d1d1"
      inkscape:document-units="mm"
      showgrid="true"
-     inkscape:zoom="0.62790702"
-     inkscape:cx="506.44441"
-     inkscape:cy="487.3333"
+     inkscape:zoom="2.5116281"
+     inkscape:cx="186.73147"
+     inkscape:cy="566.16663"
      inkscape:window-width="1444"
      inkscape:window-height="875"
      inkscape:window-x="78"
@@ -553,6 +556,13 @@
            x="106.46231"
            y="15.511996">person.ovl.json</tspan></text>
     </g>
+    <rect
+       style="opacity:0.739245;fill:#ffff00;fill-opacity:1;stroke:none;stroke-width:0.229496;stroke-linecap:round;stroke-dasharray:none;stroke-opacity:1"
+       id="rect87333"
+       width="23.8125"
+       height="3.96875"
+       x="23.8125"
+       y="142.875" />
     <text
        xml:space="preserve"
        style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:3.52778px;line-height:1.25;font-family:'Classic Console';-inkscape-font-specification:'Classic Console, Normal';font-variant-ligatures:normal;font-variant-caps:normal;font-variant-numeric:normal;font-variant-east-asian:normal;word-spacing:0px;stroke-width:0.264583"
@@ -656,8 +666,12 @@
        sodipodi:nodetypes="cc" />
     <path
        style="fill:none;stroke:#000000;stroke-width:0.264583px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1;marker-end:url(#Arrow2)"
-       d="m 46.73302,136.15771 c 34.818988,-5.12467 66.51505,5.75366 66.51505,5.75366"
+       d="m 76.729167,145.52083 c 12.426921,-5.45547 36.518903,-3.60946 36.518903,-3.60946"
        id="path76994"
        sodipodi:nodetypes="cc" />
+    <path
+       style="fill:none;stroke:#000000;stroke-width:0.265;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1;stroke-dasharray:none;marker-end:url(#Arrow2)"
+       d="M 41.010416,142.875 C 48.947916,132.29166 39.6875,120.38542 39.6875,120.38542"
+       id="path87441" />
   </g>
 </svg>

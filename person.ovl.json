@@ -2,7 +2,8 @@
     "definitions": {
         "PostalAddress": {
             "x-ls": {
-                "rdfNode": "http://schema.org/PostalAddress"
+                "rdfType": "https://schema.org/PostalAddress",
+                "rdfIRI": "blank"
             },
             "properties": {
                 "addressLocality": {
@@ -29,14 +30,12 @@
         },
         "Person": {
             "x-ls": {
-                "rdfNode": "http://schema.org/Person"
+                "rdfType": "http://schema.org/Person",
+                "rdfIRI": "ref:http://schema.org/Person/@id"
             },
             "properties": {
                 "@id": {
-                    "type": "string",
-                    "x-ls": {
-                        "rdfId": "true"
-                    }
+                    "type": "string"
                 },
                 "address": {
                     "x-ls": {
@@ -46,7 +45,7 @@
                 "colleague": {
                     "x-ls": {
                         "rdfPredicate": "http://schema.org/colleague"
-                    }
+                    }                    
                 },
                 "email": {
                     "x-ls": {
