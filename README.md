@@ -1,4 +1,3 @@
-[![GoDoc](https://godoc.org/github.com/cloudprivacylabs/json2rdf?status.svg)](https://godoc.org/github.com/cloudprivacylabs/json2rdf)
 # json2rdf - JSON-LD vs. Layered Schemas
 
 This is a proof-of-concept command-line application that demonstrates
