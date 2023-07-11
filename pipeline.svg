@@ -10,8 +10,8 @@
    sodipodi:docname="pipeline.svg"
    inkscape:version="1.2.2 (b0a8486541, 2022-12-01)"
    inkscape:export-filename="pipeline.png"
-   inkscape:export-xdpi="90"
-   inkscape:export-ydpi="90"
+   inkscape:export-xdpi="120"
+   inkscape:export-ydpi="120"
    xmlns:inkscape="http://www.inkscape.org/namespaces/inkscape"
    xmlns:sodipodi="http://sodipodi.sourceforge.net/DTD/sodipodi-0.dtd"
    xmlns="http://www.w3.org/2000/svg"
@@ -28,10 +28,10 @@
      inkscape:document-units="mm"
      showgrid="true"
      inkscape:zoom="0.61557941"
-     inkscape:cx="321.64819"
+     inkscape:cx="209.55867"
      inkscape:cy="375.25622"
      inkscape:window-width="1444"
-     inkscape:window-height="875"
+     inkscape:window-height="873"
      inkscape:window-x="0"
      inkscape:window-y="0"
      inkscape:window-maximized="0"
@@ -334,7 +334,7 @@
                sodipodi:role="line"
                id="tspan84852"
                x="90.024574"
-               y="113.80109"></tspan></text>
+               y="113.80109" /></text>
         </g>
         <g
            id="g84835"
@@ -419,7 +419,7 @@
                sodipodi:role="line"
                id="tspan84867"
                x="140.92375"
-               y="117.85883"></tspan></text>
+               y="117.85883" /></text>
         </g>
         <path
            style="fill:none;fill-rule:evenodd;stroke:#000000;stroke-width:0.161682px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1;marker-end:url(#Arrow1L)"
@@ -525,7 +525,7 @@
            sodipodi:role="line"
            id="tspan85291"
            x="50.270832"
-           y="210.78473"></tspan></text>
+           y="210.78473" /></text>
       <path
          style="display:inline;fill:none;fill-rule:evenodd;stroke:#000000;stroke-width:0.264583px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1;marker-end:url(#Arrow1L)"
          d="m 117.70707,163.0449 -0.41966,11.59452"
@@ -591,7 +591,7 @@
              sodipodi:role="line"
              id="tspan85898"
              x="144.7547"
-             y="18.247446"></tspan></text>
+             y="18.247446" /></text>
         <rect
            style="opacity:0.993;fill:none;stroke:#000000;stroke-width:0.182719;stroke-linecap:round;stroke-dasharray:none;stroke-opacity:1"
            id="rect84603-8-46"
@@ -617,7 +617,7 @@
              sodipodi:role="line"
              id="tspan85866"
              x="187.94402"
-             y="4.6477213"></tspan></text>
+             y="4.6477213" /></text>
         <rect
            style="opacity:0.993;fill:none;stroke:#000000;stroke-width:0.215352;stroke-linecap:round;stroke-dasharray:none;stroke-opacity:1"
            id="rect84603-8-4-7"
@@ -673,7 +673,7 @@
              sodipodi:role="line"
              id="tspan85882"
              x="186.95218"
-             y="22.342344"></tspan></text>
+             y="22.342344" /></text>
         <path
            style="fill:none;fill-rule:evenodd;stroke:#000000;stroke-width:0.161682px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1;marker-end:url(#Arrow1L-0)"
            d="M 175.96732,6.5361056 189.0364,3.3046906"
