@@ -82,7 +82,7 @@ ingested JSON object. This LPG is a self-describing object in the
 sense that it contains the values of the input document combined with
 the annotations and metadata specified in the schema variant used to
 ingest it. We will use this LPG to produce the RDF output using the
-following annotations:
+following tags:
 
   * `rdfPredicate`: Declares a JSON property as an RDF predicate
     (edge), with a mapping to a term. This is similar to mapping a
@@ -101,156 +101,100 @@ The following image illustrates the data ingestion process.
 
 ![Ingestion Pipeline](pipeline.png)
 
-A JSON schema ([person.schema.json](person.schema.json)) defines the structure of the JSON
-objects (in this example, `Person` and `PostalAddress`.) An overlay
-(`person.ovl.json`) annotates the schema to define mappings to
-`schema.org` terms. These are combined using a bundle file
-(`person.bundle.yaml`) that first composes a schema variant by
-combining the schema and the overlay, and then creates a labeled
-property graph (LPG) based on this schema variant. This schema variant
-LPG contains a node for every JSON data point (every object, array,
-and value.) Data ingestion process takes the input data file
-(`person-sample.json`) and interprets it using the schema variant LPG,
-creating a new LPG for the data object. This LPG becomes a
-self-describing object that contains all input data values and
-corresponding schema annotations.
-
-
-First, we need a JSON schema for this object. The following JSON
-schema contains the definitions for two objects, a `Person` and a
-`PostalAddress`, and can be used to validate either object:
+The JSON schema [person.schema.json](person.schema.json) defines the
+structure of the JSON objects, in this example, `Person` and
+`PostalAddress`. The overlay [person.ovl.json](person.ovl.json)
+annotates this schema to define the mappings to `schema.org` terms
+using the above tags. The bundle file
+[person.bundle.yaml](person.bundle.yaml) combines the schema and the
+overlay, and defines the schema variant. The schema variant itself is
+an LPG.  This schema variant LPG contains a node for every JSON data
+point (every object, array, and value.) Data ingestion process takes
+the input data file [person-sample.json](person-sample.json) and
+interprets it using the schema variant LPG, creating a new LPG for the
+data object. This LPG becomes a self-describing object that contains
+all input data values and corresponding schema annotations.
+ 
+Let's take a deeper look at how the schema and the overlay are
+defined. The schema defines the object `Person` as follows:
 
 ``` javascript
 {
-    "oneOf": [
-      { "$ref": "#/definitions/Person" },
-      { "$ref": "#/definitions/PostalAddress" }
-    ],
     "definitions": {
-        "PostalAddress": {
-            "type": "object",
-            "properties": {
-                "addressLocality": {
-                    "type": "string"
-                },
-                "addressRegion": {
-                    "type": "string"
-                }
-            }
-        },
         "Person": {
             "type": "object",
             "properties": {
-                "id": {
-                    "type": "string",
-                    "format": "uri"
-                },
-                "address": {
-                    "$ref": "#/definitions/PostalAddress"
-                },
-                "colleague": {
-                    "type": "array",
-                    "items": {
-                        "type": "string"
-                    }
-                },
-                "email": {
-                    "type": "string",
-                    "format": "email"
-                },
-                "name": {
-                    "type": "string"
-                },
-                "sameAs" : {
-                     "type": "array",
-                    "items": {
-                        "type": "string",
-                        "format": "uri"
-                    }
-                }
-            }
-        }
-    }
-}
+              "name": {
+                 "type": "string"
+              },
+             ...
 ```
 
-
-Then, we create an overlay to specify the RDF translation. Similar to
-a JSON-LD context, the overlay will map JSON properties to their
-schema.org ontology equivalents. The following tags are sufficient to
-specify such a mapping:
-
-  * rdfIRI: Marks the JSON property as an IRI node
-  * rdfPredicate: Marks the JSON property as an RDF predicate (edge).
-  * rdfType: Specifies the RDF type of an object, or the type of a literal
-  * rdfLang: Specifies the language of a literal
-  
-Using these tags, we define the overlay:
+The overlay follows the same structure, but adds the tags under the
+`x-ls` object:
 
 ``` javascript
 {
     "definitions": {
-        "PostalAddress": {
-            "x-ls": {
-                "rdfType": "https://schema.org/PostalAddress",
-                "rdfIRI": "blank"
-            },
-            "properties": {
-                "addressLocality": {
-                    "x-ls": {
-                        "rdfPredicate" : "http://schema.org/addressLocality"
-                    }
-                },
-                ...
-            }
-        },
         "Person": {
             "x-ls": {
                 "rdfType": "http://schema.org/Person",
                 "rdfIRI": "ref:http://schema.org/Person/@id"
             },
             "properties": {
-                "@id": {
-                    "type": "string"
-                },
-                "address": {
-                    "x-ls": {
-                        "rdfPredicate": "http://schema.org/address"
-                    }
-                },
-                "colleague": {
-                    "x-ls": {
-                        "rdfPredicate": "http://schema.org/colleague"
-                    }
-                },
+              "@id": {
+                 "type": "string"
+              },
+            ...
+```
+
+The schema variant is a composition of the two:
+
+``` javascript
+{
+    "definitions": {
+        "Person": {
+            "type": "object,
+            "x-ls": {
+                "rdfType": "http://schema.org/Person",
+                "rdfIRI": "ref:http://schema.org/Person/@id"
+            },
+            "properties": {
+              "@id": {
+                 "type": "string"
+              },
+              "name": {
+                 "type": "string"
+              },
+            ...
+```
+
+This creates an RDF IRI node with value taken from the `@id` property
+under `Person`, and with type `http://schema.org/Person`. Note that
+the original schema does not contain the `@id` property. That is added
+by the overlay.
+
+Similarly, the following overlay assigns `http://schema.org/name` to
+the `Person/name` property, and declares it as an RDF predicate. Since
+`name` has a value in the ingested LPG, it will be translated to RDF
+as an edge connecting to a literal node:
+
+``` javascript
+{
+    "definitions": {
+        "Person": {
+           "properties": {
                 "name": {
                     "x-ls": {
                         "rdfPredicate": "http://schema.org/name"
                     }
                 },
-                "birthDate": {
-                    "x-ls": {
-                        "rdfPredicate": "http://schema.org/birthDate",
-                        "rdfType": "http://schema.org/Date"
-                    }
-                },
- 	              "sameAs" : {
-                    "x-ls": {
-                        "rdfPredicate": "http://schema.org/sameAs"
-                    }
-                },
-                ...
-            }
-        }
-    }
-}
+            ...
 ```
 
 There are several things to note in the overlay:
 
   * The overlay matches the schema structurally. The JSON path
-``` javascript
-
     `/definitions/Person` of the overlay annotates the properties
     under the same path in the schema.
   * All annotations are under the `x-ls` JSON object. This is the
@@ -260,15 +204,9 @@ There are several things to note in the overlay:
     corresponding places in the schema.
 
 
-We have to first come up with a
-meta-language to annotate the schema. The following annotations would
-work:
+For `rdfIRI`, this program uses these conventions:
 
-  * `rdfIRI`: If a JSON property is annotated with `rdfIRI`, then that
-    property will be translated to an RDF IRI node, or to an RDF blank
-    node. Let's define the following convention:
-    
-   This uses the given value as the IRI node:
+   * The following uses the given value as the IRI node:
 
 ``` javascript
 "rdfIRI": "value"
@@ -289,7 +227,7 @@ The RDF node corresponding to the "PostalAddress" property with IRI:
 "http://schema.org/PostalAddress"
 
 
-   This creates a blank node for the JSON property:
+   * The following creates a blank node for the JSON property:
     
 ``` javascript
 "rdfIRI": "blank"
@@ -309,7 +247,7 @@ Output:
 The RDF node corresponding to the "PostalAddress" property will be a blank node.
 
 
-   This uses the referenced node value to create an IRI node. The
+   * The following uses the referenced node value to create an IRI node. The
    node value must be an IRI. The first node accessible from the
    current node that has `schemaNodeId: <reference>` value will be
    used.
@@ -335,98 +273,17 @@ The RDF node corresponding to the "Person" property will have the IRI
 extracted from the "@id" property (the LPG node with `schemaNodeId:
 http://schema.org/Person/@id`) under the "Person" object.
 
-   This uses the JSON property value to create an IRI node. The JSON
-   property value must be an IRI:
+   * The following uses the JSON property value to create an IRI
+   node. The JSON property value must be an IRI:
 
 ``` javascript
 "rdfIRI": "."
 ```
 
-
+This diagram illustrates the composition process:
 
 ![Composition](overlays.png)
 
-
-Now we annotate this schema by defining mappings to the schema.org
-ontology using an overlay. Let's say we will use `rdfNode` to mean the
-data field should be translated as an RDF subject or object node. For instance:
-
-``` javascript
-...
-"definitions": {
-    "PostalAddress": {
-        "x-ls": {
-            "rdfNode": "http://schema.org/PostalAddress"
-        },
-    }
-...
-```
-
-The `definitions/PostalAddress` will match the `PostalAddress`
-definitions in the original schema.
-
-``` javascript
-{
-    "definitions": {
-        "PostalAddress": {
-            "type": "object",
-            "x-ls": {
-                "rdfNode": "http://schema.org/PostalAddress"
-            },
-            "properties": {
-                "addressLocality": {
-                    "x-ls": {
-                        "rdfPredicate" : "http://schema.org/addressLocality"
-                    }
-                },
-                "addressRegion": {
-                    "x-ls": {
-                        "rdfPredicate": "http://schema.org/addressRegion"
-                    }
-                }
-            }
-        },
-        "Person": {
-            "type": "object",
-            "x-ls": {
-                "rdfNode": "http://schema.org/Person"
-            },
-            "properties": {
-                "id": {
-                    "x-ls": {
-                        "rdfId": "true"
-                    }
-                },
-                "address": {
-                    "x-ls": {
-                        "rdfPredicate": "http://schema.org/address"
-                    }
-                },
-                "colleague": {
-                    "x-ls": {
-                        "rdfPredicate": "http://schema.org/colleague"
-                    }
-                },
-                "email": {
-                    "x-ls": {
-                        "rdfPredicate": "http://schema.org/email"
-                    }
-                },
-                "name": {
-                    "x-ls": {
-                        "rdfPredicate": "http://schema.org/name"
-                    }
-                },
-	            "sameAs" : {
-                    "x-ls": {
-                        "rdfPredicate": "http://schema.org/sameAs"
-                    }
-                }
-            }
-        }
-    }
-}
-```
 
 
 
