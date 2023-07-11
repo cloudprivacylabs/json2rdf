@@ -101,7 +101,7 @@ The following image illustrates the data ingestion process.
 
 ![Ingestion Pipeline](pipeline.png)
 
-A JSON schema (`person.schema.json`) defines the structure of the JSON
+A JSON schema ([person.schema.json](person.schema.json)) defines the structure of the JSON
 objects (in this example, `Person` and `PostalAddress`.) An overlay
 (`person.ovl.json`) annotates the schema to define mappings to
 `schema.org` terms. These are combined using a bundle file
