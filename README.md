@@ -374,3 +374,43 @@ then pass the output graph to json2rdf:
   layers ingest json --bundle person.bundle.yaml --type http://schema.org/Person person-sample.json | json2rdf 
 ```
 
+Which produces:
+
+``` 
+<http://linkedin.com/jane-doe> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://schema.org/Person> .
+_:b0 <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <https://schema.org/PostalAddress> .
+<http://linkedin.com/jane-doe> <http://schema.org/email> "info@example.com" .
+<http://linkedin.com/jane-doe> <http://schema.org/name> "Jane Doe" .
+<http://linkedin.com/jane-doe> <http://schema.org/birthPlace> "Boulder, CO" .
+<http://linkedin.com/jane-doe> <http://schema.org/birthDate> "1972-11-12"^^<http://schema.org/Date> .
+<http://linkedin.com/jane-doe> <http://schema.org/height> "71" .
+<http://linkedin.com/jane-doe> <http://schema.org/gender> "female" .
+<http://linkedin.com/jane-doe> <http://schema.org/address> _:b0 .
+<http://linkedin.com/jane-doe> <http://schema.org/colleague> "http://www.example.com/John.html" .
+<http://linkedin.com/jane-doe> <http://schema.org/colleague> "http://www.example.com/Jane.html" .
+<http://linkedin.com/jane-doe> <http://schema.org/sameAs> "https://www.facebook.com/" .
+<http://linkedin.com/jane-doe> <http://schema.org/sameAs> "https://www.linkedin.com/" .
+<http://linkedin.com/jane-doe> <http://schema.org/sameAs> "http://twitter.com/" .
+_:b0 <http://schema.org/addressLocality> "Denver" .
+_:b0 <http://schema.org/addressRegion> "CO" .
+_:b0 <http://schema.org/postalCode> "80123" .
+_:b0 <http://schema.org/streetAddress> "100 Main Street" .
+```
+
+So this is how you can generate RDF from a JSON document using a JSON
+schema describing the format of the input documents, a JSON schema
+overlay that describes the RDF mapping, and a bundle that combines the
+schema and the overlay.
+
+The important takeaways are:
+
+  * The shape of the RDF output can be better controlled by extending
+    the tags and the translation algorithm. A JSON document can be
+    translated in multiple ways to produce different RDF outputs.
+  * The input to `json2rdf` is an LPG. LSA supports other schema
+    formats. It is possible to translate an XML document or a CSV file
+    to an RDF using the same framework.
+  * LSA supports multiple data types. It is possible to normalize and
+    translate non-standard date/time representations.
+  * Unlike a JSON-LD document, JSON schemas provide structural
+    validation.
