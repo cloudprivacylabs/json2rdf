@@ -123,7 +123,7 @@ created from a given data element to represent this object:
 "rdfIRI": "ref:<pointer to the @id field>
 ```
 
-Based on this intuition, we come up with the following tags:
+Based on this, we devise the following tags:
 
   * `rdfPredicate`: Declares a JSON property as an RDF predicate
     (edge), with a mapping to a term. This is similar to mapping a
@@ -157,8 +157,8 @@ overlay, and defines the schema variant. [The schema variant itself is
 an LPG](compiled-schema-variant.svg).  This schema variant LPG contains a node for every JSON data
 point (every object, array, and value.) Data ingestion process takes
 the input data file [person-sample.json](person-sample.json) and
-interprets it using the schema variant LPG, creating a new LPG for the
-data object. This LPG becomes a self-describing object that contains
+interprets it using the schema variant LPG, [creating a new LPG for the
+data object](ingested-json-lpg.svg). This LPG becomes a self-describing object that contains
 all input data values and corresponding schema annotations. We then
 take this LPG, use the RDF annotations at each node, and produce the
 RDF output.
@@ -341,8 +341,36 @@ http://schema.org/Person/@id`) under the "Person" object.
 "rdfIRI": "."
 ```
 
+### Algorithm
+
+The algorithm to convert an ingested data LPG into RDF using these
+annotations is implemented in [graph2rdf.go](graph2rdf.go). The
+algorithm sketch is as follows:
+
+
+  * We first build the top-level nodes. These are nodes that have
+    `rdfIRI` annotation. We keep a mapping between input LPG nodes and
+    the RDF nodes. This step builds a list of input graph nodes for
+    which RDF nodes are built.
+  * Using the list of graph nodes built in the previous step of the
+    previous iteration, we process all graph nodes that are connected
+    with `rdfPredicate`, and extend the RDF graph in a breadth-first
+    manner. We put every new input graph nodes for which a non-literal
+    RDF node is generated to the list of nodes, and iterate as long as
+    the list of nodes is nonempty.
+
 ## Running
 
+You can run the `json2rdf` program as follows:
 
+``` 
+  json2rdf --bundle person.bundle.yaml --type http://schema.org/Person person-sample.json
+```
 
-layers ingest json --bundle person.bundle.yaml --type http://schema.org/Person person-sample.json 
+Alternatively, you can first ingest the JSON file using LSA tools, and
+then pass the output graph to json2rdf:
+
+``` 
+  layers ingest json --bundle person.bundle.yaml --type http://schema.org/Person person-sample.json | json2rdf 
+```
+

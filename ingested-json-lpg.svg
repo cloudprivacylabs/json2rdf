@@ -1,0 +1,739 @@
+<svg width="100%" height="100%" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+<script type="text/ecmascript"><![CDATA[
+/**
+ *  SVGPan library 1.2.2
+ * ======================
+ *
+ * Given an unique existing element with id "viewport" (or when missing, the
+ * first g-element), including the library into any SVG adds the following
+ * capabilities:
+ *
+ *  - Mouse panning
+ *  - Mouse zooming (using the wheel)
+ *  - Object dragging
+ *
+ * You can configure the behaviour of the pan/zoom/drag with the variables
+ * listed in the CONFIGURATION section of this file.
+ *
+ * Known issues:
+ *
+ *  - Zooming (while panning) on Safari has still some issues
+ *
+ * Releases:
+ *
+ * 1.2.2, Tue Aug 30 17:21:56 CEST 2011, Andrea Leofreddi
+ *	- Fixed viewBox on root tag (#7)
+ *	- Improved zoom speed (#2)
+ *
+ * 1.2.1, Mon Jul  4 00:33:18 CEST 2011, Andrea Leofreddi
+ *	- Fixed a regression with mouse wheel (now working on Firefox 5)
+ *	- Working with viewBox attribute (#4)
+ *	- Added "use strict;" and fixed resulting warnings (#5)
+ *	- Added configuration variables, dragging is disabled by default (#3)
+ *
+ * 1.2, Sat Mar 20 08:42:50 GMT 2010, Zeng Xiaohui
+ *	Fixed a bug with browser mouse handler interaction
+ *
+ * 1.1, Wed Feb  3 17:39:33 GMT 2010, Zeng Xiaohui
+ *	Updated the zoom code to support the mouse wheel on Safari/Chrome
+ *
+ * 1.0, Andrea Leofreddi
+ *	First release
+ *
+ * This code is licensed under the following BSD license:
+ *
+ * Copyright 2009-2017 Andrea Leofreddi <a.leofreddi@vleo.net>. All rights reserved.
+ *
+ * Redistribution and use in source and binary forms, with or without modification, are
+ * permitted provided that the following conditions are met:
+ *
+ *    1. Redistributions of source code must retain the above copyright
+ *       notice, this list of conditions and the following disclaimer.
+ *    2. Redistributions in binary form must reproduce the above copyright
+ *       notice, this list of conditions and the following disclaimer in the
+ *       documentation and/or other materials provided with the distribution.
+ *    3. Neither the name of the copyright holder nor the names of its
+ *       contributors may be used to endorse or promote products derived from
+ *       this software without specific prior written permission.
+ *
+ * THIS SOFTWARE IS PROVIDED BY COPYRIGHT HOLDERS AND CONTRIBUTORS ''AS IS'' AND ANY EXPRESS
+ * OR IMPLIED WARRANTIES, INCLUDING, BUT NOT LIMITED TO, THE IMPLIED WARRANTIES OF MERCHANTABILITY
+ * AND FITNESS FOR A PARTICULAR PURPOSE ARE DISCLAIMED. IN NO EVENT SHALL COPYRIGHT HOLDERS OR
+ * CONTRIBUTORS BE LIABLE FOR ANY DIRECT, INDIRECT, INCIDENTAL, SPECIAL, EXEMPLARY, OR
+ * CONSEQUENTIAL DAMAGES (INCLUDING, BUT NOT LIMITED TO, PROCUREMENT OF SUBSTITUTE GOODS OR
+ * SERVICES; LOSS OF USE, DATA, OR PROFITS; OR BUSINESS INTERRUPTION) HOWEVER CAUSED AND ON
+ * ANY THEORY OF LIABILITY, WHETHER IN CONTRACT, STRICT LIABILITY, OR TORT (INCLUDING
+ * NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF
+ * ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
+ *
+ * The views and conclusions contained in the software and documentation are those of the
+ * authors and should not be interpreted as representing official policies, either expressed
+ * or implied, of Andrea Leofreddi.
+ */
+
+"use strict";
+
+/// CONFIGURATION
+/// ====>
+
+var enablePan = 1; // 1 or 0: enable or disable panning (default enabled)
+var enableZoom = 1; // 1 or 0: enable or disable zooming (default enabled)
+var enableDrag = 0; // 1 or 0: enable or disable dragging (default disabled)
+var zoomScale = 0.2; // Zoom sensitivity
+
+/// <====
+/// END OF CONFIGURATION
+
+var root = document.documentElement;
+
+var state = 'none', svgRoot = null, stateTarget, stateOrigin, stateTf;
+
+setupHandlers(root);
+
+/**
+ * Register handlers
+ */
+function setupHandlers(root){
+	setAttributes(root, {
+		"onmouseup" : "handleMouseUp(evt)",
+		"onmousedown" : "handleMouseDown(evt)",
+		"onmousemove" : "handleMouseMove(evt)",
+		//"onmouseout" : "handleMouseUp(evt)", // Decomment this to stop the pan functionality when dragging out of the SVG element
+	});
+
+	if(navigator.userAgent.toLowerCase().indexOf('webkit') >= 0)
+		window.addEventListener('mousewheel', handleMouseWheel, false); // Chrome/Safari
+	else
+		window.addEventListener('DOMMouseScroll', handleMouseWheel, false); // Others
+}
+
+/**
+ * Retrieves the root element for SVG manipulation. The element is then cached into the svgRoot global variable.
+ */
+function getRoot(root) {
+	if(svgRoot == null) {
+		var r = root.getElementById("viewport") ? root.getElementById("viewport") : root.documentElement, t = r;
+
+		while(t != root) {
+			if(t.getAttribute("viewBox")) {
+				setCTM(r, t.getCTM());
+
+				t.removeAttribute("viewBox");
+			}
+
+			t = t.parentNode;
+		}
+
+		svgRoot = r;
+	}
+
+	return svgRoot;
+}
+
+/**
+ * Instance an SVGPoint object with given event coordinates.
+ */
+function getEventPoint(evt) {
+	var p = root.createSVGPoint();
+
+	p.x = evt.clientX;
+	p.y = evt.clientY;
+
+	return p;
+}
+
+/**
+ * Sets the current transform matrix of an element.
+ */
+function setCTM(element, matrix) {
+	var s = "matrix(" + matrix.a + "," + matrix.b + "," + matrix.c + "," + matrix.d + "," + matrix.e + "," + matrix.f + ")";
+
+	element.setAttribute("transform", s);
+}
+
+/**
+ * Dumps a matrix to a string (useful for debug).
+ */
+function dumpMatrix(matrix) {
+	var s = "[ " + matrix.a + ", " + matrix.c + ", " + matrix.e + "\n  " + matrix.b + ", " + matrix.d + ", " + matrix.f + "\n  0, 0, 1 ]";
+
+	return s;
+}
+
+/**
+ * Sets attributes of an element.
+ */
+function setAttributes(element, attributes){
+	for (var i in attributes)
+		element.setAttributeNS(null, i, attributes[i]);
+}
+
+/**
+ * Handle mouse wheel event.
+ */
+function handleMouseWheel(evt) {
+	if(!enableZoom)
+		return;
+
+	if(evt.preventDefault)
+		evt.preventDefault();
+
+	evt.returnValue = false;
+
+	var svgDoc = evt.target.ownerDocument;
+
+	var delta;
+
+	if(evt.wheelDelta)
+		delta = evt.wheelDelta / 360; // Chrome/Safari
+	else
+		delta = evt.detail / -9; // Mozilla
+
+	var z = Math.pow(1 + zoomScale, delta);
+
+	var g = getRoot(svgDoc);
+	
+	var p = getEventPoint(evt);
+
+	p = p.matrixTransform(g.getCTM().inverse());
+
+	// Compute new scale matrix in current mouse position
+	var k = root.createSVGMatrix().translate(p.x, p.y).scale(z).translate(-p.x, -p.y);
+
+        setCTM(g, g.getCTM().multiply(k));
+
+	if(typeof(stateTf) == "undefined")
+		stateTf = g.getCTM().inverse();
+
+	stateTf = stateTf.multiply(k.inverse());
+}
+
+/**
+ * Handle mouse move event.
+ */
+function handleMouseMove(evt) {
+	if(evt.preventDefault)
+		evt.preventDefault();
+
+	evt.returnValue = false;
+
+	var svgDoc = evt.target.ownerDocument;
+
+	var g = getRoot(svgDoc);
+
+	if(state == 'pan' && enablePan) {
+		// Pan mode
+		var p = getEventPoint(evt).matrixTransform(stateTf);
+
+		setCTM(g, stateTf.inverse().translate(p.x - stateOrigin.x, p.y - stateOrigin.y));
+	} else if(state == 'drag' && enableDrag) {
+		// Drag mode
+		var p = getEventPoint(evt).matrixTransform(g.getCTM().inverse());
+
+		setCTM(stateTarget, root.createSVGMatrix().translate(p.x - stateOrigin.x, p.y - stateOrigin.y).multiply(g.getCTM().inverse()).multiply(stateTarget.getCTM()));
+
+		stateOrigin = p;
+	}
+}
+
+/**
+ * Handle click event.
+ */
+function handleMouseDown(evt) {
+	if(evt.preventDefault)
+		evt.preventDefault();
+
+	evt.returnValue = false;
+
+	var svgDoc = evt.target.ownerDocument;
+
+	var g = getRoot(svgDoc);
+
+	if(
+		evt.target.tagName == "svg"
+		|| !enableDrag // Pan anyway when drag is disabled and the user clicked on an element
+	) {
+		// Pan mode
+		state = 'pan';
+
+		stateTf = g.getCTM().inverse();
+
+		stateOrigin = getEventPoint(evt).matrixTransform(stateTf);
+	} else {
+		// Drag mode
+		state = 'drag';
+
+		stateTarget = evt.target;
+
+		stateTf = g.getCTM().inverse();
+
+		stateOrigin = getEventPoint(evt).matrixTransform(stateTf);
+	}
+}
+
+/**
+ * Handle mouse button release event.
+ */
+function handleMouseUp(evt) {
+	if(evt.preventDefault)
+		evt.preventDefault();
+
+	evt.returnValue = false;
+
+	var svgDoc = evt.target.ownerDocument;
+
+	if(state == 'pan' || state == 'drag') {
+		// Quit pan mode
+		state = '';
+	}
+}
+]]></script><g id="viewport" transform="scale(0.5,0.5) translate(0,0)"><g id="graph0" class="graph" transform="scale(1 1) rotate(0) translate(4 1543)">
+<title>g</title>
+<polygon fill="white" stroke="none" points="-4,4 -4,-1543 1635,-1543 1635,4 -4,4"/>
+<!-- n0 -->
+<g id="node1" class="node">
+<title>n0</title>
+<polygon fill="none" stroke="black" points="359,-913.5 0,-913.5 0,-783.5 359,-783.5 359,-913.5"/>
+<text text-anchor="middle" x="179.5" y="-901.5" font-family="Courier,monospace" font-size="10.00" fill="#333333">:http://schema.org/Person</text>
+<text text-anchor="middle" x="179.5" y="-890.5" font-family="Courier,monospace" font-size="10.00" fill="#333333">:https://lschema.org/Object</text>
+<text text-anchor="middle" x="179.5" y="-879.5" font-family="Courier,monospace" font-size="10.00" fill="#333333">:https://lschema.org/DocumentNode</text>
+<text text-anchor="start" x="8" y="-856.5" font-family="Courier,monospace" font-size="10.00" fill="#333333">id=http://example.org/root</text>
+<text text-anchor="start" x="8" y="-845.5" font-family="Courier,monospace" font-size="10.00" fill="#333333">https://lschema.org/entitySchema=http://schema.org/Person</text>
+<text text-anchor="start" x="8" y="-834.5" font-family="Courier,monospace" font-size="10.00" fill="#333333">https://lschema.org/provenance/source=person&#45;sample.json</text>
+<text text-anchor="start" x="8" y="-823.5" font-family="Courier,monospace" font-size="10.00" fill="#333333">https://lschema.org/schemaNodeId=http://schema.org/Person</text>
+<text text-anchor="start" x="8" y="-812.5" font-family="Courier,monospace" font-size="10.00" fill="#333333">rdfIRI=ref:http://schema.org/Person/@id</text>
+<text text-anchor="start" x="8" y="-801.5" font-family="Courier,monospace" font-size="10.00" fill="#333333">rdfType=http://schema.org/Person</text>
+<text text-anchor="start" x="8" y="-790.5" font-family="Courier,monospace" font-size="10.00" fill="#333333">https://lschema.org/attributeIndex=0</text>
+</g>
+<!-- n1 -->
+<g id="node2" class="node">
+<title>n1</title>
+<polygon fill="none" stroke="black" points="959,-1539 534,-1539 534,-1420 959,-1420 959,-1539"/>
+<text text-anchor="middle" x="746.5" y="-1527" font-family="Courier,monospace" font-size="10.00" fill="#333333">:https://lschema.org/DocumentNode</text>
+<text text-anchor="middle" x="746.5" y="-1516" font-family="Courier,monospace" font-size="10.00" fill="#333333">:https://lschema.org/Value</text>
+<text text-anchor="start" x="542" y="-1493" font-family="Courier,monospace" font-size="10.00" fill="#333333">id=http://example.org/root.birthPlace</text>
+<text text-anchor="start" x="542" y="-1482" font-family="Courier,monospace" font-size="10.00" fill="#333333">https://lschema.org/schemaNodeId=http://schema.org/Person/birthPlace</text>
+<text text-anchor="start" x="542" y="-1471" font-family="Courier,monospace" font-size="10.00" fill="#333333">https://lschema.org/value=Boulder, CO</text>
+<text text-anchor="start" x="542" y="-1460" font-family="Courier,monospace" font-size="10.00" fill="#333333">https://lschema.org/valueType=string</text>
+<text text-anchor="start" x="542" y="-1449" font-family="Courier,monospace" font-size="10.00" fill="#333333">rdfPredicate=http://schema.org/birthPlace</text>
+<text text-anchor="start" x="542" y="-1438" font-family="Courier,monospace" font-size="10.00" fill="#333333">https://lschema.org/attributeIndex=4</text>
+<text text-anchor="start" x="542" y="-1427" font-family="Courier,monospace" font-size="10.00" fill="#333333">https://lschema.org/attributeName=birthPlace</text>
+</g>
+<!-- n0&#45;&gt;n1 -->
+<g id="edge8" class="edge">
+<title>n0&#45;&gt;n1</title>
+<path fill="none" stroke="#333333" d="M196.91,-913.73C222.87,-1007.07 280.61,-1180.56 377,-1299.5 418.1,-1350.22 477.04,-1387.7 535.76,-1414.92"/>
+<polygon fill="#333333" stroke="#333333" points="534.01,-1417.97 544.57,-1418.92 536.91,-1411.6 534.01,-1417.97"/>
+<text text-anchor="middle" x="446.5" y="-1403.5" font-family="Courier,monospace" font-size="10.00" fill="#333333">https://lschema.org/has</text>
+</g>
+<!-- n2 -->
+<g id="node3" class="node">
+<title>n2</title>
+<polygon fill="none" stroke="black" points="956,-1402 537,-1402 537,-1305 956,-1305 956,-1402"/>
+<text text-anchor="middle" x="746.5" y="-1390" font-family="Courier,monospace" font-size="10.00" fill="#333333">:https://lschema.org/DocumentNode</text>
+<text text-anchor="middle" x="746.5" y="-1379" font-family="Courier,monospace" font-size="10.00" fill="#333333">:https://lschema.org/Array</text>
+<text text-anchor="start" x="545" y="-1356" font-family="Courier,monospace" font-size="10.00" fill="#333333">id=http://example.org/root.colleague</text>
+<text text-anchor="start" x="545" y="-1345" font-family="Courier,monospace" font-size="10.00" fill="#333333">https://lschema.org/attributeIndex=9</text>
+<text text-anchor="start" x="545" y="-1334" font-family="Courier,monospace" font-size="10.00" fill="#333333">https://lschema.org/attributeName=colleague</text>
+<text text-anchor="start" x="545" y="-1323" font-family="Courier,monospace" font-size="10.00" fill="#333333">https://lschema.org/schemaNodeId=http://schema.org/Person/colleague</text>
+<text text-anchor="start" x="545" y="-1312" font-family="Courier,monospace" font-size="10.00" fill="#333333">rdfPredicate=http://schema.org/colleague</text>
+</g>
+<!-- n0&#45;&gt;n2 -->
+<g id="edge13" class="edge">
+<title>n0&#45;&gt;n2</title>
+<path fill="none" stroke="#333333" d="M206.45,-913.91C238.28,-988.1 297.9,-1109.64 377,-1193.5 422.47,-1241.7 484.94,-1276.16 545.53,-1300.44"/>
+<polygon fill="#333333" stroke="#333333" points="544.03,-1303.61 554.61,-1304 546.58,-1297.1 544.03,-1303.61"/>
+<text text-anchor="middle" x="446.5" y="-1287.5" font-family="Courier,monospace" font-size="10.00" fill="#333333">https://lschema.org/has</text>
+</g>
+<!-- n3 -->
+<g id="node4" class="node">
+<title>n3</title>
+<polygon fill="none" stroke="black" points="872,-1286.5 621,-1286.5 621,-1200.5 872,-1200.5 872,-1286.5"/>
+<text text-anchor="middle" x="746.5" y="-1274.5" font-family="Courier,monospace" font-size="10.00" fill="#333333">:https://lschema.org/Value</text>
+<text text-anchor="middle" x="746.5" y="-1263.5" font-family="Courier,monospace" font-size="10.00" fill="#333333">:https://lschema.org/DocumentNode</text>
+<text text-anchor="start" x="629" y="-1240.5" font-family="Courier,monospace" font-size="10.00" fill="#333333">id=http://example.org/root.@type</text>
+<text text-anchor="start" x="629" y="-1229.5" font-family="Courier,monospace" font-size="10.00" fill="#333333">https://lschema.org/attributeIndex=0</text>
+<text text-anchor="start" x="629" y="-1218.5" font-family="Courier,monospace" font-size="10.00" fill="#333333">https://lschema.org/attributeName=@type</text>
+<text text-anchor="start" x="629" y="-1207.5" font-family="Courier,monospace" font-size="10.00" fill="#333333">https://lschema.org/value=Person</text>
+</g>
+<!-- n0&#45;&gt;n3 -->
+<g id="edge4" class="edge">
+<title>n0&#45;&gt;n3</title>
+<path fill="none" stroke="#333333" d="M228.59,-913.73C290.26,-992.39 404.78,-1122.59 534,-1191.5 557.28,-1203.92 583.59,-1213.43 609.54,-1220.69"/>
+<polygon fill="#333333" stroke="#333333" points="608.6,-1224.07 619.16,-1223.28 610.41,-1217.31 608.6,-1224.07"/>
+<text text-anchor="middle" x="446.5" y="-1181.5" font-family="Courier,monospace" font-size="10.00" fill="#333333">https://lschema.org/has</text>
+</g>
+<!-- n4 -->
+<g id="node5" class="node">
+<title>n4</title>
+<polygon fill="none" stroke="black" points="944,-1182.5 549,-1182.5 549,-1052.5 944,-1052.5 944,-1182.5"/>
+<text text-anchor="middle" x="746.5" y="-1170.5" font-family="Courier,monospace" font-size="10.00" fill="#333333">:https://lschema.org/DocumentNode</text>
+<text text-anchor="middle" x="746.5" y="-1159.5" font-family="Courier,monospace" font-size="10.00" fill="#333333">:https://lschema.org/Value</text>
+<text text-anchor="start" x="557" y="-1136.5" font-family="Courier,monospace" font-size="10.00" fill="#333333">id=http://example.org/root.email</text>
+<text text-anchor="start" x="557" y="-1125.5" font-family="Courier,monospace" font-size="10.00" fill="#333333">https://lschema.org/attributeName=email</text>
+<text text-anchor="start" x="557" y="-1114.5" font-family="Courier,monospace" font-size="10.00" fill="#333333">https://lschema.org/schemaNodeId=http://schema.org/Person/email</text>
+<text text-anchor="start" x="557" y="-1103.5" font-family="Courier,monospace" font-size="10.00" fill="#333333">https://lschema.org/validation/json/format=email</text>
+<text text-anchor="start" x="557" y="-1092.5" font-family="Courier,monospace" font-size="10.00" fill="#333333">https://lschema.org/value=info@example.com</text>
+<text text-anchor="start" x="557" y="-1081.5" font-family="Courier,monospace" font-size="10.00" fill="#333333">https://lschema.org/valueType=string</text>
+<text text-anchor="start" x="557" y="-1070.5" font-family="Courier,monospace" font-size="10.00" fill="#333333">rdfPredicate=http://schema.org/email</text>
+<text text-anchor="start" x="557" y="-1059.5" font-family="Courier,monospace" font-size="10.00" fill="#333333">https://lschema.org/attributeIndex=2</text>
+</g>
+<!-- n0&#45;&gt;n4 -->
+<g id="edge6" class="edge">
+<title>n0&#45;&gt;n4</title>
+<path fill="none" stroke="#333333" d="M287.96,-913.95C356.81,-954.31 448.9,-1005.46 534,-1043.5 537.14,-1044.9 540.31,-1046.3 543.52,-1047.68"/>
+<polygon fill="#333333" stroke="#333333" points="541.88,-1050.79 552.45,-1051.48 544.62,-1044.35 541.88,-1050.79"/>
+<text text-anchor="middle" x="446.5" y="-1036.5" font-family="Courier,monospace" font-size="10.00" fill="#333333">https://lschema.org/has</text>
+</g>
+<!-- n10 -->
+<g id="node11" class="node">
+<title>n10</title>
+<polygon fill="none" stroke="black" points="938,-1034.5 555,-1034.5 555,-926.5 938,-926.5 938,-1034.5"/>
+<text text-anchor="middle" x="746.5" y="-1022.5" font-family="Courier,monospace" font-size="10.00" fill="#333333">:https://lschema.org/DocumentNode</text>
+<text text-anchor="middle" x="746.5" y="-1011.5" font-family="Courier,monospace" font-size="10.00" fill="#333333">:https://lschema.org/Value</text>
+<text text-anchor="start" x="563" y="-988.5" font-family="Courier,monospace" font-size="10.00" fill="#333333">id=http://example.org/root.@id</text>
+<text text-anchor="start" x="563" y="-977.5" font-family="Courier,monospace" font-size="10.00" fill="#333333">https://lschema.org/schemaNodeId=http://schema.org/Person/@id</text>
+<text text-anchor="start" x="563" y="-966.5" font-family="Courier,monospace" font-size="10.00" fill="#333333">https://lschema.org/value=http://linkedin.com/jane&#45;doe</text>
+<text text-anchor="start" x="563" y="-955.5" font-family="Courier,monospace" font-size="10.00" fill="#333333">https://lschema.org/valueType=string</text>
+<text text-anchor="start" x="563" y="-944.5" font-family="Courier,monospace" font-size="10.00" fill="#333333">https://lschema.org/attributeIndex=1</text>
+<text text-anchor="start" x="563" y="-933.5" font-family="Courier,monospace" font-size="10.00" fill="#333333">https://lschema.org/attributeName=@id</text>
+</g>
+<!-- n0&#45;&gt;n10 -->
+<g id="edge5" class="edge">
+<title>n0&#45;&gt;n10</title>
+<path fill="none" stroke="#333333" d="M359.27,-890.27C417.86,-903.95 483.36,-919.26 543.54,-933.32"/>
+<polygon fill="#333333" stroke="#333333" points="542.7,-936.71 553.24,-935.58 544.29,-929.9 542.7,-936.71"/>
+<text text-anchor="middle" x="446.5" y="-928.5" font-family="Courier,monospace" font-size="10.00" fill="#333333">https://lschema.org/has</text>
+</g>
+<!-- n11 -->
+<g id="node12" class="node">
+<title>n11</title>
+<polygon fill="none" stroke="black" points="941,-908 552,-908 552,-789 941,-789 941,-908"/>
+<text text-anchor="middle" x="746.5" y="-896" font-family="Courier,monospace" font-size="10.00" fill="#333333">:https://lschema.org/DocumentNode</text>
+<text text-anchor="middle" x="746.5" y="-885" font-family="Courier,monospace" font-size="10.00" fill="#333333">:https://lschema.org/Value</text>
+<text text-anchor="start" x="560" y="-862" font-family="Courier,monospace" font-size="10.00" fill="#333333">id=http://example.org/root.name</text>
+<text text-anchor="start" x="560" y="-851" font-family="Courier,monospace" font-size="10.00" fill="#333333">https://lschema.org/attributeIndex=3</text>
+<text text-anchor="start" x="560" y="-840" font-family="Courier,monospace" font-size="10.00" fill="#333333">https://lschema.org/attributeName=name</text>
+<text text-anchor="start" x="560" y="-829" font-family="Courier,monospace" font-size="10.00" fill="#333333">https://lschema.org/schemaNodeId=http://schema.org/Person/name</text>
+<text text-anchor="start" x="560" y="-818" font-family="Courier,monospace" font-size="10.00" fill="#333333">https://lschema.org/value=Jane Doe</text>
+<text text-anchor="start" x="560" y="-807" font-family="Courier,monospace" font-size="10.00" fill="#333333">https://lschema.org/valueType=string</text>
+<text text-anchor="start" x="560" y="-796" font-family="Courier,monospace" font-size="10.00" fill="#333333">rdfPredicate=http://schema.org/name</text>
+</g>
+<!-- n0&#45;&gt;n11 -->
+<g id="edge7" class="edge">
+<title>n0&#45;&gt;n11</title>
+<path fill="none" stroke="#333333" d="M359.27,-848.5C416.82,-848.5 481.05,-848.5 540.35,-848.5"/>
+<polygon fill="#333333" stroke="#333333" points="540.24,-852 550.24,-848.5 540.24,-845 540.24,-852"/>
+<text text-anchor="middle" x="446.5" y="-851.5" font-family="Courier,monospace" font-size="10.00" fill="#333333">https://lschema.org/has</text>
+</g>
+<!-- n12 -->
+<g id="node13" class="node">
+<title>n12</title>
+<polygon fill="none" stroke="black" points="947,-771 546,-771 546,-652 947,-652 947,-771"/>
+<text text-anchor="middle" x="746.5" y="-759" font-family="Courier,monospace" font-size="10.00" fill="#333333">:https://lschema.org/DocumentNode</text>
+<text text-anchor="middle" x="746.5" y="-748" font-family="Courier,monospace" font-size="10.00" fill="#333333">:https://lschema.org/Value</text>
+<text text-anchor="start" x="554" y="-725" font-family="Courier,monospace" font-size="10.00" fill="#333333">id=http://example.org/root.gender</text>
+<text text-anchor="start" x="554" y="-714" font-family="Courier,monospace" font-size="10.00" fill="#333333">rdfPredicate=http://schema.org/gender</text>
+<text text-anchor="start" x="554" y="-703" font-family="Courier,monospace" font-size="10.00" fill="#333333">https://lschema.org/attributeIndex=7</text>
+<text text-anchor="start" x="554" y="-692" font-family="Courier,monospace" font-size="10.00" fill="#333333">https://lschema.org/attributeName=gender</text>
+<text text-anchor="start" x="554" y="-681" font-family="Courier,monospace" font-size="10.00" fill="#333333">https://lschema.org/schemaNodeId=http://schema.org/Person/gender</text>
+<text text-anchor="start" x="554" y="-670" font-family="Courier,monospace" font-size="10.00" fill="#333333">https://lschema.org/value=female</text>
+<text text-anchor="start" x="554" y="-659" font-family="Courier,monospace" font-size="10.00" fill="#333333">https://lschema.org/valueType=string</text>
+</g>
+<!-- n0&#45;&gt;n12 -->
+<g id="edge11" class="edge">
+<title>n0&#45;&gt;n12</title>
+<path fill="none" stroke="#333333" d="M359.27,-805.15C415,-791.64 476.99,-776.61 534.7,-762.61"/>
+<polygon fill="#333333" stroke="#333333" points="535.44,-766.04 544.33,-760.28 533.79,-759.23 535.44,-766.04"/>
+<text text-anchor="middle" x="446.5" y="-802.5" font-family="Courier,monospace" font-size="10.00" fill="#333333">https://lschema.org/has</text>
+</g>
+<!-- n13 -->
+<g id="node14" class="node">
+<title>n13</title>
+<polygon fill="none" stroke="black" points="950,-634 543,-634 543,-471 950,-471 950,-634"/>
+<text text-anchor="middle" x="746.5" y="-622" font-family="Courier,monospace" font-size="10.00" fill="#333333">:https://lschema.org/DocumentNode</text>
+<text text-anchor="middle" x="746.5" y="-611" font-family="Courier,monospace" font-size="10.00" fill="#333333">:http://schema.org/PostalAddress</text>
+<text text-anchor="middle" x="746.5" y="-600" font-family="Courier,monospace" font-size="10.00" fill="#333333">:https://lschema.org/Object</text>
+<text text-anchor="start" x="551" y="-577" font-family="Courier,monospace" font-size="10.00" fill="#333333">id=http://example.org/root.address</text>
+<text text-anchor="start" x="551" y="-566" font-family="Courier,monospace" font-size="10.00" fill="#333333">https://lschema.org/provenance/source=person&#45;sample.json</text>
+<text text-anchor="start" x="551" y="-555" font-family="Courier,monospace" font-size="10.00" fill="#333333">rdfType=https://schema.org/PostalAddress</text>
+<text text-anchor="start" x="551" y="-544" font-family="Courier,monospace" font-size="10.00" fill="#333333">https://lschema.org/attributeIndex=8</text>
+<text text-anchor="start" x="551" y="-533" font-family="Courier,monospace" font-size="10.00" fill="#333333">https://lschema.org/schemaNodeId=http://schema.org/Person/address</text>
+<text text-anchor="start" x="551" y="-522" font-family="Courier,monospace" font-size="10.00" fill="#333333">rdfIRI=blank</text>
+<text text-anchor="start" x="551" y="-511" font-family="Courier,monospace" font-size="10.00" fill="#333333">https://lschema.org/Reference/ref=http://schema.org/PostalAddress</text>
+<text text-anchor="start" x="551" y="-500" font-family="Courier,monospace" font-size="10.00" fill="#333333">https://lschema.org/entitySchema=http://schema.org/PostalAddress</text>
+<text text-anchor="start" x="551" y="-489" font-family="Courier,monospace" font-size="10.00" fill="#333333">https://lschema.org/attributeName=address</text>
+<text text-anchor="start" x="551" y="-478" font-family="Courier,monospace" font-size="10.00" fill="#333333">rdfPredicate=http://schema.org/address</text>
+</g>
+<!-- n0&#45;&gt;n13 -->
+<g id="edge12" class="edge">
+<title>n0&#45;&gt;n13</title>
+<path fill="none" stroke="#333333" d="M285.8,-783C355.15,-740.98 448.59,-686.45 534,-643.5 536.75,-642.12 539.53,-640.73 542.33,-639.35"/>
+<polygon fill="#333333" stroke="#333333" points="543.74,-642.56 551.19,-635.03 540.67,-636.27 543.74,-642.56"/>
+<text text-anchor="middle" x="446.5" y="-726.5" font-family="Courier,monospace" font-size="10.00" fill="#333333">https://lschema.org/has</text>
+</g>
+<!-- n15 -->
+<g id="node16" class="node">
+<title>n15</title>
+<polygon fill="none" stroke="black" points="947,-393 546,-393 546,-296 947,-296 947,-393"/>
+<text text-anchor="middle" x="746.5" y="-381" font-family="Courier,monospace" font-size="10.00" fill="#333333">:https://lschema.org/DocumentNode</text>
+<text text-anchor="middle" x="746.5" y="-370" font-family="Courier,monospace" font-size="10.00" fill="#333333">:https://lschema.org/Array</text>
+<text text-anchor="start" x="554" y="-347" font-family="Courier,monospace" font-size="10.00" fill="#333333">id=http://example.org/root.sameAs</text>
+<text text-anchor="start" x="554" y="-336" font-family="Courier,monospace" font-size="10.00" fill="#333333">https://lschema.org/schemaNodeId=http://schema.org/Person/sameAs</text>
+<text text-anchor="start" x="554" y="-325" font-family="Courier,monospace" font-size="10.00" fill="#333333">rdfPredicate=http://schema.org/sameAs</text>
+<text text-anchor="start" x="554" y="-314" font-family="Courier,monospace" font-size="10.00" fill="#333333">https://lschema.org/attributeIndex=10</text>
+<text text-anchor="start" x="554" y="-303" font-family="Courier,monospace" font-size="10.00" fill="#333333">https://lschema.org/attributeName=sameAs</text>
+</g>
+<!-- n0&#45;&gt;n15 -->
+<g id="edge14" class="edge">
+<title>n0&#45;&gt;n15</title>
+<path fill="none" stroke="#333333" d="M229.55,-783.12C293.29,-701.19 411.05,-559.73 534,-462.5 564.02,-438.76 599.42,-416.99 632.59,-398.78"/>
+<polygon fill="#333333" stroke="#333333" points="633.89,-402.06 641.01,-394.22 630.56,-395.91 633.89,-402.06"/>
+<text text-anchor="middle" x="446.5" y="-612.5" font-family="Courier,monospace" font-size="10.00" fill="#333333">https://lschema.org/has</text>
+</g>
+<!-- n18 -->
+<g id="node19" class="node">
+<title>n18</title>
+<polygon fill="none" stroke="black" points="956,-278 537,-278 537,-137 956,-137 956,-278"/>
+<text text-anchor="middle" x="746.5" y="-266" font-family="Courier,monospace" font-size="10.00" fill="#333333">:https://lschema.org/DocumentNode</text>
+<text text-anchor="middle" x="746.5" y="-255" font-family="Courier,monospace" font-size="10.00" fill="#333333">:https://lschema.org/Value</text>
+<text text-anchor="start" x="545" y="-232" font-family="Courier,monospace" font-size="10.00" fill="#333333">id=http://example.org/root.birthDate</text>
+<text text-anchor="start" x="545" y="-221" font-family="Courier,monospace" font-size="10.00" fill="#333333">https://lschema.org/attributeIndex=5</text>
+<text text-anchor="start" x="545" y="-210" font-family="Courier,monospace" font-size="10.00" fill="#333333">https://lschema.org/validation/json/format=date</text>
+<text text-anchor="start" x="545" y="-199" font-family="Courier,monospace" font-size="10.00" fill="#333333">https://lschema.org/value=1972&#45;11&#45;12</text>
+<text text-anchor="start" x="545" y="-188" font-family="Courier,monospace" font-size="10.00" fill="#333333">rdfType=http://schema.org/Date</text>
+<text text-anchor="start" x="545" y="-177" font-family="Courier,monospace" font-size="10.00" fill="#333333">rdfPredicate=http://schema.org/birthDate</text>
+<text text-anchor="start" x="545" y="-166" font-family="Courier,monospace" font-size="10.00" fill="#333333">https://lschema.org/attributeName=birthDate</text>
+<text text-anchor="start" x="545" y="-155" font-family="Courier,monospace" font-size="10.00" fill="#333333">https://lschema.org/schemaNodeId=http://schema.org/Person/birthDate</text>
+<text text-anchor="start" x="545" y="-144" font-family="Courier,monospace" font-size="10.00" fill="#333333">https://lschema.org/valueType=string</text>
+</g>
+<!-- n0&#45;&gt;n18 -->
+<g id="edge9" class="edge">
+<title>n0&#45;&gt;n18</title>
+<path fill="none" stroke="#333333" d="M201.94,-783.43C244.72,-664.46 352.48,-412.6 534,-287.5 535.41,-286.53 536.84,-285.56 538.28,-284.61"/>
+<polygon fill="#333333" stroke="#333333" points="540.13,-287.58 546.68,-279.26 536.37,-281.68 540.13,-287.58"/>
+<text text-anchor="middle" x="446.5" y="-440.5" font-family="Courier,monospace" font-size="10.00" fill="#333333">https://lschema.org/has</text>
+</g>
+<!-- n19 -->
+<g id="node20" class="node">
+<title>n19</title>
+<polygon fill="none" stroke="black" points="947,-119 546,-119 546,0 947,0 947,-119"/>
+<text text-anchor="middle" x="746.5" y="-107" font-family="Courier,monospace" font-size="10.00" fill="#333333">:https://lschema.org/DocumentNode</text>
+<text text-anchor="middle" x="746.5" y="-96" font-family="Courier,monospace" font-size="10.00" fill="#333333">:https://lschema.org/Value</text>
+<text text-anchor="start" x="554" y="-73" font-family="Courier,monospace" font-size="10.00" fill="#333333">id=http://example.org/root.height</text>
+<text text-anchor="start" x="554" y="-62" font-family="Courier,monospace" font-size="10.00" fill="#333333">rdfPredicate=http://schema.org/height</text>
+<text text-anchor="start" x="554" y="-51" font-family="Courier,monospace" font-size="10.00" fill="#333333">https://lschema.org/attributeIndex=6</text>
+<text text-anchor="start" x="554" y="-40" font-family="Courier,monospace" font-size="10.00" fill="#333333">https://lschema.org/attributeName=height</text>
+<text text-anchor="start" x="554" y="-29" font-family="Courier,monospace" font-size="10.00" fill="#333333">https://lschema.org/schemaNodeId=http://schema.org/Person/height</text>
+<text text-anchor="start" x="554" y="-18" font-family="Courier,monospace" font-size="10.00" fill="#333333">https://lschema.org/value=71</text>
+<text text-anchor="start" x="554" y="-7" font-family="Courier,monospace" font-size="10.00" fill="#333333">https://lschema.org/valueType=string</text>
+</g>
+<!-- n0&#45;&gt;n19 -->
+<g id="edge10" class="edge">
+<title>n0&#45;&gt;n19</title>
+<path fill="none" stroke="#333333" d="M194.24,-783.05C218.89,-675.1 277.56,-455.54 377,-293.5 429.95,-207.22 448.39,-182.51 534,-128.5 535.87,-127.32 537.76,-126.16 539.67,-125.02"/>
+<polygon fill="#333333" stroke="#333333" points="541.13,-128.22 548.07,-120.21 537.65,-122.14 541.13,-128.22"/>
+<text text-anchor="middle" x="446.5" y="-296.5" font-family="Courier,monospace" font-size="10.00" fill="#333333">https://lschema.org/has</text>
+</g>
+<!-- n8 -->
+<g id="node9" class="node">
+<title>n8</title>
+<polygon fill="none" stroke="black" points="1598,-1459 1167,-1459 1167,-1362 1598,-1362 1598,-1459"/>
+<text text-anchor="middle" x="1382.5" y="-1447" font-family="Courier,monospace" font-size="10.00" fill="#333333">:https://lschema.org/DocumentNode</text>
+<text text-anchor="middle" x="1382.5" y="-1436" font-family="Courier,monospace" font-size="10.00" fill="#333333">:https://lschema.org/Value</text>
+<text text-anchor="start" x="1175" y="-1413" font-family="Courier,monospace" font-size="10.00" fill="#333333">id=http://example.org/root.colleague.0</text>
+<text text-anchor="start" x="1175" y="-1402" font-family="Courier,monospace" font-size="10.00" fill="#333333">https://lschema.org/attributeIndex=0</text>
+<text text-anchor="start" x="1175" y="-1391" font-family="Courier,monospace" font-size="10.00" fill="#333333">https://lschema.org/schemaNodeId=http://schema.org/Person/colleague/*</text>
+<text text-anchor="start" x="1175" y="-1380" font-family="Courier,monospace" font-size="10.00" fill="#333333">https://lschema.org/value=http://www.example.com/John.html</text>
+<text text-anchor="start" x="1175" y="-1369" font-family="Courier,monospace" font-size="10.00" fill="#333333">https://lschema.org/valueType=string</text>
+</g>
+<!-- n2&#45;&gt;n8 -->
+<g id="edge15" class="edge">
+<title>n2&#45;&gt;n8</title>
+<path fill="none" stroke="#333333" d="M956.41,-1372.28C1020.19,-1378.02 1090.6,-1384.35 1155.46,-1390.18"/>
+<polygon fill="#333333" stroke="#333333" points="1154.88,-1393.64 1165.15,-1391.05 1155.51,-1386.67 1154.88,-1393.64"/>
+<text text-anchor="middle" x="1046.5" y="-1387.5" font-family="Courier,monospace" font-size="10.00" fill="#333333">https://lschema.org/has</text>
+</g>
+<!-- n9 -->
+<g id="node10" class="node">
+<title>n9</title>
+<polygon fill="none" stroke="black" points="1598,-1344 1167,-1344 1167,-1247 1598,-1247 1598,-1344"/>
+<text text-anchor="middle" x="1382.5" y="-1332" font-family="Courier,monospace" font-size="10.00" fill="#333333">:https://lschema.org/DocumentNode</text>
+<text text-anchor="middle" x="1382.5" y="-1321" font-family="Courier,monospace" font-size="10.00" fill="#333333">:https://lschema.org/Value</text>
+<text text-anchor="start" x="1175" y="-1298" font-family="Courier,monospace" font-size="10.00" fill="#333333">id=http://example.org/root.colleague.1</text>
+<text text-anchor="start" x="1175" y="-1287" font-family="Courier,monospace" font-size="10.00" fill="#333333">https://lschema.org/schemaNodeId=http://schema.org/Person/colleague/*</text>
+<text text-anchor="start" x="1175" y="-1276" font-family="Courier,monospace" font-size="10.00" fill="#333333">https://lschema.org/value=http://www.example.com/Jane.html</text>
+<text text-anchor="start" x="1175" y="-1265" font-family="Courier,monospace" font-size="10.00" fill="#333333">https://lschema.org/valueType=string</text>
+<text text-anchor="start" x="1175" y="-1254" font-family="Courier,monospace" font-size="10.00" fill="#333333">https://lschema.org/attributeIndex=1</text>
+</g>
+<!-- n2&#45;&gt;n9 -->
+<g id="edge16" class="edge">
+<title>n2&#45;&gt;n9</title>
+<path fill="none" stroke="#333333" d="M956.41,-1334.39C1020.19,-1328.55 1090.6,-1322.11 1155.46,-1316.18"/>
+<polygon fill="#333333" stroke="#333333" points="1155.52,-1319.69 1165.15,-1315.29 1154.88,-1312.72 1155.52,-1319.69"/>
+<text text-anchor="middle" x="1046.5" y="-1333.5" font-family="Courier,monospace" font-size="10.00" fill="#333333">https://lschema.org/has</text>
+</g>
+<!-- n5 -->
+<g id="node6" class="node">
+<title>n5</title>
+<polygon fill="none" stroke="black" points="1511,-1020.5 1254,-1020.5 1254,-934.5 1511,-934.5 1511,-1020.5"/>
+<text text-anchor="middle" x="1382.5" y="-1008.5" font-family="Courier,monospace" font-size="10.00" fill="#333333">:https://lschema.org/Value</text>
+<text text-anchor="middle" x="1382.5" y="-997.5" font-family="Courier,monospace" font-size="10.00" fill="#333333">:https://lschema.org/DocumentNode</text>
+<text text-anchor="start" x="1262" y="-974.5" font-family="Courier,monospace" font-size="10.00" fill="#333333">id=http://example.org/root.address.@type</text>
+<text text-anchor="start" x="1262" y="-963.5" font-family="Courier,monospace" font-size="10.00" fill="#333333">https://lschema.org/attributeName=@type</text>
+<text text-anchor="start" x="1262" y="-952.5" font-family="Courier,monospace" font-size="10.00" fill="#333333">https://lschema.org/value=PostalAddress</text>
+<text text-anchor="start" x="1262" y="-941.5" font-family="Courier,monospace" font-size="10.00" fill="#333333">https://lschema.org/attributeIndex=0</text>
+</g>
+<!-- n6 -->
+<g id="node7" class="node">
+<title>n6</title>
+<polygon fill="none" stroke="black" points="1589,-367.5 1176,-367.5 1176,-259.5 1589,-259.5 1589,-367.5"/>
+<text text-anchor="middle" x="1382.5" y="-355.5" font-family="Courier,monospace" font-size="10.00" fill="#333333">:https://lschema.org/DocumentNode</text>
+<text text-anchor="middle" x="1382.5" y="-344.5" font-family="Courier,monospace" font-size="10.00" fill="#333333">:https://lschema.org/Value</text>
+<text text-anchor="start" x="1184" y="-321.5" font-family="Courier,monospace" font-size="10.00" fill="#333333">id=http://example.org/root.sameAs.2</text>
+<text text-anchor="start" x="1184" y="-310.5" font-family="Courier,monospace" font-size="10.00" fill="#333333">https://lschema.org/attributeIndex=2</text>
+<text text-anchor="start" x="1184" y="-299.5" font-family="Courier,monospace" font-size="10.00" fill="#333333">https://lschema.org/schemaNodeId=http://schema.org/Person/sameAs/*</text>
+<text text-anchor="start" x="1184" y="-288.5" font-family="Courier,monospace" font-size="10.00" fill="#333333">https://lschema.org/validation/json/format=uri</text>
+<text text-anchor="start" x="1184" y="-277.5" font-family="Courier,monospace" font-size="10.00" fill="#333333">https://lschema.org/value=http://twitter.com/</text>
+<text text-anchor="start" x="1184" y="-266.5" font-family="Courier,monospace" font-size="10.00" fill="#333333">https://lschema.org/valueType=string</text>
+</g>
+<!-- n7 -->
+<g id="node8" class="node">
+<title>n7</title>
+<polygon fill="none" stroke="black" points="1625,-916 1140,-916 1140,-797 1625,-797 1625,-916"/>
+<text text-anchor="middle" x="1382.5" y="-904" font-family="Courier,monospace" font-size="10.00" fill="#333333">:https://lschema.org/Value</text>
+<text text-anchor="middle" x="1382.5" y="-893" font-family="Courier,monospace" font-size="10.00" fill="#333333">:https://lschema.org/DocumentNode</text>
+<text text-anchor="start" x="1148" y="-870" font-family="Courier,monospace" font-size="10.00" fill="#333333">id=http://example.org/root.address.streetAddress</text>
+<text text-anchor="start" x="1148" y="-859" font-family="Courier,monospace" font-size="10.00" fill="#333333">https://lschema.org/value=100 Main Street</text>
+<text text-anchor="start" x="1148" y="-848" font-family="Courier,monospace" font-size="10.00" fill="#333333">https://lschema.org/valueType=string</text>
+<text text-anchor="start" x="1148" y="-837" font-family="Courier,monospace" font-size="10.00" fill="#333333">rdfPredicate=http://schema.org/streetAddress</text>
+<text text-anchor="start" x="1148" y="-826" font-family="Courier,monospace" font-size="10.00" fill="#333333">https://lschema.org/attributeIndex=4</text>
+<text text-anchor="start" x="1148" y="-815" font-family="Courier,monospace" font-size="10.00" fill="#333333">https://lschema.org/attributeName=streetAddress</text>
+<text text-anchor="start" x="1148" y="-804" font-family="Courier,monospace" font-size="10.00" fill="#333333">https://lschema.org/schemaNodeId=http://schema.org/PostalAddress/streetAddress</text>
+</g>
+<!-- n13&#45;&gt;n5 -->
+<g id="edge1" class="edge">
+<title>n13&#45;&gt;n5</title>
+<path fill="none" stroke="#333333" d="M950.21,-632.9C953.31,-636.29 956.24,-639.82 959,-643.5 998.47,-696.17 945.95,-732.46 977,-790.5 1020.41,-871.65 1051.48,-884.76 1134,-925.5 1167.45,-942.02 1205.96,-953.3 1242.48,-961"/>
+<polygon fill="#333333" stroke="#333333" points="1241.76,-964.42 1252.26,-962.97 1243.15,-957.56 1241.76,-964.42"/>
+<text text-anchor="middle" x="1046.5" y="-918.5" font-family="Courier,monospace" font-size="10.00" fill="#333333">https://lschema.org/has</text>
+</g>
+<!-- n13&#45;&gt;n7 -->
+<g id="edge2" class="edge">
+<title>n13&#45;&gt;n7</title>
+<path fill="none" stroke="#333333" d="M944.64,-634.47C949.53,-637.42 954.32,-640.43 959,-643.5 968.19,-649.54 968.73,-653.24 977,-660.5 1044.66,-719.89 1053.98,-747.24 1134,-788.5 1136.13,-789.6 1138.27,-790.68 1140.44,-791.74"/>
+<polygon fill="#333333" stroke="#333333" points="1138.79,-794.84 1149.33,-795.96 1141.79,-788.51 1138.79,-794.84"/>
+<text text-anchor="middle" x="1046.5" y="-778.5" font-family="Courier,monospace" font-size="10.00" fill="#333333">https://lschema.org/has</text>
+</g>
+<!-- n14 -->
+<g id="node15" class="node">
+<title>n14</title>
+<polygon fill="none" stroke="black" points="1625,-779 1140,-779 1140,-660 1625,-660 1625,-779"/>
+<text text-anchor="middle" x="1382.5" y="-767" font-family="Courier,monospace" font-size="10.00" fill="#333333">:https://lschema.org/Value</text>
+<text text-anchor="middle" x="1382.5" y="-756" font-family="Courier,monospace" font-size="10.00" fill="#333333">:https://lschema.org/DocumentNode</text>
+<text text-anchor="start" x="1148" y="-733" font-family="Courier,monospace" font-size="10.00" fill="#333333">id=http://example.org/root.address.addressRegion</text>
+<text text-anchor="start" x="1148" y="-722" font-family="Courier,monospace" font-size="10.00" fill="#333333">https://lschema.org/schemaNodeId=http://schema.org/PostalAddress/addressRegion</text>
+<text text-anchor="start" x="1148" y="-711" font-family="Courier,monospace" font-size="10.00" fill="#333333">https://lschema.org/value=CO</text>
+<text text-anchor="start" x="1148" y="-700" font-family="Courier,monospace" font-size="10.00" fill="#333333">https://lschema.org/valueType=string</text>
+<text text-anchor="start" x="1148" y="-689" font-family="Courier,monospace" font-size="10.00" fill="#333333">rdfPredicate=http://schema.org/addressRegion</text>
+<text text-anchor="start" x="1148" y="-678" font-family="Courier,monospace" font-size="10.00" fill="#333333">https://lschema.org/attributeIndex=2</text>
+<text text-anchor="start" x="1148" y="-667" font-family="Courier,monospace" font-size="10.00" fill="#333333">https://lschema.org/attributeName=addressRegion</text>
+</g>
+<!-- n13&#45;&gt;n14 -->
+<g id="edge18" class="edge">
+<title>n13&#45;&gt;n14</title>
+<path fill="none" stroke="#333333" d="M950.28,-605.91C1011.58,-622.06 1079.47,-639.94 1142.88,-656.65"/>
+<polygon fill="#333333" stroke="#333333" points="1141.82,-659.99 1152.38,-659.15 1143.6,-653.22 1141.82,-659.99"/>
+<text text-anchor="middle" x="1046.5" y="-648.5" font-family="Courier,monospace" font-size="10.00" fill="#333333">https://lschema.org/has</text>
+</g>
+<!-- n20 -->
+<g id="node21" class="node">
+<title>n20</title>
+<polygon fill="none" stroke="black" points="1631,-642 1134,-642 1134,-523 1631,-523 1631,-642"/>
+<text text-anchor="middle" x="1382.5" y="-630" font-family="Courier,monospace" font-size="10.00" fill="#333333">:https://lschema.org/DocumentNode</text>
+<text text-anchor="middle" x="1382.5" y="-619" font-family="Courier,monospace" font-size="10.00" fill="#333333">:https://lschema.org/Value</text>
+<text text-anchor="start" x="1142" y="-596" font-family="Courier,monospace" font-size="10.00" fill="#333333">id=http://example.org/root.address.addressLocality</text>
+<text text-anchor="start" x="1142" y="-585" font-family="Courier,monospace" font-size="10.00" fill="#333333">https://lschema.org/attributeIndex=1</text>
+<text text-anchor="start" x="1142" y="-574" font-family="Courier,monospace" font-size="10.00" fill="#333333">https://lschema.org/attributeName=addressLocality</text>
+<text text-anchor="start" x="1142" y="-563" font-family="Courier,monospace" font-size="10.00" fill="#333333">https://lschema.org/schemaNodeId=http://schema.org/PostalAddress/addressLocality</text>
+<text text-anchor="start" x="1142" y="-552" font-family="Courier,monospace" font-size="10.00" fill="#333333">https://lschema.org/value=Denver</text>
+<text text-anchor="start" x="1142" y="-541" font-family="Courier,monospace" font-size="10.00" fill="#333333">https://lschema.org/valueType=string</text>
+<text text-anchor="start" x="1142" y="-530" font-family="Courier,monospace" font-size="10.00" fill="#333333">rdfPredicate=http://schema.org/addressLocality</text>
+</g>
+<!-- n13&#45;&gt;n20 -->
+<g id="edge17" class="edge">
+<title>n13&#45;&gt;n20</title>
+<path fill="none" stroke="#333333" d="M950.28,-562.1C1004.96,-564.68 1064.88,-567.52 1122.2,-570.23"/>
+<polygon fill="#333333" stroke="#333333" points="1121.96,-573.72 1132.11,-570.7 1122.29,-566.73 1121.96,-573.72"/>
+<text text-anchor="middle" x="1046.5" y="-571.5" font-family="Courier,monospace" font-size="10.00" fill="#333333">https://lschema.org/has</text>
+</g>
+<!-- n21 -->
+<g id="node22" class="node">
+<title>n21</title>
+<polygon fill="none" stroke="black" points="1616,-505 1149,-505 1149,-386 1616,-386 1616,-505"/>
+<text text-anchor="middle" x="1382.5" y="-493" font-family="Courier,monospace" font-size="10.00" fill="#333333">:https://lschema.org/Value</text>
+<text text-anchor="middle" x="1382.5" y="-482" font-family="Courier,monospace" font-size="10.00" fill="#333333">:https://lschema.org/DocumentNode</text>
+<text text-anchor="start" x="1157" y="-459" font-family="Courier,monospace" font-size="10.00" fill="#333333">id=http://example.org/root.address.postalCode</text>
+<text text-anchor="start" x="1157" y="-448" font-family="Courier,monospace" font-size="10.00" fill="#333333">rdfPredicate=http://schema.org/postalCode</text>
+<text text-anchor="start" x="1157" y="-437" font-family="Courier,monospace" font-size="10.00" fill="#333333">https://lschema.org/attributeIndex=3</text>
+<text text-anchor="start" x="1157" y="-426" font-family="Courier,monospace" font-size="10.00" fill="#333333">https://lschema.org/attributeName=postalCode</text>
+<text text-anchor="start" x="1157" y="-415" font-family="Courier,monospace" font-size="10.00" fill="#333333">https://lschema.org/schemaNodeId=http://schema.org/PostalAddress/postalCode</text>
+<text text-anchor="start" x="1157" y="-404" font-family="Courier,monospace" font-size="10.00" fill="#333333">https://lschema.org/value=80123</text>
+<text text-anchor="start" x="1157" y="-393" font-family="Courier,monospace" font-size="10.00" fill="#333333">https://lschema.org/valueType=string</text>
+</g>
+<!-- n13&#45;&gt;n21 -->
+<g id="edge19" class="edge">
+<title>n13&#45;&gt;n21</title>
+<path fill="none" stroke="#333333" d="M950.28,-518.28C1009.83,-508.23 1075.6,-497.13 1137.44,-486.69"/>
+<polygon fill="#333333" stroke="#333333" points="1137.77,-490.18 1147.05,-485.07 1136.6,-483.28 1137.77,-490.18"/>
+<text text-anchor="middle" x="1046.5" y="-514.5" font-family="Courier,monospace" font-size="10.00" fill="#333333">https://lschema.org/has</text>
+</g>
+<!-- n15&#45;&gt;n6 -->
+<g id="edge3" class="edge">
+<title>n15&#45;&gt;n6</title>
+<path fill="none" stroke="#333333" d="M947.23,-334.73C1016.31,-331.36 1094.04,-327.56 1164.44,-324.11"/>
+<polygon fill="#333333" stroke="#333333" points="1164.34,-327.62 1174.16,-323.64 1164,-320.63 1164.34,-327.62"/>
+<text text-anchor="middle" x="1046.5" y="-335.5" font-family="Courier,monospace" font-size="10.00" fill="#333333">https://lschema.org/has</text>
+</g>
+<!-- n16 -->
+<g id="node17" class="node">
+<title>n16</title>
+<polygon fill="none" stroke="black" points="1589,-241.5 1176,-241.5 1176,-133.5 1589,-133.5 1589,-241.5"/>
+<text text-anchor="middle" x="1382.5" y="-229.5" font-family="Courier,monospace" font-size="10.00" fill="#333333">:https://lschema.org/DocumentNode</text>
+<text text-anchor="middle" x="1382.5" y="-218.5" font-family="Courier,monospace" font-size="10.00" fill="#333333">:https://lschema.org/Value</text>
+<text text-anchor="start" x="1184" y="-195.5" font-family="Courier,monospace" font-size="10.00" fill="#333333">id=http://example.org/root.sameAs.0</text>
+<text text-anchor="start" x="1184" y="-184.5" font-family="Courier,monospace" font-size="10.00" fill="#333333">https://lschema.org/attributeIndex=0</text>
+<text text-anchor="start" x="1184" y="-173.5" font-family="Courier,monospace" font-size="10.00" fill="#333333">https://lschema.org/schemaNodeId=http://schema.org/Person/sameAs/*</text>
+<text text-anchor="start" x="1184" y="-162.5" font-family="Courier,monospace" font-size="10.00" fill="#333333">https://lschema.org/validation/json/format=uri</text>
+<text text-anchor="start" x="1184" y="-151.5" font-family="Courier,monospace" font-size="10.00" fill="#333333">https://lschema.org/value=https://www.facebook.com/</text>
+<text text-anchor="start" x="1184" y="-140.5" font-family="Courier,monospace" font-size="10.00" fill="#333333">https://lschema.org/valueType=string</text>
+</g>
+<!-- n15&#45;&gt;n16 -->
+<g id="edge20" class="edge">
+<title>n15&#45;&gt;n16</title>
+<path fill="none" stroke="#333333" d="M945.06,-295.58C1014.8,-278.31 1093.57,-258.8 1164.81,-241.16"/>
+<polygon fill="#333333" stroke="#333333" points="1165.38,-244.62 1174.25,-238.82 1163.7,-237.83 1165.38,-244.62"/>
+<text text-anchor="middle" x="1046.5" y="-287.5" font-family="Courier,monospace" font-size="10.00" fill="#333333">https://lschema.org/has</text>
+</g>
+<!-- n17 -->
+<g id="node18" class="node">
+<title>n17</title>
+<polygon fill="none" stroke="black" points="1589,-115.5 1176,-115.5 1176,-7.5 1589,-7.5 1589,-115.5"/>
+<text text-anchor="middle" x="1382.5" y="-103.5" font-family="Courier,monospace" font-size="10.00" fill="#333333">:https://lschema.org/Value</text>
+<text text-anchor="middle" x="1382.5" y="-92.5" font-family="Courier,monospace" font-size="10.00" fill="#333333">:https://lschema.org/DocumentNode</text>
+<text text-anchor="start" x="1184" y="-69.5" font-family="Courier,monospace" font-size="10.00" fill="#333333">id=http://example.org/root.sameAs.1</text>
+<text text-anchor="start" x="1184" y="-58.5" font-family="Courier,monospace" font-size="10.00" fill="#333333">https://lschema.org/schemaNodeId=http://schema.org/Person/sameAs/*</text>
+<text text-anchor="start" x="1184" y="-47.5" font-family="Courier,monospace" font-size="10.00" fill="#333333">https://lschema.org/validation/json/format=uri</text>
+<text text-anchor="start" x="1184" y="-36.5" font-family="Courier,monospace" font-size="10.00" fill="#333333">https://lschema.org/value=https://www.linkedin.com/</text>
+<text text-anchor="start" x="1184" y="-25.5" font-family="Courier,monospace" font-size="10.00" fill="#333333">https://lschema.org/valueType=string</text>
+<text text-anchor="start" x="1184" y="-14.5" font-family="Courier,monospace" font-size="10.00" fill="#333333">https://lschema.org/attributeIndex=1</text>
+</g>
+<!-- n15&#45;&gt;n17 -->
+<g id="edge21" class="edge">
+<title>n15&#45;&gt;n17</title>
+<path fill="none" stroke="#333333" d="M947.47,-296.84C951.46,-293.91 955.32,-290.8 959,-287.5 975.35,-272.85 963.68,-258.95 977,-241.5 1029.78,-172.31 1055.45,-161.95 1134,-124.5 1143.98,-119.74 1154.37,-115.31 1164.98,-111.19"/>
+<polygon fill="#333333" stroke="#333333" points="1166.12,-114.51 1174.25,-107.71 1163.66,-107.95 1166.12,-114.51"/>
+<text text-anchor="middle" x="1046.5" y="-244.5" font-family="Courier,monospace" font-size="10.00" fill="#333333">https://lschema.org/has</text>
+</g>
+</g>
+</g></svg>
