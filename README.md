@@ -153,8 +153,8 @@ structure of the JSON objects, in this example, `Person` and
 annotates this schema to define the mappings to `schema.org` terms
 using the above tags. The bundle file
 [person.bundle.yaml](person.bundle.yaml) combines the schema and the
-overlay, and defines the schema variant. The schema variant itself is
-an LPG.  This schema variant LPG contains a node for every JSON data
+overlay, and defines the schema variant. [The schema variant itself is
+an LPG](compiled-schema-variant.svg).  This schema variant LPG contains a node for every JSON data
 point (every object, array, and value.) Data ingestion process takes
 the input data file [person-sample.json](person-sample.json) and
 interprets it using the schema variant LPG, creating a new LPG for the
