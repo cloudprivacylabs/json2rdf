@@ -1,17 +1,26 @@
 # json2rdf - JSON-LD vs. Layered Schemas
 
-This is a proof-of-concept command-line application that demonstrates
-how layered JSON schemas can be used to transform JSON documents into
-RDF. There are several advantages of using layered JSON schemas
-instead of JSON-LD: JSON schemas are widely available, they describe
-valid JSON documents expected by data exchange partners or API users
-in a machine-readable manner so they can be used to validate JSON
-documents or to generate code for different languages.
+JSON-LD is a format for encoding linked data. It allows mapping of
+JSON properties to a web ontology to enable interoperability between
+differents systems.
 
-## Layered Schemas
+This is a proof-of-concept to show that layered JSON schemas offer the
+same functionality. A layered JSON schema is simply a JSON schema with
+additional overlays that annotate the schema. A JSON document can be
+interpreted with such a layered schema to build linked data
+representations in RDF.
 
-The layered schema architecture tools are available
-[here](https://github.com/cloudprivacylabs/lsa). Here's a short
+There are several advantages of using layered JSON schemas: JSON
+schemas are widely available in the industry to specify data
+standards. They describe valid JSON documents expected by data
+exchange partners or API users in a machine-readable manner so they
+can be used to validate JSON documents or to generate code for
+different languages.
+
+## Layered Schema Architecture (LSA)
+
+The LSA tools are available
+[here](https://github.com/cloudprivacylabs/lsa). Here's an overview
 overview of the idea:
 
 A **schema variant** is composed of a schema that defines data
@@ -19,8 +28,7 @@ structures, and zero or more overlays (hence the name "layered
 schemas") that annotate the schema with semantic information and
 metadata. These annotations adjust and enrich the schema by adding or
 removing constraints, metadata, processing information such as
-pointers to normalization tables, or mappings to a common ontology,
-which is what we will use here.
+pointers to normalization tables, or mappings to an ontology.
 
 Schema variants are useful in an environment where there are multiple
 varying implementation of a standard, or where there are multiple
@@ -76,13 +84,46 @@ blank node.
 
 ## JSON/RDF Translation using a Layered JSON Schema
 
-Now let's see how the same thing can be done using a layered JSON
-schema. LSA tools create a labeled property graph (LPG) for an
-ingested JSON object. This LPG is a self-describing object in the
-sense that it contains the values of the input document combined with
-the annotations and metadata specified in the schema variant used to
-ingest it. We will use this LPG to produce the RDF output using the
-following tags:
+### Idea
+
+Now let's see how this can be done using a layered JSON schema. The
+idea is to write a JSON schema to describe the data structures
+(`Person` and `PostalAddress`), and combine it with an overlay that
+describes how to translate JSON data points into RDF. For example:
+
+``` javascript
+"email": "jane@example.com"
+```
+
+should be translated as an RDF predicate `http://schema.org/email` and
+an RDF literal object `jane@example.com`. So the overlay should assign
+`email` property to `http://schema.org/email` IRI, and also should
+specify that it should be an RDF predicate. The following annotation
+serves this purpose:
+
+``` javascript
+"rdfPredicate": "http://schema.org/email"
+```
+
+As another example, consider the `Person` object:
+
+``` javascript
+{
+   "@id": "http://linkedin.com/jane-doe",
+   ...
+}
+```
+
+This should be translated to an RDF IRI node
+`http://linkedin.com/jane-doe`, which is given in the `@id`
+attribute. So we should be able to tell that an RDF IRI node should be
+created from a given data element to represent this object:
+
+``` javascript
+"rdfIRI": "ref:<pointer to the @id field>
+```
+
+Based on this intuition, we come up with the following tags:
 
   * `rdfPredicate`: Declares a JSON property as an RDF predicate
     (edge), with a mapping to a term. This is similar to mapping a
@@ -96,8 +137,13 @@ following tags:
   * `rdfType`: Defines the type of the literal, or the type of the
     node.
   * `rdfLang`: Defined the language of a litaral.
+  
+### LSA Data Ingestion
 
-The following image illustrates the data ingestion process.
+LSA ingests a data file based on a schema variant (remember: a schema
+variant is a schema annotated using overlays) and produces a labeled
+property graph. The following image illustrates the data ingestion
+process.
 
 ![Ingestion Pipeline](pipeline.png)
 
@@ -113,8 +159,24 @@ point (every object, array, and value.) Data ingestion process takes
 the input data file [person-sample.json](person-sample.json) and
 interprets it using the schema variant LPG, creating a new LPG for the
 data object. This LPG becomes a self-describing object that contains
-all input data values and corresponding schema annotations.
- 
+all input data values and corresponding schema annotations. We then
+take this LPG, use the RDF annotations at each node, and produce the
+RDF output.
+
+### The Overlay: Defining the RDF Translation
+
+There are several things to note in the overlay:
+
+  * The overlay matches the schema structurally. The JSON path
+    `/definitions/Person` of the overlay annotates the properties
+    under the same path in the schema.
+  * All annotations are under the `x-ls` JSON object. This is the
+    recommended way of adding extensions to a JSON schema: it starts
+    with `x-`. `ls` standard for `layered schema`. The layered schema
+    processor builds a composite schema by adding `x-ls` objects to
+    corresponding places in the schema.
+
+
 Let's take a deeper look at how the schema and the overlay are
 defined. The schema defines the object `Person` as follows:
 
@@ -169,10 +231,14 @@ The schema variant is a composition of the two:
             ...
 ```
 
-This creates an RDF IRI node with value taken from the `@id` property
-under `Person`, and with type `http://schema.org/Person`. Note that
-the original schema does not contain the `@id` property. That is added
-by the overlay. The output looks like:
+When the input JSON is ingested, this schema variant results in the
+LPG shown below. As you can see, the LPG contains the schema
+annotations as well as the input data. We can process the annotations
+in each node to create the RDF output. This creates an RDF IRI node
+with value taken from the `@id` property under `Person`, and with type
+`http://schema.org/Person`. Note that the original schema does not
+contain the `@id` property. That is added by the overlay. The output
+looks like:
 
 ![Person id and type](id-type.png)
 
@@ -194,23 +260,12 @@ as an edge connecting to a literal node:
             ...
 ```
 
-This looks like:
+This produces:
 
 ![Person name](name.png)
 
-There are several things to note in the overlay:
 
-  * The overlay matches the schema structurally. The JSON path
-    `/definitions/Person` of the overlay annotates the properties
-    under the same path in the schema.
-  * All annotations are under the `x-ls` JSON object. This is the
-    recommended way of adding extensions to a JSON schema: it starts
-    with `x-`. `ls` standard for `layered schema`. The layered schema
-    processor builds a composite schema by adding `x-ls` objects to
-    corresponding places in the schema.
-
-
-For `rdfIRI`, this program uses these conventions:
+For `rdfIRI`, `json2rdf` uses these conventions:
 
    * The following uses the given value as the IRI node:
 
