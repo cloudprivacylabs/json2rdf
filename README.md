@@ -21,7 +21,7 @@ different languages.
 
 The LSA tools are available
 [here](https://github.com/cloudprivacylabs/lsa). Here's an overview
-overview of the idea:
+of the idea:
 
 A **schema variant** is composed of a schema that defines data
 structures, and zero or more overlays (hence the name "layered
