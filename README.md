@@ -154,11 +154,11 @@ annotates this schema to define the mappings to `schema.org` terms
 using the above tags. The bundle file
 [person.bundle.yaml](person.bundle.yaml) combines the schema and the
 overlay, and defines the schema variant. [The schema variant itself is
-an LPG](compiled-schema-variant.svg).  This schema variant LPG contains a node for every JSON data
+an LPG](compiled-schema-variant.svg?raw=1).  This schema variant LPG contains a node for every JSON data
 point (every object, array, and value.) Data ingestion process takes
 the input data file [person-sample.json](person-sample.json) and
 interprets it using the schema variant LPG, [creating a new LPG for the
-data object](ingested-json-lpg.svg). This LPG becomes a self-describing object that contains
+data object](ingested-json-lpg.svg?raw=1). This LPG becomes a self-describing object that contains
 all input data values and corresponding schema annotations. We then
 take this LPG, use the RDF annotations at each node, and produce the
 RDF output.
