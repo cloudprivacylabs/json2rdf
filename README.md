@@ -1,16 +1,20 @@
 # json2rdf - JSON-LD vs. Layered Schemas
 
+Layered JSON schemas can be used instead of JSON-LD to translate JSON
+documents to knowledge graphs (and thus, to RDF). This is a
+proof-of-concept showing how that's done.
+
 JSON-LD is a format for encoding linked data. It allows mapping of
 JSON properties to a web ontology to enable interoperability between
 differents systems. JSON-LD also offers a JSON-based encoding of
 knowledge graphs. A JSON-LD document can be translated into RDF and
 vice-versa.
 
-This is a proof-of-concept to show that layered JSON schemas can be
-used to translate JSON documents to RDF (i.e. to a knowledge graph). A
-layered JSON schema is simply a JSON schema with additional overlays
-that annotate the schema. A JSON document can be interpreted with such
-a layered schema to build linked data representations in RDF.
+A layered JSON schema is simply a JSON schema with additional overlays
+that annotate the schema. This annotated schema (the "schema variant")
+is used to ingest a JSON document. The added annotations encode the
+necessary terminology mappings and graph-shaping instructions to build
+a knowledge graph, and thus, RDF.
 
 There are several advantages of using layered JSON schemas: JSON
 schemas are widely available in the industry to specify data
@@ -153,49 +157,11 @@ Based on this, we devise the following tags:
     `@id` property in our example.)
   * `rdfType`: Defines the type of the literal, or the type of the
     node.
-  * `rdfLang`: Defined the language of a litaral.
+  * `rdfLang`: Defined the language of a literal.
   
-### LSA Data Ingestion
+### The Overlay
 
-LSA ingests a data file based on a schema variant (remember: a schema
-variant is a schema annotated using overlays) and produces a labeled
-property graph. The following image illustrates the data ingestion
-process.
-
-![Ingestion Pipeline](pipeline.png)
-
-The JSON schema [person.schema.json](person.schema.json) defines the
-structure of the JSON objects, in this example, `Person` and
-`PostalAddress`. The overlay [person.ovl.json](person.ovl.json)
-annotates this schema to define the mappings to `schema.org` terms
-using the above tags. The bundle file
-[person.bundle.yaml](person.bundle.yaml) combines the schema and the
-overlay, and defines the schema variant. [The schema variant itself is
-an LPG](compiled-schema-variant.svg?raw=1).  This schema variant LPG contains a node for every JSON data
-point (every object, array, and value.) Data ingestion process takes
-the input data file [person-sample.json](person-sample.json) and
-interprets it using the schema variant LPG, [creating a new LPG for the
-data object](ingested-json-lpg.svg?raw=1). This LPG becomes a self-describing object that contains
-all input data values and corresponding schema annotations. We then
-take this LPG, use the RDF annotations at each node, and produce the
-RDF output.
-
-### The Overlay: Defining the RDF Translation
-
-There are several things to note in the overlay:
-
-  * The overlay matches the schema structurally. The JSON path
-    `/definitions/Person` of the overlay annotates the properties
-    under the same path in the schema.
-  * All annotations are under the `x-ls` JSON object. This is the
-    recommended way of adding extensions to a JSON schema: it starts
-    with `x-`. `ls` standard for `layered schema`. The layered schema
-    processor builds a composite schema by adding `x-ls` objects to
-    corresponding places in the schema.
-
-
-Let's take a deeper look at how the schema and the overlay are
-defined. The schema defines the object `Person` as follows:
+The schema defines the object `Person` as follows:
 
 ``` javascript
 {
@@ -227,6 +193,12 @@ The overlay follows the same structure, but adds the tags under the
             ...
 ```
 
+All annotations go under the `x-ls` JSON object. This is the
+recommended way of adding extensions to a JSON schema: it starts with
+`x-`. `ls` standard for `layered schema`. The layered schema processor
+builds a composite schema by adding `x-ls` objects to corresponding
+places in the schema.
+
 The schema variant is a composition of the two:
 
 ``` javascript
@@ -248,17 +220,6 @@ The schema variant is a composition of the two:
             ...
 ```
 
-When the input JSON is ingested, this schema variant results in the
-LPG shown below. As you can see, the LPG contains the schema
-annotations as well as the input data. We can process the annotations
-in each node to create the RDF output. This creates an RDF IRI node
-with value taken from the `@id` property under `Person`, and with type
-`http://schema.org/Person`. Note that the original schema does not
-contain the `@id` property. That is added by the overlay. The output
-looks like:
-
-![Person id and type](id-type.png)
-
 Similarly, the following overlay assigns `http://schema.org/name` to
 the `Person/name` property, and declares it as an RDF predicate. Since
 `name` has a value in the ingested LPG, it will be translated to RDF
@@ -276,11 +237,6 @@ as an edge connecting to a literal node:
                 },
             ...
 ```
-
-This produces:
-
-![Person name](name.png)
-
 
 For `rdfIRI`, `json2rdf` uses these conventions:
 
@@ -357,6 +313,52 @@ http://schema.org/Person/@id`) under the "Person" object.
 ``` javascript
 "rdfIRI": "."
 ```
+
+
+
+ 
+### LSA Data Ingestion
+
+LSA already provides tools to ingest data and product a labeled
+property graph, so we will use those. LSA ingests a data file based on
+a schema variant (remember: a schema variant is a schema annotated
+using overlays) and produces a labeled property graph. The following
+image illustrates the data ingestion process.
+
+![Ingestion Pipeline](pipeline.png)
+
+The JSON schema [person.schema.json](person.schema.json) defines the
+structure of the JSON objects, in this example, `Person` and
+`PostalAddress`. The overlay [person.ovl.json](person.ovl.json)
+annotates this schema to define the mappings to `schema.org` terms
+using the above tags. The bundle file
+[person.bundle.yaml](person.bundle.yaml) combines the schema and the
+overlay, and defines the schema variant. [The schema variant itself is
+an LPG](compiled-schema-variant.svg?raw=1).  This schema variant LPG contains a node for every JSON data
+point (every object, array, and value.) Data ingestion process takes
+the input data file [person-sample.json](person-sample.json) and
+interprets it using the schema variant LPG, [creating a new LPG for the
+data object](ingested-json-lpg.svg?raw=1). This LPG becomes a self-describing object that contains
+all input data values and corresponding schema annotations. We then
+take this LPG, use the RDF annotations at each node, and produce the
+RDF output.
+
+When the input JSON is ingested, the schema variant results in the LPG
+shown below. As you can see, the LPG contains the schema annotations
+as well as the input data. We can process the annotations in each node
+to create the RDF output. This creates an RDF IRI node with value
+taken from the `@id` property under `Person`, and with type
+`http://schema.org/Person`. Note that the original schema does not
+contain the `@id` property. That is added by the overlay. The output
+looks like:
+
+![Person id and type](id-type.png)
+
+
+For `Person/name`, we get:
+
+![Person name](name.png)
+
 
 ### Algorithm
 
