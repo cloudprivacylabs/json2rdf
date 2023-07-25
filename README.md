@@ -86,16 +86,22 @@ blank node.
 
 This process can be summarized as:
 
-![JSON-LD to RDF](jsonlf-to-rdf.png)
+![JSON-LD to RDF](jsonld-to-rdf.png)
 
 ## JSON/RDF Translation using a Layered JSON Schema
 
 ### Idea
 
-Now let's see how this can be done using a layered JSON schema. The
-idea is to write a JSON schema to describe the data structures
-(`Person` and `PostalAddress`), and combine it with an overlay that
-describes how to translate JSON data points into RDF. For example:
+The goal is to produce the same RDF output from a JSON document using
+a JSON schema, as opposed to using a JSON-LD document and context. For
+this, we will annotate the JSON schema using an overlay to produce a
+schema variant, ingest the JSON document, and translate it to RDF
+using the annotations embedded in the ingested object.
+
+First, we write a JSON schema to describe the data structures
+(`Person` and `PostalAddress`). Then we combine it with an overlay
+that describes how to translate JSON data points into RDF. For
+example:
 
 ``` javascript
 "email": "jane@example.com"
@@ -128,6 +134,11 @@ created from a given data element to represent this object:
 ``` javascript
 "rdfIRI": "ref:<pointer to the @id field>
 ```
+
+The following diagram summarizes the approach:
+
+![JSON to RDF](json-to-rdf.png)
+
 
 Based on this, we devise the following tags:
 
