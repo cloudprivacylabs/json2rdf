@@ -6,11 +6,11 @@ differents systems. JSON-LD also offers a JSON-based encoding of
 knowledge graphs. A JSON-LD document can be translated into RDF and
 vice-versa.
 
-This is a proof-of-concept to show that layered JSON schemas offer the
-same functionality. A layered JSON schema is simply a JSON schema with
-additional overlays that annotate the schema. A JSON document can be
-interpreted with such a layered schema to build linked data
-representations in RDF.
+This is a proof-of-concept to show that layered JSON schemas can be
+used to translate JSON documents to RDF (i.e. to a knowledge graph). A
+layered JSON schema is simply a JSON schema with additional overlays
+that annotate the schema. A JSON document can be interpreted with such
+a layered schema to build linked data representations in RDF.
 
 There are several advantages of using layered JSON schemas: JSON
 schemas are widely available in the industry to specify data
@@ -92,10 +92,10 @@ This process can be summarized as:
 
 ### Idea
 
-The goal is to produce the same RDF output from a JSON document using
-a JSON schema, as opposed to using a JSON-LD document and context. For
-this, we will annotate the JSON schema using an overlay to produce a
-schema variant, ingest the JSON document, and translate it to RDF
+The goal is to produce RDF from a JSON document using a JSON schema,
+as opposed to using a JSON-LD document and context. For this, we will
+annotate the JSON schema using an overlay (remember: schema + overlay
+= schema variant), ingest the JSON document, and translate it to RDF
 using the annotations embedded in the ingested object.
 
 First, we write a JSON schema to describe the data structures
