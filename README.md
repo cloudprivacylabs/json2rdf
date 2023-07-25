@@ -287,7 +287,7 @@ The RDF node corresponding to the "PostalAddress" property will be a blank node.
    used.
 
 ``` javascript
-"rdfIRI": "ref:<reference>
+"rdfIRI": "ref:<reference>"
 ```
 
 Example:
@@ -319,10 +319,9 @@ http://schema.org/Person/@id`) under the "Person" object.
  
 ### LSA Data Ingestion
 
-LSA already provides tools to ingest data and product a labeled
+LSA already provides tools to ingest data and produce a labeled
 property graph, so we will use those. LSA ingests a data file based on
-a schema variant (remember: a schema variant is a schema annotated
-using overlays) and produces a labeled property graph. The following
+a schema variant and produces a labeled property graph. The following
 image illustrates the data ingestion process.
 
 ![Ingestion Pipeline](pipeline.png)
@@ -343,11 +342,10 @@ all input data values and corresponding schema annotations. We then
 take this LPG, use the RDF annotations at each node, and produce the
 RDF output.
 
-When the input JSON is ingested, the schema variant results in the LPG
-shown below. As you can see, the LPG contains the schema annotations
-as well as the input data. We can process the annotations in each node
-to create the RDF output. This creates an RDF IRI node with value
-taken from the `@id` property under `Person`, and with type
+The LPG for the ingested data contains the schema annotations as well
+as the input data. We can process the annotations in each node to
+create the RDF output. This creates an RDF IRI node with value taken
+from the `@id` property under `Person`, and with type
 `http://schema.org/Person`. Note that the original schema does not
 contain the `@id` property. That is added by the overlay. The output
 looks like:
