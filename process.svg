@@ -24,23 +24,965 @@
      inkscape:deskcolor="#d1d1d1"
      inkscape:document-units="mm"
      showgrid="true"
-     inkscape:zoom="0.4204826"
-     inkscape:cx="348.40918"
-     inkscape:cy="645.68664"
-     inkscape:window-width="1231"
-     inkscape:window-height="853"
-     inkscape:window-x="135"
-     inkscape:window-y="213"
-     inkscape:window-maximized="0"
+     inkscape:zoom="1.6819304"
+     inkscape:cx="332.05893"
+     inkscape:cy="384.08248"
+     inkscape:window-width="1600"
+     inkscape:window-height="879"
+     inkscape:window-x="0"
+     inkscape:window-y="0"
+     inkscape:window-maximized="1"
      inkscape:current-layer="layer1">
     <inkscape:grid
        type="xygrid"
        id="grid607" />
   </sodipodi:namedview>
   <defs
-     id="defs600" />
+     id="defs600">
+    <marker
+       style="overflow:visible"
+       id="Arrow1L"
+       refX="0"
+       refY="0"
+       orient="auto-start-reverse"
+       inkscape:stockid="Arrow1L"
+       markerWidth="8.75"
+       markerHeight="5"
+       viewBox="0 0 8.75 5"
+       inkscape:isstock="true"
+       inkscape:collect="always"
+       preserveAspectRatio="xMidYMid">
+      <path
+         style="fill:context-stroke;fill-rule:evenodd;stroke:none"
+         d="M 0,0 5,-5 -12.5,0 5,5 Z"
+         id="arrow1L"
+         transform="scale(-0.5)" />
+    </marker>
+    <marker
+       style="overflow:visible"
+       id="Arrow2"
+       refX="0"
+       refY="0"
+       orient="auto-start-reverse"
+       inkscape:stockid="Arrow2"
+       markerWidth="7.6999998"
+       markerHeight="5.5999999"
+       viewBox="0 0 7.7 5.6"
+       inkscape:isstock="true"
+       inkscape:collect="always"
+       preserveAspectRatio="xMidYMid">
+      <path
+         transform="scale(0.7)"
+         d="M -2,-4 9,0 -2,4 c 2,-2.33 2,-5.66 0,-8 z"
+         style="fill:context-stroke;fill-rule:evenodd;stroke:none"
+         id="arrow2L" />
+    </marker>
+    <marker
+       style="overflow:visible"
+       id="Arrow2-8"
+       refX="0"
+       refY="0"
+       orient="auto-start-reverse"
+       inkscape:stockid="Arrow2"
+       markerWidth="7.6999998"
+       markerHeight="5.5999999"
+       viewBox="0 0 7.7 5.6"
+       inkscape:isstock="true"
+       inkscape:collect="always"
+       preserveAspectRatio="xMidYMid">
+      <path
+         transform="scale(0.7)"
+         d="M -2,-4 9,0 -2,4 c 2,-2.33 2,-5.66 0,-8 z"
+         style="fill:context-stroke;fill-rule:evenodd;stroke:none"
+         id="arrow2L-7" />
+    </marker>
+  </defs>
   <g
      inkscape:label="Layer 1"
      inkscape:groupmode="layer"
-     id="layer1" />
+     id="layer1">
+    <g
+       id="g4736">
+      <text
+         xml:space="preserve"
+         style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:3.52778px;line-height:1.25;font-family:'Classic Console';-inkscape-font-specification:'Classic Console, Normal';font-variant-ligatures:normal;font-variant-caps:normal;font-variant-numeric:normal;font-variant-east-asian:normal;word-spacing:0px;stroke-width:0.264583"
+         x="28.55983"
+         y="40.493652"
+         id="text79956"><tspan
+           sodipodi:role="line"
+           id="tspan4617"
+           x="28.55983"
+           y="40.493652">person.jsonld</tspan></text>
+      <path
+         style="fill:none;stroke:#000000;stroke-width:0.264583px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1"
+         d="m 29.104166,42.333333 11.906251,0 2.645833,3.96875 v 11.90625 l -14.552084,0 z"
+         id="path79962"
+         sodipodi:nodetypes="cccccc" />
+    </g>
+    <g
+       id="g9707"
+       transform="translate(8.5989577,6.6145833)">
+      <text
+         xml:space="preserve"
+         style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:3.52778px;line-height:1.25;font-family:'Classic Console';-inkscape-font-specification:'Classic Console, Normal';font-variant-ligatures:normal;font-variant-caps:normal;font-variant-numeric:normal;font-variant-east-asian:normal;word-spacing:0px;stroke-width:0.264583"
+         x="27.898371"
+         y="117.22282"
+         id="text79956-2"><tspan
+           sodipodi:role="line"
+           id="tspan9520"
+           x="27.898371"
+           y="117.22282">person.json</tspan></text>
+      <path
+         style="fill:none;stroke:#000000;stroke-width:0.264583px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1"
+         d="m 28.442708,119.0625 h 11.906251 l 2.645833,3.96875 V 134.9375 H 28.442708 Z"
+         id="path79962-1"
+         sodipodi:nodetypes="cccccc" />
+    </g>
+    <g
+       id="g9649"
+       transform="translate(-2.6458333)">
+      <text
+         xml:space="preserve"
+         style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:3.52778px;line-height:1.25;font-family:'Classic Console';-inkscape-font-specification:'Classic Console, Normal';font-variant-ligatures:normal;font-variant-caps:normal;font-variant-numeric:normal;font-variant-east-asian:normal;word-spacing:0px;stroke-width:0.264583"
+         x="50.7738"
+         y="82.826988"
+         id="text79956-2-2"><tspan
+           sodipodi:role="line"
+           id="tspan9554"
+           x="50.7738"
+           y="82.826988">person.schema.json</tspan></text>
+      <path
+         style="fill:none;stroke:#000000;stroke-width:0.264583px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1"
+         d="M 55.562499,84.666667 H 67.46875 l 2.645833,3.968747 V 100.54166 H 55.562499 Z"
+         id="path79962-1-0"
+         sodipodi:nodetypes="cccccc" />
+    </g>
+    <text
+       xml:space="preserve"
+       style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:3.52778px;line-height:1.25;font-family:'Classic Console';-inkscape-font-specification:'Classic Console, Normal';font-variant-ligatures:normal;font-variant-caps:normal;font-variant-numeric:normal;font-variant-east-asian:normal;word-spacing:0px;stroke-width:0.264583"
+       x="63.954731"
+       y="105.31657"
+       id="text79956-2-2-6"><tspan
+         sodipodi:role="line"
+         id="tspan9644"
+         x="63.954731"
+         y="105.31657">person-rdf.bundle.yaml</tspan></text>
+    <path
+       style="fill:none;stroke:#000000;stroke-width:0.264583px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1"
+       d="M 71.437499,107.15626 H 83.34375 l 2.645833,3.96874 v 11.90625 H 71.437499 Z"
+       id="path79962-1-0-61"
+       sodipodi:nodetypes="cccccc" />
+    <g
+       id="g9654"
+       transform="translate(9.4232783,-0.09708133)">
+      <text
+         xml:space="preserve"
+         style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:3.52778px;line-height:1.25;font-family:'Classic Console';-inkscape-font-specification:'Classic Console, Normal';font-variant-ligatures:normal;font-variant-caps:normal;font-variant-numeric:normal;font-variant-east-asian:normal;word-spacing:0px;stroke-width:0.264583"
+         x="79.715111"
+         y="82.924065"
+         id="text79956-2-2-9"><tspan
+           sodipodi:role="line"
+           id="tspan9588"
+           x="79.715111"
+           y="82.924065">person.overlay.json</tspan></text>
+      <path
+         style="fill:none;stroke:#000000;stroke-width:0.264583px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1"
+         d="m 84.503804,84.763748 h 11.906251 l 2.645833,3.968747 V 100.63874 H 84.503804 Z"
+         id="path79962-1-0-6"
+         sodipodi:nodetypes="cccccc" />
+    </g>
+    <g
+       id="g4731"
+       transform="translate(2.6458333,-6.6145833)">
+      <text
+         xml:space="preserve"
+         style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:3.52778px;line-height:1.25;font-family:'Classic Console';-inkscape-font-specification:'Classic Console, Normal';font-variant-ligatures:normal;font-variant-caps:normal;font-variant-numeric:normal;font-variant-east-asian:normal;word-spacing:0px;stroke-width:0.264583"
+         x="58.986912"
+         y="25.941565"
+         id="text79956-5"><tspan
+           sodipodi:role="line"
+           id="tspan4672"
+           x="58.986912"
+           y="25.941565">context.jsonld</tspan></text>
+      <path
+         style="fill:none;stroke:#000000;stroke-width:0.264583px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1"
+         d="M 59.531249,27.78125 H 71.4375 L 74.083333,31.75 V 43.65625 H 59.531249 Z"
+         id="path79962-5"
+         sodipodi:nodetypes="cccccc" />
+    </g>
+    <ellipse
+       style="fill:none;stroke:#000000;stroke-width:0.343873;stroke-linecap:round"
+       id="path4726"
+       cx="70.114586"
+       cy="49.304638"
+       rx="5.4688644"
+       ry="5.4764524" />
+    <ellipse
+       style="fill:none;stroke:#000000;stroke-width:0.343873;stroke-linecap:round"
+       id="path4726-0"
+       cx="79.375"
+       cy="133.79936"
+       rx="5.4688644"
+       ry="5.4764524" />
+    <path
+       style="fill:none;stroke:#000000;stroke-width:0.264583px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1;marker-end:url(#Arrow1L)"
+       d="m 44.979166,48.947916 c 18.520833,0 18.520833,0 18.520833,0"
+       id="path4792" />
+    <path
+       style="fill:none;stroke:#000000;stroke-width:0.264583px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1;marker-end:url(#Arrow1L)"
+       d="m 70.114582,38.364583 v 3.96875"
+       id="path5003" />
+    <path
+       style="fill:none;stroke:#000000;stroke-width:0.264583px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1;marker-end:url(#Arrow1L)"
+       d="m 75.406249,48.947916 c 7.9375,0 9.260417,0 9.260417,0"
+       id="path5009" />
+    <g
+       id="g9382"
+       transform="translate(50.960354,-33.070782)">
+      <text
+         text-anchor="middle"
+         x="47.433361"
+         y="81.383179"
+         font-family="Times, serif"
+         font-size="4.94002px"
+         id="text3062"
+         style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:1.72129px;font-family:'Classic Console';-inkscape-font-specification:'Classic Console, Normal';font-variant-ligatures:normal;font-variant-caps:normal;font-variant-numeric:normal;font-variant-east-asian:normal;text-anchor:middle;stroke-width:0.172169"
+         transform="scale(1.0404105,0.96115908)">http://linkedin.com/jane-doe</text>
+      <text
+         text-anchor="middle"
+         x="64.900703"
+         y="80.500816"
+         font-family="Times, serif"
+         font-size="4.94002px"
+         id="text3076"
+         style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:1.72129px;font-family:'Classic Console';-inkscape-font-specification:'Classic Console, Normal';font-variant-ligatures:normal;font-variant-caps:normal;font-variant-numeric:normal;font-variant-east-asian:normal;text-anchor:middle;stroke-width:0.172169"
+         transform="scale(1.0404105,0.96115908)"><tspan
+           sodipodi:role="line"
+           id="tspan4722"
+           x="64.900703"
+           y="80.500816"
+           style="stroke-width:0.172169">schema:address</tspan></text>
+      <text
+         text-anchor="middle"
+         x="65.094437"
+         y="88.272568"
+         font-family="Times, serif"
+         font-size="4.94002px"
+         id="text3076-1"
+         style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:1.72129px;font-family:'Classic Console';-inkscape-font-specification:'Classic Console, Normal';font-variant-ligatures:normal;font-variant-caps:normal;font-variant-numeric:normal;font-variant-east-asian:normal;text-anchor:middle;stroke-width:0.172169"
+         transform="scale(1.0404105,0.96115908)"><tspan
+           sodipodi:role="line"
+           id="tspan4724"
+           x="65.094437"
+           y="88.272568"
+           style="stroke-width:0.172169">schema:colleague</tspan></text>
+      <text
+         text-anchor="middle"
+         x="61.321438"
+         y="92.265602"
+         font-family="Times, serif"
+         font-size="4.94002px"
+         id="text3076-1-0"
+         style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:1.72129px;font-family:'Classic Console';-inkscape-font-specification:'Classic Console, Normal';font-variant-ligatures:normal;font-variant-caps:normal;font-variant-numeric:normal;font-variant-east-asian:normal;text-anchor:middle;stroke-width:0.172169"
+         transform="scale(1.0404105,0.96115908)"><tspan
+           sodipodi:role="line"
+           id="tspan4726"
+           x="61.321438"
+           y="92.265602"
+           style="stroke-width:0.172169">schema:colleague</tspan></text>
+      <text
+         text-anchor="middle"
+         x="55.47147"
+         y="74.033211"
+         font-family="Times, serif"
+         font-size="4.94002px"
+         id="text3076-7"
+         style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:1.72129px;font-family:'Classic Console';-inkscape-font-specification:'Classic Console, Normal';font-variant-ligatures:normal;font-variant-caps:normal;font-variant-numeric:normal;font-variant-east-asian:normal;text-anchor:middle;stroke-width:0.172169"
+         transform="scale(1.0404105,0.96115908)"><tspan
+           sodipodi:role="line"
+           id="tspan4718"
+           x="55.47147"
+           y="74.033211"
+           style="stroke-width:0.172169">schema:name</tspan></text>
+      <text
+         text-anchor="middle"
+         x="65.088188"
+         y="75.14637"
+         font-family="Times, serif"
+         font-size="4.94002px"
+         id="text3076-7-8"
+         style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:1.72129px;font-family:'Classic Console';-inkscape-font-specification:'Classic Console, Normal';font-variant-ligatures:normal;font-variant-caps:normal;font-variant-numeric:normal;font-variant-east-asian:normal;text-anchor:middle;stroke-width:0.172169"
+         transform="scale(1.0404105,0.96115908)"><tspan
+           sodipodi:role="line"
+           id="tspan4720"
+           x="65.088188"
+           y="75.14637"
+           style="stroke-width:0.172169">schema:email</tspan></text>
+      <text
+         text-anchor="middle"
+         x="79.643585"
+         y="74.530884"
+         font-family="Times, serif"
+         font-size="4.94002px"
+         id="text3076-7-8-0"
+         style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:1.72129px;font-family:'Classic Console';-inkscape-font-specification:'Classic Console, Normal';font-variant-ligatures:normal;font-variant-caps:normal;font-variant-numeric:normal;font-variant-east-asian:normal;text-anchor:middle;stroke-width:0.172169"
+         transform="scale(1.0404105,0.96115908)"><tspan
+           sodipodi:role="line"
+           id="tspan4327"
+           x="79.643585"
+           y="74.530884"
+           style="stroke-width:0.172169">jane@example.com</tspan></text>
+      <text
+         text-anchor="middle"
+         x="54.281796"
+         y="97.085503"
+         font-family="Times, serif"
+         font-size="4.94002px"
+         id="text3076-7-5"
+         style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:1.72129px;font-family:'Classic Console';-inkscape-font-specification:'Classic Console, Normal';font-variant-ligatures:normal;font-variant-caps:normal;font-variant-numeric:normal;font-variant-east-asian:normal;text-anchor:middle;stroke-width:0.172169"
+         transform="scale(1.0404105,0.96115908)"><tspan
+           sodipodi:role="line"
+           id="tspan4728"
+           x="54.281796"
+           y="97.085503"
+           style="stroke-width:0.172169">schema:sameAs</tspan></text>
+      <text
+         text-anchor="middle"
+         x="46.01062"
+         y="99.655365"
+         font-family="Times, serif"
+         font-size="4.94002px"
+         id="text3076-7-5-3"
+         style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:1.72129px;font-family:'Classic Console';-inkscape-font-specification:'Classic Console, Normal';font-variant-ligatures:normal;font-variant-caps:normal;font-variant-numeric:normal;font-variant-east-asian:normal;text-anchor:middle;stroke-width:0.172169"
+         transform="scale(1.0404105,0.96115908)"><tspan
+           sodipodi:role="line"
+           id="tspan4730"
+           x="46.01062"
+           y="99.655365"
+           style="stroke-width:0.172169">schema:sameAs</tspan></text>
+      <text
+         text-anchor="middle"
+         x="57.989479"
+         y="102.57489"
+         font-family="Times, serif"
+         font-size="4.94002px"
+         id="text3076-7-5-3-5"
+         style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:1.72129px;font-family:'Classic Console';-inkscape-font-specification:'Classic Console, Normal';font-variant-ligatures:normal;font-variant-caps:normal;font-variant-numeric:normal;font-variant-east-asian:normal;text-anchor:middle;stroke-width:0.172169"
+         transform="scale(1.0404105,0.96115908)"><tspan
+           sodipodi:role="line"
+           id="tspan4433"
+           x="57.989479"
+           y="102.57489"
+           style="stroke-width:0.172169">https://facebook.com/jane-doe</tspan></text>
+      <text
+         text-anchor="middle"
+         x="80.328995"
+         y="91.374817"
+         font-family="Times, serif"
+         font-size="4.94002px"
+         id="text3076-7-5-3-5-6"
+         style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:1.72129px;font-family:'Classic Console';-inkscape-font-specification:'Classic Console, Normal';font-variant-ligatures:normal;font-variant-caps:normal;font-variant-numeric:normal;font-variant-east-asian:normal;text-anchor:middle;stroke-width:0.172169"
+         transform="scale(1.0404105,0.96115908)"><tspan
+           sodipodi:role="line"
+           id="tspan4623"
+           x="80.328995"
+           y="91.374817"
+           style="stroke-width:0.172169">http://example.com/John.html</tspan></text>
+      <text
+         text-anchor="middle"
+         x="76.353271"
+         y="95.225349"
+         font-family="Times, serif"
+         font-size="4.94002px"
+         id="text3076-7-5-3-5-6-3"
+         style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:1.72129px;font-family:'Classic Console';-inkscape-font-specification:'Classic Console, Normal';font-variant-ligatures:normal;font-variant-caps:normal;font-variant-numeric:normal;font-variant-east-asian:normal;text-anchor:middle;stroke-width:0.172169"
+         transform="scale(1.0404105,0.96115908)"><tspan
+           sodipodi:role="line"
+           id="tspan4654"
+           x="76.353271"
+           y="95.225349"
+           style="stroke-width:0.172169">http://example.com/Amy.html</tspan></text>
+      <text
+         text-anchor="middle"
+         x="49.533798"
+         y="104.35246"
+         font-family="Times, serif"
+         font-size="4.94002px"
+         id="text3076-7-5-3-5-7"
+         style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:1.72129px;font-family:'Classic Console';-inkscape-font-specification:'Classic Console, Normal';font-variant-ligatures:normal;font-variant-caps:normal;font-variant-numeric:normal;font-variant-east-asian:normal;text-anchor:middle;stroke-width:0.172169"
+         transform="scale(1.0404105,0.96115908)"><tspan
+           sodipodi:role="line"
+           id="tspan4462"
+           x="49.533798"
+           y="104.35246"
+           style="stroke-width:0.172169">https://twitter.com/jane-doe</tspan></text>
+      <text
+         text-anchor="middle"
+         x="50.220863"
+         y="67.622406"
+         font-family="Times, serif"
+         font-size="4.94002px"
+         id="text3083"
+         style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:1.72129px;font-family:'Classic Console';-inkscape-font-specification:'Classic Console, Normal';font-variant-ligatures:normal;font-variant-caps:normal;font-variant-numeric:normal;font-variant-east-asian:normal;text-anchor:middle;stroke-width:0.172169"
+         transform="scale(1.0404105,0.96115908)"><tspan
+           sodipodi:role="line"
+           id="tspan4716"
+           x="50.220863"
+           y="67.622406"
+           style="stroke-width:0.172169">schema:Person</tspan></text>
+      <text
+         text-anchor="middle"
+         x="47.680222"
+         y="71.672287"
+         font-family="Times, serif"
+         font-size="4.94002px"
+         id="text3092"
+         style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:1.72129px;font-family:'Classic Console';-inkscape-font-specification:'Classic Console, Normal';font-variant-ligatures:normal;font-variant-caps:normal;font-variant-numeric:normal;font-variant-east-asian:normal;text-anchor:middle;stroke-width:0.172169"
+         transform="scale(1.0404105,0.96115908)"><tspan
+           sodipodi:role="line"
+           id="tspan4714"
+           x="47.680222"
+           y="71.672287"
+           style="stroke-width:0.172169">rdf:type</tspan></text>
+      <text
+         text-anchor="middle"
+         x="90.104744"
+         y="85.75808"
+         font-family="Times, serif"
+         font-size="4.94002px"
+         id="text3099"
+         style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:1.72129px;font-family:'Classic Console';-inkscape-font-specification:'Classic Console, Normal';font-variant-ligatures:normal;font-variant-caps:normal;font-variant-numeric:normal;font-variant-east-asian:normal;text-anchor:middle;stroke-width:0.172169"
+         transform="scale(1.0404105,0.96115908)">Denver</text>
+      <text
+         text-anchor="middle"
+         x="89.139191"
+         y="89.757027"
+         font-family="Times, serif"
+         font-size="4.94002px"
+         id="text3099-2"
+         style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:1.72129px;font-family:'Classic Console';-inkscape-font-specification:'Classic Console, Normal';font-variant-ligatures:normal;font-variant-caps:normal;font-variant-numeric:normal;font-variant-east-asian:normal;text-anchor:middle;stroke-width:0.172169"
+         transform="scale(1.0404105,0.96115908)"><tspan
+           sodipodi:role="line"
+           id="tspan4298"
+           x="89.139191"
+           y="89.757027"
+           style="stroke-width:0.172169">CO</tspan></text>
+      <text
+         text-anchor="middle"
+         x="83.890862"
+         y="83.514008"
+         font-family="Times, serif"
+         font-size="4.94002px"
+         id="text3108"
+         style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:1.72129px;font-family:'Classic Console';-inkscape-font-specification:'Classic Console, Normal';font-variant-ligatures:normal;font-variant-caps:normal;font-variant-numeric:normal;font-variant-east-asian:normal;text-anchor:middle;stroke-width:0.172169"
+         transform="scale(1.0404105,0.96115908)"><tspan
+           sodipodi:role="line"
+           id="tspan4736"
+           x="83.890862"
+           y="83.514008"
+           style="stroke-width:0.172169">schema:addressLocality</tspan></text>
+      <text
+         text-anchor="middle"
+         x="81.03653"
+         y="87.305336"
+         font-family="Times, serif"
+         font-size="4.94002px"
+         id="text3108-5"
+         style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:1.72129px;font-family:'Classic Console';-inkscape-font-specification:'Classic Console, Normal';font-variant-ligatures:normal;font-variant-caps:normal;font-variant-numeric:normal;font-variant-east-asian:normal;text-anchor:middle;stroke-width:0.172169"
+         transform="scale(1.0404105,0.96115908)"><tspan
+           sodipodi:role="line"
+           id="tspan4738"
+           x="81.03653"
+           y="87.305336"
+           style="stroke-width:0.172169">schema:addressRegion</tspan></text>
+      <text
+         text-anchor="middle"
+         x="68.922096"
+         y="70.386368"
+         font-family="Times, serif"
+         font-size="4.94002px"
+         id="text3108-3"
+         style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:1.72129px;font-family:'Classic Console';-inkscape-font-specification:'Classic Console, Normal';font-variant-ligatures:normal;font-variant-caps:normal;font-variant-numeric:normal;font-variant-east-asian:normal;text-anchor:middle;stroke-width:0.172169"
+         transform="scale(1.0404105,0.96115908)"><tspan
+           sodipodi:role="line"
+           id="tspan4356"
+           x="68.922096"
+           y="70.386368"
+           style="stroke-width:0.172169">Jane Doe</tspan></text>
+      <text
+         text-anchor="middle"
+         x="92.539841"
+         y="79.722885"
+         font-family="Times, serif"
+         font-size="4.94002px"
+         id="text3115"
+         style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:1.72129px;font-family:'Classic Console';-inkscape-font-specification:'Classic Console, Normal';font-variant-ligatures:normal;font-variant-caps:normal;font-variant-numeric:normal;font-variant-east-asian:normal;text-anchor:middle;stroke-width:0.172169"
+         transform="scale(1.0404105,0.96115908)"><tspan
+           sodipodi:role="line"
+           id="tspan4734"
+           x="92.539841"
+           y="79.722885"
+           style="stroke-width:0.172169">schema:PostalAddress</tspan></text>
+      <text
+         text-anchor="middle"
+         x="77.541016"
+         y="79.84565"
+         font-family="Times, serif"
+         font-size="4.94002px"
+         id="text3124"
+         style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:1.72129px;font-family:'Classic Console';-inkscape-font-specification:'Classic Console, Normal';font-variant-ligatures:normal;font-variant-caps:normal;font-variant-numeric:normal;font-variant-east-asian:normal;text-anchor:middle;stroke-width:0.172169"
+         transform="scale(1.0404105,0.96115908)"><tspan
+           sodipodi:role="line"
+           id="tspan4732"
+           x="77.541016"
+           y="79.84565"
+           style="stroke-width:0.172169">rdf:type</tspan></text>
+      <path
+         style="fill:none;stroke:#505050;stroke-width:0.129097px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1;marker-end:url(#Arrow2)"
+         d="M 49.737157,76.80514 50.45556,66.092418"
+         id="path4740"
+         sodipodi:nodetypes="cc" />
+      <path
+         style="fill:none;stroke:#505050;stroke-width:0.129097px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1;marker-end:url(#Arrow2)"
+         d="m 51.361836,76.73778 c 10.001077,-5.207053 16.732783,-8.7238 16.732783,-8.7238"
+         id="path4768"
+         sodipodi:nodetypes="cc" />
+      <path
+         style="fill:none;stroke:#505050;stroke-width:0.129097px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1;marker-end:url(#Arrow2)"
+         d="M 53.307838,76.852496 C 65.34423,73.865121 76.30326,71.880627 76.30326,71.880627"
+         id="path4940"
+         sodipodi:nodetypes="cc" />
+      <ellipse
+         style="opacity:0.993;fill:none;fill-opacity:1;stroke:#000000;stroke-width:0.1293;stroke-linecap:round;stroke-dasharray:none;stroke-opacity:1"
+         id="path5012"
+         cx="75.187927"
+         cy="79.22998"
+         rx="0.79949212"
+         ry="0.75700295" />
+      <path
+         style="fill:none;stroke:#505050;stroke-width:0.129097px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1;marker-end:url(#Arrow2)"
+         d="m 60.164646,78.049949 c 8.569319,0.191309 13.326399,0.953637 13.326399,0.953637"
+         id="path5274"
+         sodipodi:nodetypes="cc" />
+      <path
+         style="fill:none;stroke:#505050;stroke-width:0.129097px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1;marker-end:url(#Arrow2)"
+         d="M 75.940184,79.115201 C 85.538701,79.787724 90.741,81.493611 90.741,81.493611"
+         id="path5294"
+         sodipodi:nodetypes="cc" />
+      <path
+         style="fill:none;stroke:#505050;stroke-width:0.129097px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1;marker-end:url(#Arrow2)"
+         d="m 75.83203,79.727907 15.372311,5.429639"
+         id="path5296"
+         sodipodi:nodetypes="cc" />
+      <path
+         style="fill:none;stroke:#505050;stroke-width:0.129097px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1;marker-end:url(#Arrow2)"
+         d="m 55.797962,79.019618 c 10.568894,5.675853 17.102766,7.836539 17.102766,7.836539"
+         id="path5298"
+         sodipodi:nodetypes="cc" />
+      <path
+         style="fill:none;stroke:#505050;stroke-width:0.129097px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1;marker-end:url(#Arrow2)"
+         d="m 54.77786,79.044563 c 8.841531,8.08502 14.48353,11.72983 14.48353,11.72983"
+         id="path5300"
+         sodipodi:nodetypes="cc" />
+      <path
+         style="fill:none;stroke:#505050;stroke-width:0.129097px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1;marker-end:url(#Arrow2)"
+         d="m 52.036545,79.086267 3.797058,17.386194"
+         id="path5302"
+         sodipodi:nodetypes="cc" />
+      <path
+         style="fill:none;stroke:#505050;stroke-width:0.129097px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1;marker-end:url(#Arrow2)"
+         d="M 50.498772,79.255073 46.702485,98.527567"
+         id="path5304"
+         sodipodi:nodetypes="cc" />
+      <path
+         style="fill:none;stroke:#505050;stroke-width:0.129097px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1;marker-end:url(#Arrow2)"
+         d="m 75.868393,78.74497 c 7.334709,-2.088289 12.487868,-2.464875 12.487868,-2.464875"
+         id="path5422"
+         sodipodi:nodetypes="cc" />
+    </g>
+    <g
+       id="g9382-9"
+       transform="translate(59.390939,53.37301)">
+      <text
+         text-anchor="middle"
+         x="47.433361"
+         y="81.383179"
+         font-family="Times, serif"
+         font-size="4.94002px"
+         id="text3062-2"
+         style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:1.72129px;font-family:'Classic Console';-inkscape-font-specification:'Classic Console, Normal';font-variant-ligatures:normal;font-variant-caps:normal;font-variant-numeric:normal;font-variant-east-asian:normal;text-anchor:middle;stroke-width:0.172169"
+         transform="scale(1.0404105,0.96115908)">http://linkedin.com/jane-doe</text>
+      <text
+         text-anchor="middle"
+         x="64.900703"
+         y="80.500816"
+         font-family="Times, serif"
+         font-size="4.94002px"
+         id="text3076-0"
+         style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:1.72129px;font-family:'Classic Console';-inkscape-font-specification:'Classic Console, Normal';font-variant-ligatures:normal;font-variant-caps:normal;font-variant-numeric:normal;font-variant-east-asian:normal;text-anchor:middle;stroke-width:0.172169"
+         transform="scale(1.0404105,0.96115908)"><tspan
+           sodipodi:role="line"
+           id="tspan4722-2"
+           x="64.900703"
+           y="80.500816"
+           style="stroke-width:0.172169">schema:address</tspan></text>
+      <text
+         text-anchor="middle"
+         x="65.094437"
+         y="88.272568"
+         font-family="Times, serif"
+         font-size="4.94002px"
+         id="text3076-1-3"
+         style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:1.72129px;font-family:'Classic Console';-inkscape-font-specification:'Classic Console, Normal';font-variant-ligatures:normal;font-variant-caps:normal;font-variant-numeric:normal;font-variant-east-asian:normal;text-anchor:middle;stroke-width:0.172169"
+         transform="scale(1.0404105,0.96115908)"><tspan
+           sodipodi:role="line"
+           id="tspan4724-7"
+           x="65.094437"
+           y="88.272568"
+           style="stroke-width:0.172169">schema:colleague</tspan></text>
+      <text
+         text-anchor="middle"
+         x="61.321438"
+         y="92.265602"
+         font-family="Times, serif"
+         font-size="4.94002px"
+         id="text3076-1-0-5"
+         style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:1.72129px;font-family:'Classic Console';-inkscape-font-specification:'Classic Console, Normal';font-variant-ligatures:normal;font-variant-caps:normal;font-variant-numeric:normal;font-variant-east-asian:normal;text-anchor:middle;stroke-width:0.172169"
+         transform="scale(1.0404105,0.96115908)"><tspan
+           sodipodi:role="line"
+           id="tspan4726-9"
+           x="61.321438"
+           y="92.265602"
+           style="stroke-width:0.172169">schema:colleague</tspan></text>
+      <text
+         text-anchor="middle"
+         x="55.47147"
+         y="74.033211"
+         font-family="Times, serif"
+         font-size="4.94002px"
+         id="text3076-7-2"
+         style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:1.72129px;font-family:'Classic Console';-inkscape-font-specification:'Classic Console, Normal';font-variant-ligatures:normal;font-variant-caps:normal;font-variant-numeric:normal;font-variant-east-asian:normal;text-anchor:middle;stroke-width:0.172169"
+         transform="scale(1.0404105,0.96115908)"><tspan
+           sodipodi:role="line"
+           id="tspan4718-2"
+           x="55.47147"
+           y="74.033211"
+           style="stroke-width:0.172169">schema:name</tspan></text>
+      <text
+         text-anchor="middle"
+         x="65.088188"
+         y="75.14637"
+         font-family="Times, serif"
+         font-size="4.94002px"
+         id="text3076-7-8-8"
+         style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:1.72129px;font-family:'Classic Console';-inkscape-font-specification:'Classic Console, Normal';font-variant-ligatures:normal;font-variant-caps:normal;font-variant-numeric:normal;font-variant-east-asian:normal;text-anchor:middle;stroke-width:0.172169"
+         transform="scale(1.0404105,0.96115908)"><tspan
+           sodipodi:role="line"
+           id="tspan4720-9"
+           x="65.088188"
+           y="75.14637"
+           style="stroke-width:0.172169">schema:email</tspan></text>
+      <text
+         text-anchor="middle"
+         x="79.643585"
+         y="74.530884"
+         font-family="Times, serif"
+         font-size="4.94002px"
+         id="text3076-7-8-0-7"
+         style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:1.72129px;font-family:'Classic Console';-inkscape-font-specification:'Classic Console, Normal';font-variant-ligatures:normal;font-variant-caps:normal;font-variant-numeric:normal;font-variant-east-asian:normal;text-anchor:middle;stroke-width:0.172169"
+         transform="scale(1.0404105,0.96115908)"><tspan
+           sodipodi:role="line"
+           id="tspan4327-3"
+           x="79.643585"
+           y="74.530884"
+           style="stroke-width:0.172169">jane@example.com</tspan></text>
+      <text
+         text-anchor="middle"
+         x="54.281796"
+         y="97.085503"
+         font-family="Times, serif"
+         font-size="4.94002px"
+         id="text3076-7-5-6"
+         style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:1.72129px;font-family:'Classic Console';-inkscape-font-specification:'Classic Console, Normal';font-variant-ligatures:normal;font-variant-caps:normal;font-variant-numeric:normal;font-variant-east-asian:normal;text-anchor:middle;stroke-width:0.172169"
+         transform="scale(1.0404105,0.96115908)"><tspan
+           sodipodi:role="line"
+           id="tspan4728-1"
+           x="54.281796"
+           y="97.085503"
+           style="stroke-width:0.172169">schema:sameAs</tspan></text>
+      <text
+         text-anchor="middle"
+         x="46.01062"
+         y="99.655365"
+         font-family="Times, serif"
+         font-size="4.94002px"
+         id="text3076-7-5-3-2"
+         style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:1.72129px;font-family:'Classic Console';-inkscape-font-specification:'Classic Console, Normal';font-variant-ligatures:normal;font-variant-caps:normal;font-variant-numeric:normal;font-variant-east-asian:normal;text-anchor:middle;stroke-width:0.172169"
+         transform="scale(1.0404105,0.96115908)"><tspan
+           sodipodi:role="line"
+           id="tspan4730-9"
+           x="46.01062"
+           y="99.655365"
+           style="stroke-width:0.172169">schema:sameAs</tspan></text>
+      <text
+         text-anchor="middle"
+         x="57.989479"
+         y="102.57489"
+         font-family="Times, serif"
+         font-size="4.94002px"
+         id="text3076-7-5-3-5-3"
+         style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:1.72129px;font-family:'Classic Console';-inkscape-font-specification:'Classic Console, Normal';font-variant-ligatures:normal;font-variant-caps:normal;font-variant-numeric:normal;font-variant-east-asian:normal;text-anchor:middle;stroke-width:0.172169"
+         transform="scale(1.0404105,0.96115908)"><tspan
+           sodipodi:role="line"
+           id="tspan4433-1"
+           x="57.989479"
+           y="102.57489"
+           style="stroke-width:0.172169">https://facebook.com/jane-doe</tspan></text>
+      <text
+         text-anchor="middle"
+         x="80.328995"
+         y="91.374817"
+         font-family="Times, serif"
+         font-size="4.94002px"
+         id="text3076-7-5-3-5-6-9"
+         style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:1.72129px;font-family:'Classic Console';-inkscape-font-specification:'Classic Console, Normal';font-variant-ligatures:normal;font-variant-caps:normal;font-variant-numeric:normal;font-variant-east-asian:normal;text-anchor:middle;stroke-width:0.172169"
+         transform="scale(1.0404105,0.96115908)"><tspan
+           sodipodi:role="line"
+           id="tspan4623-4"
+           x="80.328995"
+           y="91.374817"
+           style="stroke-width:0.172169">http://example.com/John.html</tspan></text>
+      <text
+         text-anchor="middle"
+         x="76.353271"
+         y="95.225349"
+         font-family="Times, serif"
+         font-size="4.94002px"
+         id="text3076-7-5-3-5-6-3-7"
+         style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:1.72129px;font-family:'Classic Console';-inkscape-font-specification:'Classic Console, Normal';font-variant-ligatures:normal;font-variant-caps:normal;font-variant-numeric:normal;font-variant-east-asian:normal;text-anchor:middle;stroke-width:0.172169"
+         transform="scale(1.0404105,0.96115908)"><tspan
+           sodipodi:role="line"
+           id="tspan4654-8"
+           x="76.353271"
+           y="95.225349"
+           style="stroke-width:0.172169">http://example.com/Amy.html</tspan></text>
+      <text
+         text-anchor="middle"
+         x="49.533798"
+         y="104.35246"
+         font-family="Times, serif"
+         font-size="4.94002px"
+         id="text3076-7-5-3-5-7-4"
+         style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:1.72129px;font-family:'Classic Console';-inkscape-font-specification:'Classic Console, Normal';font-variant-ligatures:normal;font-variant-caps:normal;font-variant-numeric:normal;font-variant-east-asian:normal;text-anchor:middle;stroke-width:0.172169"
+         transform="scale(1.0404105,0.96115908)"><tspan
+           sodipodi:role="line"
+           id="tspan4462-5"
+           x="49.533798"
+           y="104.35246"
+           style="stroke-width:0.172169">https://twitter.com/jane-doe</tspan></text>
+      <text
+         text-anchor="middle"
+         x="50.220863"
+         y="67.622406"
+         font-family="Times, serif"
+         font-size="4.94002px"
+         id="text3083-0"
+         style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:1.72129px;font-family:'Classic Console';-inkscape-font-specification:'Classic Console, Normal';font-variant-ligatures:normal;font-variant-caps:normal;font-variant-numeric:normal;font-variant-east-asian:normal;text-anchor:middle;stroke-width:0.172169"
+         transform="scale(1.0404105,0.96115908)"><tspan
+           sodipodi:role="line"
+           id="tspan4716-3"
+           x="50.220863"
+           y="67.622406"
+           style="stroke-width:0.172169">schema:Person</tspan></text>
+      <text
+         text-anchor="middle"
+         x="47.680222"
+         y="71.672287"
+         font-family="Times, serif"
+         font-size="4.94002px"
+         id="text3092-6"
+         style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:1.72129px;font-family:'Classic Console';-inkscape-font-specification:'Classic Console, Normal';font-variant-ligatures:normal;font-variant-caps:normal;font-variant-numeric:normal;font-variant-east-asian:normal;text-anchor:middle;stroke-width:0.172169"
+         transform="scale(1.0404105,0.96115908)"><tspan
+           sodipodi:role="line"
+           id="tspan4714-1"
+           x="47.680222"
+           y="71.672287"
+           style="stroke-width:0.172169">rdf:type</tspan></text>
+      <text
+         text-anchor="middle"
+         x="90.104744"
+         y="85.75808"
+         font-family="Times, serif"
+         font-size="4.94002px"
+         id="text3099-0"
+         style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:1.72129px;font-family:'Classic Console';-inkscape-font-specification:'Classic Console, Normal';font-variant-ligatures:normal;font-variant-caps:normal;font-variant-numeric:normal;font-variant-east-asian:normal;text-anchor:middle;stroke-width:0.172169"
+         transform="scale(1.0404105,0.96115908)">Denver</text>
+      <text
+         text-anchor="middle"
+         x="89.139191"
+         y="89.757027"
+         font-family="Times, serif"
+         font-size="4.94002px"
+         id="text3099-2-6"
+         style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:1.72129px;font-family:'Classic Console';-inkscape-font-specification:'Classic Console, Normal';font-variant-ligatures:normal;font-variant-caps:normal;font-variant-numeric:normal;font-variant-east-asian:normal;text-anchor:middle;stroke-width:0.172169"
+         transform="scale(1.0404105,0.96115908)"><tspan
+           sodipodi:role="line"
+           id="tspan4298-3"
+           x="89.139191"
+           y="89.757027"
+           style="stroke-width:0.172169">CO</tspan></text>
+      <text
+         text-anchor="middle"
+         x="83.890862"
+         y="83.514008"
+         font-family="Times, serif"
+         font-size="4.94002px"
+         id="text3108-2"
+         style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:1.72129px;font-family:'Classic Console';-inkscape-font-specification:'Classic Console, Normal';font-variant-ligatures:normal;font-variant-caps:normal;font-variant-numeric:normal;font-variant-east-asian:normal;text-anchor:middle;stroke-width:0.172169"
+         transform="scale(1.0404105,0.96115908)"><tspan
+           sodipodi:role="line"
+           id="tspan4736-0"
+           x="83.890862"
+           y="83.514008"
+           style="stroke-width:0.172169">schema:addressLocality</tspan></text>
+      <text
+         text-anchor="middle"
+         x="81.03653"
+         y="87.305336"
+         font-family="Times, serif"
+         font-size="4.94002px"
+         id="text3108-5-6"
+         style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:1.72129px;font-family:'Classic Console';-inkscape-font-specification:'Classic Console, Normal';font-variant-ligatures:normal;font-variant-caps:normal;font-variant-numeric:normal;font-variant-east-asian:normal;text-anchor:middle;stroke-width:0.172169"
+         transform="scale(1.0404105,0.96115908)"><tspan
+           sodipodi:role="line"
+           id="tspan4738-1"
+           x="81.03653"
+           y="87.305336"
+           style="stroke-width:0.172169">schema:addressRegion</tspan></text>
+      <text
+         text-anchor="middle"
+         x="68.922096"
+         y="70.386368"
+         font-family="Times, serif"
+         font-size="4.94002px"
+         id="text3108-3-5"
+         style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:1.72129px;font-family:'Classic Console';-inkscape-font-specification:'Classic Console, Normal';font-variant-ligatures:normal;font-variant-caps:normal;font-variant-numeric:normal;font-variant-east-asian:normal;text-anchor:middle;stroke-width:0.172169"
+         transform="scale(1.0404105,0.96115908)"><tspan
+           sodipodi:role="line"
+           id="tspan4356-5"
+           x="68.922096"
+           y="70.386368"
+           style="stroke-width:0.172169">Jane Doe</tspan></text>
+      <text
+         text-anchor="middle"
+         x="92.539841"
+         y="79.722885"
+         font-family="Times, serif"
+         font-size="4.94002px"
+         id="text3115-4"
+         style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:1.72129px;font-family:'Classic Console';-inkscape-font-specification:'Classic Console, Normal';font-variant-ligatures:normal;font-variant-caps:normal;font-variant-numeric:normal;font-variant-east-asian:normal;text-anchor:middle;stroke-width:0.172169"
+         transform="scale(1.0404105,0.96115908)"><tspan
+           sodipodi:role="line"
+           id="tspan4734-7"
+           x="92.539841"
+           y="79.722885"
+           style="stroke-width:0.172169">schema:PostalAddress</tspan></text>
+      <text
+         text-anchor="middle"
+         x="77.541016"
+         y="79.84565"
+         font-family="Times, serif"
+         font-size="4.94002px"
+         id="text3124-6"
+         style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:1.72129px;font-family:'Classic Console';-inkscape-font-specification:'Classic Console, Normal';font-variant-ligatures:normal;font-variant-caps:normal;font-variant-numeric:normal;font-variant-east-asian:normal;text-anchor:middle;stroke-width:0.172169"
+         transform="scale(1.0404105,0.96115908)"><tspan
+           sodipodi:role="line"
+           id="tspan4732-5"
+           x="77.541016"
+           y="79.84565"
+           style="stroke-width:0.172169">rdf:type</tspan></text>
+      <path
+         style="fill:none;stroke:#505050;stroke-width:0.129097px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1;marker-end:url(#Arrow2-8)"
+         d="M 49.737157,76.80514 50.45556,66.092418"
+         id="path4740-6"
+         sodipodi:nodetypes="cc" />
+      <path
+         style="fill:none;stroke:#505050;stroke-width:0.129097px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1;marker-end:url(#Arrow2-8)"
+         d="m 51.361836,76.73778 c 10.001077,-5.207053 16.732783,-8.7238 16.732783,-8.7238"
+         id="path4768-9"
+         sodipodi:nodetypes="cc" />
+      <path
+         style="fill:none;stroke:#505050;stroke-width:0.129097px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1;marker-end:url(#Arrow2-8)"
+         d="M 53.307838,76.852496 C 65.34423,73.865121 76.30326,71.880627 76.30326,71.880627"
+         id="path4940-3"
+         sodipodi:nodetypes="cc" />
+      <ellipse
+         style="opacity:0.993;fill:none;fill-opacity:1;stroke:#000000;stroke-width:0.1293;stroke-linecap:round;stroke-dasharray:none;stroke-opacity:1"
+         id="path5012-7"
+         cx="75.187927"
+         cy="79.22998"
+         rx="0.79949212"
+         ry="0.75700295" />
+      <path
+         style="fill:none;stroke:#505050;stroke-width:0.129097px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1;marker-end:url(#Arrow2-8)"
+         d="m 60.164646,78.049949 c 8.569319,0.191309 13.326399,0.953637 13.326399,0.953637"
+         id="path5274-4"
+         sodipodi:nodetypes="cc" />
+      <path
+         style="fill:none;stroke:#505050;stroke-width:0.129097px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1;marker-end:url(#Arrow2-8)"
+         d="M 75.940184,79.115201 C 85.538701,79.787724 90.741,81.493611 90.741,81.493611"
+         id="path5294-5"
+         sodipodi:nodetypes="cc" />
+      <path
+         style="fill:none;stroke:#505050;stroke-width:0.129097px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1;marker-end:url(#Arrow2-8)"
+         d="m 75.83203,79.727907 15.372311,5.429639"
+         id="path5296-2"
+         sodipodi:nodetypes="cc" />
+      <path
+         style="fill:none;stroke:#505050;stroke-width:0.129097px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1;marker-end:url(#Arrow2-8)"
+         d="m 55.797962,79.019618 c 10.568894,5.675853 17.102766,7.836539 17.102766,7.836539"
+         id="path5298-5"
+         sodipodi:nodetypes="cc" />
+      <path
+         style="fill:none;stroke:#505050;stroke-width:0.129097px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1;marker-end:url(#Arrow2-8)"
+         d="m 54.77786,79.044563 c 8.841531,8.08502 14.48353,11.72983 14.48353,11.72983"
+         id="path5300-4"
+         sodipodi:nodetypes="cc" />
+      <path
+         style="fill:none;stroke:#505050;stroke-width:0.129097px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1;marker-end:url(#Arrow2-8)"
+         d="m 52.036545,79.086267 3.797058,17.386194"
+         id="path5302-7"
+         sodipodi:nodetypes="cc" />
+      <path
+         style="fill:none;stroke:#505050;stroke-width:0.129097px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1;marker-end:url(#Arrow2-8)"
+         d="M 50.498772,79.255073 46.702485,98.527567"
+         id="path5304-4"
+         sodipodi:nodetypes="cc" />
+      <path
+         style="fill:none;stroke:#505050;stroke-width:0.129097px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1;marker-end:url(#Arrow2-8)"
+         d="m 75.868393,78.74497 c 7.334709,-2.088289 12.487868,-2.464875 12.487868,-2.464875"
+         id="path5422-4"
+         sodipodi:nodetypes="cc" />
+    </g>
+    <path
+       style="fill:none;stroke:#000000;stroke-width:0.264583px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1;marker-end:url(#Arrow1L)"
+       d="m 59.531249,101.86458 c 0,9.26042 10.583333,13.22917 10.583333,13.22917"
+       id="path9656" />
+    <path
+       style="fill:none;stroke:#000000;stroke-width:0.264583px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1;marker-end:url(#Arrow1L)"
+       d="m 101.86458,101.86458 c 0,7.9375 -14.552081,13.22917 -14.552081,13.22917"
+       id="path9692" />
+    <path
+       style="fill:none;stroke:#000000;stroke-width:0.264583px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1;marker-end:url(#Arrow1L)"
+       d="m 79.374999,124.35417 c 0,2.64583 0,2.64583 0,2.64583"
+       id="path9698" />
+    <path
+       style="fill:none;stroke:#000000;stroke-width:0.264583px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1;marker-end:url(#Arrow1L)"
+       d="m 52.916666,133.61458 c 18.520833,0 19.84375,0 19.84375,0"
+       id="path10177" />
+    <path
+       style="fill:none;stroke:#000000;stroke-width:0.264583px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1;marker-end:url(#Arrow1L)"
+       d="m 85.989582,133.61458 c 2.645834,0 11.90625,0 11.90625,0"
+       id="path10183" />
+  </g>
 </svg>

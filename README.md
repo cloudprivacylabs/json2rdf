@@ -84,6 +84,10 @@ graph, and a JSON property is represented as an edge (predicate). If
 the JSON object does not have an `@id`, then it is translated into a
 blank node.
 
+This process can be summarized as:
+
+![JSON-LD to RDF](jsonlf-to-rdf.png)
+
 ## JSON/RDF Translation using a Layered JSON Schema
 
 ### Idea
