@@ -2,7 +2,9 @@
 
 JSON-LD is a format for encoding linked data. It allows mapping of
 JSON properties to a web ontology to enable interoperability between
-differents systems.
+differents systems. JSON-LD also offers a JSON-based encoding of
+knowledge graphs. A JSON-LD document can be translated into RDF and
+vice-versa.
 
 This is a proof-of-concept to show that layered JSON schemas offer the
 same functionality. A layered JSON schema is simply a JSON schema with
