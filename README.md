@@ -42,10 +42,19 @@ standards or proprietary data structures within an
 ecosystem. Different schema variants can be used to ingest and
 harmonize disparate data structures.
 
+When a document is ingested using LSA tools, the ingestion process
+creates a labeled property graph (LPG) containing both the input data
+elements and the schema variant. Each node in this graph contains the
+ingested data value and the schema information corresponding to the
+data element. Thus, the ingested LPG is a self-describing object that
+contains the input values and schema annotations for each data
+element. The annotations can also contain graph-shaping instructions
+to fine-tune the ingestion process.
+
 This proof-of-concept uses the LSA packages to compose schema variants
 and ingest JSON documents. The `layers` program from the LSA
 repository can also be used together with `json2rdf` program in this
-repository.
+repository. 
 
 ## JSON-LD/RDF Translation
 
@@ -99,23 +108,25 @@ This process can be summarized as:
 The goal is to produce RDF from a JSON document using a JSON schema,
 as opposed to using a JSON-LD document and context. For this, we will
 annotate the JSON schema using an overlay (remember: schema + overlay
-= schema variant), ingest the JSON document, and translate it to RDF
-using the annotations embedded in the ingested object.
+= schema variant), ingest the JSON document, and translate the
+resulting LPG to RDF using the annotations embedded in the ingested
+object.
 
 First, we write a JSON schema to describe the data structures
 (`Person` and `PostalAddress`). Then we combine it with an overlay
 that describes how to translate JSON data points into RDF. For
-example:
+example, the JSON key-value pair:
 
 ``` javascript
 "email": "jane@example.com"
 ```
 
 should be translated as an RDF predicate `http://schema.org/email` and
-an RDF literal object `jane@example.com`. So the overlay should assign
-`email` property to `http://schema.org/email` IRI, and also should
-specify that it should be an RDF predicate. The following annotation
-serves this purpose:
+an RDF literal object `jane@example.com`. To do this, the overlay
+annotates the schema for the `email` property with the IRI
+`http://schema.org/email`. The overlay should also specify that it
+should be an RDF predicate. The following annotation serves this
+purpose:
 
 ``` javascript
 "rdfPredicate": "http://schema.org/email"
@@ -190,8 +201,16 @@ The overlay follows the same structure, but adds the tags under the
               "@id": {
                  "type": "string"
               },
+              "name": {
+                 "x-ls": {
+                   "rdfPredicate": "http://schema.org/name"
+                 }
+              }
             ...
 ```
+
+The `@id` property does not exist in the original schema. The overlay
+adds it.
 
 All annotations go under the `x-ls` JSON object. This is the
 recommended way of adding extensions to a JSON schema: it starts with
@@ -215,28 +234,14 @@ The schema variant is a composition of the two:
                  "type": "string"
               },
               "name": {
-                 "type": "string"
+                 "type": "string",
+                 "x-ls": {
+                    "rdfPredicate": "http://schema.org/name"
+                  }
               },
             ...
 ```
-
-Similarly, the following overlay assigns `http://schema.org/name` to
-the `Person/name` property, and declares it as an RDF predicate. Since
-`name` has a value in the ingested LPG, it will be translated to RDF
-as an edge connecting to a literal node:
-
-``` javascript
-{
-    "definitions": {
-        "Person": {
-           "properties": {
-                "name": {
-                    "x-ls": {
-                        "rdfPredicate": "http://schema.org/name"
-                    }
-                },
-            ...
-```
+Here's the complete [person schema](person.schema.json) and the [overlay](person.ovl.json).
 
 For `rdfIRI`, `json2rdf` uses these conventions:
 
